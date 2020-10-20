@@ -4,53 +4,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="Consorcio.cs" />
-    <Compile Include="Gasto.cs" />
-    <Compile Include="obj\Debug\netstandard2.0\.NETStandard,Version=v2.0.AssemblyAttributes.cs" />
-    <Compile Include="obj\Debug\netstandard2.0\Entidades.AssemblyInfo.cs" />
-    <Compile Include="Provincia.cs" />
-    <Compile Include="TipoGasto.cs" />
-    <Compile Include="Unidad.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.QualityTools.Testing.Fakes" Version="16.7.4-beta.20330.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.ComponentModel.DataAnnotations">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.ComponentModel.DataAnnotations.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="bin\Debug\netstandard2.0\Entidades.deps.json" />
-    <Content Include="obj\Debug\netstandard2.0\Entidades.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Entidades.csproj.nuget.dgspec.json" />
-    <Content Include="obj\project.assets.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="bin\Debug\netstandard2.0\Entidades.dll" />
-    <None Include="bin\Debug\netstandard2.0\Entidades.pdb" />
-    <None Include="obj\Debug\netstandard2.0\Entidades.AssemblyInfoInputs.cache" />
-    <None Include="obj\Debug\netstandard2.0\Entidades.assets.cache" />
-    <None Include="obj\Debug\netstandard2.0\Entidades.csproj.CoreCompileInputs.cache" />
-    <None Include="obj\Debug\netstandard2.0\Entidades.csprojAssemblyReference.cache" />
-    <None Include="obj\Debug\netstandard2.0\Entidades.dll" />
-    <None Include="obj\Debug\netstandard2.0\Entidades.pdb" />
-    <None Include="obj\Entidades.csproj.nuget.g.props" />
-    <None Include="obj\Entidades.csproj.nuget.g.targets" />
-    <None Include="obj\project.nuget.cache" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\MVC\MVC.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="FakesAssemblies\" />
-  </ItemGroup>
+ 
 
 </Project>
