@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+//using System.ComponentModel.DataAnnotations;
 
 namespace Entidades
 {
@@ -7,7 +7,7 @@ namespace Entidades
     {
         public long id { get; set; }
 
-        [Required(ErrorMessage = "Nombre de provincia requerido")]
+        //[Required(ErrorMessage = "Nombre de provincia requerido")]
         public string Nombre { get; set; }
     }
 }
