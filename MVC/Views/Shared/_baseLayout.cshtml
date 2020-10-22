@@ -36,7 +36,9 @@
     </header>
     <div class="container mt-5">
         @RenderBody()
+
     </div>
+    @{Html.RenderPartial("~/Views/Partials/pv_footer.cshtml");}
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
