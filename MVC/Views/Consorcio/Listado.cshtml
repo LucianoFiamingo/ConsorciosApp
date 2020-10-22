@@ -5,64 +5,28 @@
     ViewBag.Title = "Listado";
 }
 
-<style>
-    .table td, .table th{
-        vertical-align: middle;
-        text-align:center;
-    }
-</style>
+<h2>Listado</h2>
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3">
+<p>
+    @Html.ActionLink("Crear Consorcio", "Crear")
+</p>
+<table class="table-responsive">
+    <tr>
+        <th>Altura</th>
+        <th>Acciones</th>
+    </tr>
 
-    <h2>Listado</h2>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            Altura: @item.Altura
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn" })
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
 
-
-    @Html.ActionLink("Crear Consorcio", "Crear", null , new { @class = "btn" })
-
-
-</div>
-
-
-<div class="table-responsive">
-
-    <table class="table table-bordered table-hover">
-        <tr class="bg-light">
-            <th>Nombre</th>
-            <th>Provincia</th>
-            <th>Ciudad</th>
-            <th>Unidades</th>
-            <th>Expensas</th>
-            <th>Gastos</th>
-            <th>Acción</th>
-        </tr>
-
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @item.Nombre
-            </td>
-            <td>
-                @item.Nombre
-            </td>
-            <td>
-                @item.Nombre
-            </td>
-            <td>
-                @item.Nombre
-            </td>
-            <td>
-                @item.Nombre
-            </td> 
-            <td>
-                @item.Nombre
-            </td>
-            <td>
-                @Html.ActionLink("Modificar", "Modificar", new { /* id=item.PrimaryKey */ }, new { @class = "btn" })
-                @Html.ActionLink("Eliminar", "Eliminar", new { /* id=item.PrimaryKey */ }, new { @class = "btn" })
-            </td>
-        </tr>
-    }
-
-    </table>
-
-<div>
+</table>
