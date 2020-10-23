@@ -17,6 +17,35 @@ namespace MVC.Controllers
         {
             List<Consorcio> consorcios = consorcioService.GetAll();
             return View(consorcios);
+        }  
+        public ActionResult Crear()
+        {
+            Provincia provincia1 = new Provincia() { Nombre = "CABA", id = 1 };
+            Provincia provincia2 = new Provincia() { Nombre = "Santa Fe", id = 2};
+
+            List<Provincia> provincias = new List<Provincia>() {provincia1, provincia2};
+
+            return View(provincias);
+        } 
+
+        [HttpPost]
+        public ActionResult Crear(Consorcio consorcio, string otraAccion)
+        {
+            //Service.Add(consorcio);
+
+            if (otraAccion == "crearUnidades")
+            {
+                TempData["Creado"] = true;
+                return Redirect("Unidad/Crear");
+            }  
+            
+            if (otraAccion == "crearOtro")
+            {
+                TempData["Creado"] = true;
+                return Redirect("Crear");
+            }
+
+            return RedirectToAction("Listado");
         }
 
     }

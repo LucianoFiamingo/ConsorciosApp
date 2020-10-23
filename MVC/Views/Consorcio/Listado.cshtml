@@ -1,23 +1,22 @@
-﻿@using Entidades
-@model List<Consorcio>
+﻿@model List<Entidades.Consorcio>
 
 @{
     ViewBag.Title = "Listado";
 }
 
 <style>
-    .table td, .table th{
+    .table td, .table th {
         vertical-align: middle;
-        text-align:center;
+        text-align: center;
     }
 </style>
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3">
 
-    <h2>Listado</h2>
+    <h2>Listado de Mis Consorcios</h2>
 
 
-    @Html.ActionLink("Crear Consorcio", "Crear", null , new { @class = "btn" })
+    @Html.ActionLink("Crear Consorcio", "Crear", null, new { @class = "btn btn-success" })
 
 
 </div>
@@ -36,33 +35,34 @@
             <th>Acción</th>
         </tr>
 
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @item.Nombre
-            </td>
-            <td>
-                @item.Nombre
-            </td>
-            <td>
-                @item.Nombre
-            </td>
-            <td>
-                @item.Nombre
-            </td>
-            <td>
-                @item.Nombre
-            </td> 
-            <td>
-                @item.Nombre
-            </td>
-            <td>
-                @Html.ActionLink("Modificar", "Modificar", new { /* id=item.PrimaryKey */ }, new { @class = "btn" })
-                @Html.ActionLink("Eliminar", "Eliminar", new { /* id=item.PrimaryKey */ }, new { @class = "btn" })
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Nombre
+                </td>
+                <td>
+                    @item.idProvincia
+                </td>
+                <td>
+                    @item.Ciudad
+                </td>
+                <td>
+                    @Html.ActionLink("Ver Unidades", "Unidades", new { id = item.idConsorcio }, new { @class = "" })
+                </td>
+                <td>
+                    @Html.ActionLink("Ver Expensas", "Expensas", new { id = item.idConsorcio }, new { @class = "" })
+                </td>
+                <td>
+                    @Html.ActionLink("Ver Gastos", "Gastos", new { id = item.idConsorcio }, new { @class = "" })
+                </td>
+                <td>
+                    @Html.ActionLink("Modificar", "Modificar", new { id = item.idConsorcio }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.idConsorcio }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
 
     </table>
 
-<div>
+    <div>

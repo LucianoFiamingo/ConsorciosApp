@@ -277,6 +277,7 @@
     <Content Include="Views\Home\Ingresar.cshtml" />
     <Content Include="Views\Partials\pv_footer.cshtml" />
     <Content Include="Views\Consorcio\Listado.cshtml" />
+    <Content Include="Views\Consorcio\Crear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
