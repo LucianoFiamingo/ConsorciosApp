@@ -1,4 +1,4 @@
-﻿using Entidades;
+﻿using Entities.EDMX;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/Content/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="icon" href="~/Views/images/marca/logo-azul.svg">
+    <link rel="icon" href="~/Content/Images/Marca/logo-azul.svg">
     <title>@ViewBag.Title - Admin consorcios</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 
 <body class="p-0">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark unique-color py-3 bg-primary">
-            <a class="navbar-brand" href="#">
-                <img src="@Url.Content("~/Views/images/marca/logo-azul.svg")">
+        <nav class="navbar navbar-expand-lg navbar-dark unique-color py-3 ">
+            <a class="mr-2" href="#">
+                <img class="logo" id="logo-nav" src="@Url.Content("~/Content/Images/Marca/logo-blanco.svg")">
             </a>
-            <a class="navbar-brand" href="#">Admin Consorcios</a>
+            <a class="navbar-brand" href="/Home/Home">Administración de Consorcios</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -28,7 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Inicio<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/Home/Home">Inicio<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
             </div>

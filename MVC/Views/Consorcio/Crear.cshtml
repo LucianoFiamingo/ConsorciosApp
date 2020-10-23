@@ -1,4 +1,4 @@
-﻿@model List<Entidades.Provincia>
+﻿@model List<Entities.EDMX.Provincia>
 
 @{
     ViewBag.Title = "Crear";
@@ -27,9 +27,9 @@
 
 @if (TempData["Creado"] != null)
 {
-    <div class="bg-success p-4 text-light text-center mb-3">
+    <h6 class="bg-success p-4 text-light text-center mb-3">
         Creado correctamente!
-    </div>
+    </h6>
 }
 
 <h2>Crear Consorcio</h2>
@@ -55,7 +55,7 @@
                 <option value=""></option>
                 @foreach (var item in Model)
                 {
-                    <option value="@item.id">
+                    <option value="@item.IdProvincia">
                         @item.Nombre
                     </option>
                 }

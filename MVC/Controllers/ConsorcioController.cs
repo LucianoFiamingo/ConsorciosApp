@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using Entidades;
+using Entities.EDMX;
 using Servicios;
 
 namespace MVC.Controllers
@@ -20,8 +20,8 @@ namespace MVC.Controllers
         }  
         public ActionResult Crear()
         {
-            Provincia provincia1 = new Provincia() { Nombre = "CABA", id = 1 };
-            Provincia provincia2 = new Provincia() { Nombre = "Santa Fe", id = 2};
+            Provincia provincia1 = new Provincia() { Nombre = "CABA", IdProvincia = 1 };
+            Provincia provincia2 = new Provincia() { Nombre = "Santa Fe", IdProvincia = 2};
 
             List<Provincia> provincias = new List<Provincia>() {provincia1, provincia2};
 
