@@ -294,13 +294,13 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entidades\Entidades.csproj">
-      <Project>{cdc2c341-9056-4638-a75a-de7bbc584ad7}</Project>
-      <Name>Entidades</Name>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{8c8bb8e3-3d32-4640-ad89-985e419d748f}</Project>
+      <Name>Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Servicios\Servicios.csproj">
-      <Project>{09149c53-ca48-4d2d-88f8-99510e103193}</Project>
-      <Name>Servicios</Name>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{8eae9d58-f959-4385-a424-af290efc191b}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
