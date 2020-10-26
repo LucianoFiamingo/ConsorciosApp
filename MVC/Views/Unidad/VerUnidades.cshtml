@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Entities.EDMX.Unidad>
+
+@{
+    Layout = "~/Views/Shared/_baseLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Ver Unidades";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>VerUnidades</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Nueva Unidad", "CrearUnidad", "Unidad")
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                Id Consorcio
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Nombre Propietario
+            </th>
+            <th>
+                Apellido Propietario
+            </th>
+            <th>
+                Email Propietario
+            </th>
+            <th>
+                Superficie
+            </th>
+            <th>
+                Editar
+            </th>
+            <th>
+                Eliminar
+            </th>
+        </tr>
+
+   @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdConsorcio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombrePropietario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApellidoPropietario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailPropietario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Superficie)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ })
+            </td>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
