@@ -26,7 +26,7 @@ namespace MVC.Controllers
 
             List<Provincia> provincias = new List<Provincia>() {provincia1, provincia2};
 
-            return View(provincias);
+            return View();
         } 
 
         [HttpPost]
@@ -34,8 +34,9 @@ namespace MVC.Controllers
         {
             //Service.Add(consorcio);
             if (!ModelState.IsValid) {
-                return RedirectToAction("Crear");
+                return RedirectToAction("Listado");
               }
+
             if (otraAccion == "crearUnidades")
             {
                 TempData["Creado"] = true;
@@ -47,7 +48,6 @@ namespace MVC.Controllers
                 TempData["Creado"] = true;
                 return Redirect("Crear");
             }
-            
 
             return RedirectToAction("Listado");
         }
