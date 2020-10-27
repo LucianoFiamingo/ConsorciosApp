@@ -20,6 +20,7 @@ namespace MVC.Controllers
         }  
         public ActionResult Crear()
         {
+            
             Provincia provincia1 = new Provincia() { Nombre = "CABA", IdProvincia = 1 };
             Provincia provincia2 = new Provincia() { Nombre = "Santa Fe", IdProvincia = 2};
 
@@ -32,7 +33,9 @@ namespace MVC.Controllers
         public ActionResult Crear(Consorcio consorcio, string otraAccion)
         {
             //Service.Add(consorcio);
-
+            if (!ModelState.IsValid) {
+                return RedirectToAction("Crear");
+              }
             if (otraAccion == "crearUnidades")
             {
                 TempData["Creado"] = true;
@@ -44,6 +47,7 @@ namespace MVC.Controllers
                 TempData["Creado"] = true;
                 return Redirect("Crear");
             }
+            
 
             return RedirectToAction("Listado");
         }
