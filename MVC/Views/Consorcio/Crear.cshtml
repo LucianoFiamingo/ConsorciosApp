@@ -34,8 +34,9 @@
 
 @if (TempData["Creado"] != null && (bool)TempData["Creado"] == false)
 {
-    <h6 class="bg-success p-4 text-light text-center mb-3">
-        Creado correctamente!
+    <h6 class="bg-danger p-4 text-light text-center mb-3">
+        Error al crear!
+        @ViewBag.Error
     </h6>
 }
 
@@ -53,6 +54,7 @@
             <label>Nombre *</label>
             <div class="col-lg-6 col-md-12">
                 <input type="text" name="Nombre" value="" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Nombre)
             </div>
         </div>
 

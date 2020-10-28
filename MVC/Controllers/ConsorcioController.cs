@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Entities.EDMX;
 using Servicios;
@@ -34,7 +35,8 @@ namespace MVC.Controllers
         {
             //Service.Add(consorcio);
             if (!ModelState.IsValid) {
-                return RedirectToAction("Listado");
+                TempData["Creado"] = false;
+                return RedirectToAction("Crear");
               }
 
             if (otraAccion == "crearUnidades")
