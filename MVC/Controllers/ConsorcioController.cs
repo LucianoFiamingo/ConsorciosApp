@@ -34,25 +34,29 @@ namespace MVC.Controllers
         public ActionResult Crear(Consorcio consorcio, string otraAccion)
         {
             //Service.Add(consorcio);
+            
             if (!ModelState.IsValid) {
                 TempData["Creado"] = false;
                 return RedirectToAction("Crear");
               }
-
+            
+            TempData["Creado"] = true;
             if (otraAccion == "crearUnidades")
             {
-                TempData["Creado"] = true;
-                return Redirect("Unidad/Crear");
+                return Redirect("/Unidad/Crear");
             }  
             
             if (otraAccion == "crearOtro")
             {
-                TempData["Creado"] = true;
                 return Redirect("Crear");
             }
 
             return RedirectToAction("Listado");
         }
 
+        public ActionResult ViewConsorcio()
+        {
+            return View();
+        }
     }
 }

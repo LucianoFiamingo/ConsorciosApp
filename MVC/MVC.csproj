@@ -147,6 +147,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom\crear.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -281,6 +282,8 @@
     <Content Include="Views\Consorcio\Crear.cshtml" />
     <Content Include="Views\Unidad\CrearUnidad.cshtml" />
     <Content Include="Views\Unidad\VerUnidades.cshtml" />
+    <Content Include="Views\Consorcio\ViewUsuario.cshtml" />
+    <Content Include="Views\Consorcio\ViewConsorcio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

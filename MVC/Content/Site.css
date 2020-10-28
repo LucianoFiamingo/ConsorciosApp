@@ -26,3 +26,17 @@ textarea {
 #logo-nav {
     width: 25px;
 }
+
+.form-group div, .form-group label {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+input, select {
+    max-width: none;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+    text-align: center;
+}

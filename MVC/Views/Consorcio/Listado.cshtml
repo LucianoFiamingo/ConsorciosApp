@@ -4,12 +4,12 @@
     ViewBag.Title = "Listado";
 }
 
-<style>
-    .table td, .table th {
-        vertical-align: middle;
-        text-align: center;
-    }
-</style>
+@if (TempData["Creado"] != null && (bool)TempData["Creado"] == true)
+{
+    <h6 class="bg-success p-4 text-light text-center mb-3">
+        Consorcio creado correctamente!
+    </h6>
+}
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3">
 
@@ -21,8 +21,7 @@
 
 </div>
 
-
-<div class="table-responsive">
+<section class="table-responsive mb-5">
 
     <table class="table table-bordered table-hover">
         <tr class="bg-light">
@@ -65,4 +64,6 @@
 
     </table>
 
-    <div>
+</section>
+
+
