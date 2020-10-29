@@ -15,8 +15,7 @@ namespace Entities.EDMX
         [Required(ErrorMessage = "Calle es requerido")]
         [MaxLength(20, ErrorMessage = "El numero maximo de caracteres es veinte")]
         public string Calle { get; set; }
-         [Required(ErrorMessage = "Altura es requerido")]
-        [RegularExpression("/^[0-9]$/")]
+        [Required(ErrorMessage = "Altura es requerido")]
         [Range(1,30000,ErrorMessage ="Altura invalida")]
         public int Altura { get; set; }
         [DataType(DataType.DateTime)]

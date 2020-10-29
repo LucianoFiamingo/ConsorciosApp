@@ -19,11 +19,20 @@ namespace Entities.EDMX
         public int IdConsorcio { get; set; }
         [Required(ErrorMessage = "Debe elegir un tipo de gasto")]
         public int IdTipoGasto { get; set; }
-
+        [Required(ErrorMessage = "Debe proporcionar el año de la expensa")]
+        [RegularExpression("/^[0-9]$/")]
+        [Range(1980, 2030, ErrorMessage = "Altura invalida")]
         public int AnioExpensa { get; set; }
+
+        [Required(ErrorMessage = "Debe proporcionar el mes de la expensa")]
         public int MesExpensa { get; set; }
+        [Required(ErrorMessage = "Debe subir el archivo")]
         public string ArchivoComprobante { get; set; }
+        [Required(ErrorMessage = "Debe proporcionar el monto")]
+        [RegularExpression("/^[0-9]$/")]
         public decimal Monto { get; set; }
+        [DataType(DataType.DateTime)]
+        [Required(ErrorMessage = "La fecha de creacion es requerida")]
         public System.DateTime FechaCreacion { get; set; }
     }
 }
