@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Entities;
 using Entities.EDMX;
-using Servicios;
+using Services;
 
 namespace MVC.Controllers
 {
@@ -11,29 +12,23 @@ namespace MVC.Controllers
         ConsorcioService consorcioService;
         public ConsorcioController()
         {
-            this.consorcioService = new ConsorcioService();
+            PW3_TP_20202CEntities contexto = new PW3_TP_20202CEntities();
+            consorcioService = new ConsorcioService(contexto);
         }
 
         public ActionResult Listado()
         {
-            List<Consorcio> consorcios = consorcioService.GetAll();
+            List<Consorcio> consorcios = consorcioService.ObtenerTodos();
             return View(consorcios);
         }
         public ActionResult Crear()
         {
-
-            Provincia provincia1 = new Provincia() { Nombre = "CABA", IdProvincia = 1 };
-            Provincia provincia2 = new Provincia() { Nombre = "Santa Fe", IdProvincia = 2 };
-
-            List<Provincia> provincias = new List<Provincia>() { provincia1, provincia2 };
-
             return View();
         }
 
         [HttpPost]
         public ActionResult Crear(Consorcio consorcio, string otraAccion)
         {
-            //Service.Add(consorcio);
 
             if (!ModelState.IsValid)
             {
@@ -62,7 +57,7 @@ namespace MVC.Controllers
                 return RedirectToAction("Listado");
             }
 
-            Consorcio consorcio = consorcioService.GetAll().First();
+            Consorcio consorcio = consorcioService.ObtenerPorId((long)id);
             return View(consorcio);
         }
 
@@ -75,7 +70,9 @@ namespace MVC.Controllers
                 return View(consorcio);
             }
 
+            consorcioService.Modificar(consorcio);
             TempData["Modificado"] = true;
+
             return RedirectToAction("Listado");
         }
 
@@ -86,7 +83,7 @@ namespace MVC.Controllers
                 return RedirectToAction("Listado");
             }
 
-            Consorcio consorcio = consorcioService.GetAll().First();
+            Consorcio consorcio = consorcioService.ObtenerPorId((long)id);
 
             return View(consorcio);
         }
@@ -100,9 +97,8 @@ namespace MVC.Controllers
                 return RedirectToAction("Listado");
             }
 
+            consorcioService.Eliminar(consorcio.IdConsorcio);
             TempData["Eliminado"] = true;
-
-            //Eliminar
 
             return RedirectToAction("Listado");
         }
