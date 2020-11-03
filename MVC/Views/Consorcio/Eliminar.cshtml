@@ -1,0 +1,106 @@
+﻿@model Entities.EDMX.Consorcio
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3">
+
+    <h2>Eliminar Consorcio</h2>
+
+    @Html.ActionLink("Volver", "Listado", null, new { @class = "btn btn-success" })
+
+</div>
+<style>
+    .bd-callout {
+        padding: 1.25rem;
+        margin-top: 1.25rem;
+        margin-bottom: 1.25rem;
+        border: 1px solid #eee;
+        border-left-width: .25rem;
+    }
+
+    .bd-callout-warning {
+        border-left-color: #3f729b;
+    }
+</style>
+<div>
+    <p>A continuación se muestran los datos del consorcio a eliminar:</p>
+    <hr />
+
+    <div class="bd-callout bd-callout-warning">
+
+        <h6> @Html.DisplayNameFor(model => model.Nombre)</h6>
+
+        <p>
+            @Html.DisplayFor(model => model.Nombre)
+        </p>
+
+            <h6>
+                @Html.DisplayNameFor(model => model.IdProvincia)
+            </h6>
+
+            <p>
+                @Html.DisplayFor(model => model.IdProvincia)
+            </p>
+
+            <h6>
+                @Html.DisplayNameFor(model => model.Ciudad)
+            </h6>
+
+            <p>
+                @Html.DisplayFor(model => model.Ciudad)
+            </p>
+
+            <h6>
+                @Html.DisplayNameFor(model => model.Calle)
+            </h6>
+
+            <p>
+                @Html.DisplayFor(model => model.Calle)
+            </p>
+
+            <h6>
+                @Html.DisplayNameFor(model => model.Altura)
+            </h6>
+
+            <p>
+                @Html.DisplayFor(model => model.Altura)
+            </p>
+
+            <h6>
+                @Html.DisplayNameFor(model => model.DiaVencimientoExpensas)
+            </h6>
+
+            <p>
+                @Html.DisplayFor(model => model.DiaVencimientoExpensas)
+            </p>
+
+            <h6>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </h6>
+
+            <p>
+                @Html.DisplayFor(model => model.FechaCreacion)
+            </p>
+
+            <h6>
+                @Html.DisplayNameFor(model => model.IdUsuarioCreador)
+            </h6>
+
+            <p>
+                @Html.DisplayFor(model => model.IdUsuarioCreador)
+            </p>
+
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger ml-0" /> |
+            @Html.ActionLink("Cancelar", "Listado", new { @class = "" })
+        </div>
+    }
+</div>

@@ -11,13 +11,25 @@
     </h6>
 }
 
+@if (TempData["Modificado"] != null && (bool)TempData["Modificado"] == true)
+{
+    <h6 class="bg-success p-4 text-light text-center mb-3">
+        Modificado correctamente!
+    </h6>
+}
+
+@if (TempData["Eliminado"] != null && (bool)TempData["Eliminado"] == true)
+{
+    <h6 class="bg-success p-4 text-light text-center mb-3">
+        Consorcio eliminado correctamente!
+    </h6>
+}
+
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3">
 
     <h2>Listado de Mis Consorcios</h2>
 
-
     @Html.ActionLink("Crear Consorcio", "Crear", null, new { @class = "btn btn-success" })
-
 
 </div>
 
@@ -57,7 +69,9 @@
                 </td>
                 <td>
                     @Html.ActionLink("Modificar", "Modificar", new { id = item.IdConsorcio }, new { @class = "btn btn-primary" })
+                  
                     @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdConsorcio }, new { @class = "btn btn-danger" })
+
                 </td>
             </tr>
         }
