@@ -4,6 +4,22 @@
     ViewBag.Title = "Eliminar";
 }
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/@ViewContext.RouteData.Values["controller"].ToString()/Listado">
+                Mis @ViewContext.RouteData.Values["controller"].ToString()s
+            </a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="/@ViewContext.RouteData.Values["controller"].ToString()/Listado">
+                @ViewContext.RouteData.Values["action"].ToString()
+            </a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.Nombre</li>
+    </ol>
+</nav>
+
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3">
 
     <h2>Eliminar Consorcio</h2>

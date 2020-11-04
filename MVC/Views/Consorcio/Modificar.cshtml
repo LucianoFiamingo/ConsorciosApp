@@ -4,6 +4,22 @@
     ViewBag.Title = "Modificar";
 }
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/@ViewContext.RouteData.Values["controller"].ToString()/Listado">
+                Mis @ViewContext.RouteData.Values["controller"].ToString()s
+            </a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="/@ViewContext.RouteData.Values["controller"].ToString()/Listado">
+                @ViewContext.RouteData.Values["action"].ToString()
+            </a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.Nombre</li>
+    </ol>
+</nav>
+
 @if (TempData["Modificado"] != null && (bool)TempData["Modificado"] == false)
 {
     <h6 class="bg-danger p-4 text-light text-center mb-3">

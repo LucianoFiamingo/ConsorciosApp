@@ -291,6 +291,7 @@
     <Content Include="Views\Unidad\VerUnidades.cshtml" />
     <Content Include="Views\Consorcio\Modificar.cshtml" />
     <Content Include="Views\Consorcio\Eliminar.cshtml" />
+    <Content Include="Views\Partials\pv_breadcrump.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
