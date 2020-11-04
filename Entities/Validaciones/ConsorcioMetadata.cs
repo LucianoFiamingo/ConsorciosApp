@@ -9,6 +9,10 @@ namespace Entities.EDMX
         [Required (ErrorMessage ="Nombre es requerido")]
         [MaxLength (20,ErrorMessage ="El numero maximo de caracteres es veinte") ]
         public string Nombre { get; set; }
+
+        [Required(ErrorMessage = "La provincia es requerida")]
+        public int IdProvincia { get; set; }
+        
         [Required(ErrorMessage = "Ciudad es requerido")]
         [MaxLength(20, ErrorMessage = "El numero maximo de caracteres es veinte")]
         public string Ciudad { get; set; }
@@ -20,8 +24,9 @@ namespace Entities.EDMX
         public int Altura { get; set; }
         [DataType(DataType.DateTime)]
         [Required(ErrorMessage = "La fecha del vencimiento es requerida")]
+        [Display(Name = "Dia de Vencimiento de Expensas")]
         public int DiaVencimientoExpensas { get; set; }
-        [DataType(DataType.DateTime)]
+        [Range(1, 28, ErrorMessage = "Rango válido del 1 al 28")]
         [Required(ErrorMessage = "La fecha de creacion es requerida")]
         public System.DateTime FechaCreacion { get; set; }
         public Nullable<int> IdUsuarioCreador { get; set; }
