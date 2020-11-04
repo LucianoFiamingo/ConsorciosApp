@@ -17,8 +17,6 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
 textarea {
     max-width: 280px;
 }
@@ -32,11 +30,19 @@ textarea {
     padding-right: 0;
 }
 
-input, select {
-    max-width: none;
-}
-
 .table td, .table th {
     vertical-align: middle;
     text-align: center;
+}
+
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #eee;
+    border-left-width: .25rem;
+}
+
+.bd-callout-warning {
+    border-left-color: #3f729b;
 }
