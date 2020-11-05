@@ -22,11 +22,13 @@ namespace Entities.EDMX
         [Required(ErrorMessage = "Altura es requerido")]
         [Range(1,30000,ErrorMessage ="Altura invalida")]
         public int Altura { get; set; }
-        [DataType(DataType.DateTime)]
+
+        [Range(1, 28, ErrorMessage = "Rango válido del 1 al 28")]
         [Required(ErrorMessage = "La fecha del vencimiento es requerida")]
         [Display(Name = "Dia de Vencimiento de Expensas")]
         public int DiaVencimientoExpensas { get; set; }
-        [Range(1, 28, ErrorMessage = "Rango válido del 1 al 28")]
+
+        [DataType(DataType.DateTime)]
         [Required(ErrorMessage = "La fecha de creacion es requerida")]
         public System.DateTime FechaCreacion { get; set; }
         public Nullable<int> IdUsuarioCreador { get; set; }

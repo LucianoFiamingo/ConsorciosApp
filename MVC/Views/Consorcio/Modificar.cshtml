@@ -44,114 +44,130 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
+        <div class="form-horizontal">
+            <h5 class="mb-4">Datos del consorcio</h5>
 
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.IdConsorcio, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div>
-                        @Html.EditorFor(model => model.IdConsorcio, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.IdConsorcio, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div>
-                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.IdProvincia, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div>
-                        @Html.EditorFor(model => model.IdProvincia, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.IdProvincia, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Ciudad, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div>
-                        @Html.EditorFor(model => model.Ciudad, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Ciudad, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Calle, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div>
-                        @Html.EditorFor(model => model.Calle, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Calle, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Altura, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div>
-                        @Html.EditorFor(model => model.Altura, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Altura, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DiaVencimientoExpensas, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div>
-                        @Html.EditorFor(model => model.DiaVencimientoExpensas, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DiaVencimientoExpensas, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FechaCreacion, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div>
-                        @Html.EditorFor(model => model.FechaCreacion, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.FechaCreacion, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.IdUsuarioCreador, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div>
-                        @Html.EditorFor(model => model.IdUsuarioCreador, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.IdUsuarioCreador, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Guardar" class="btn btn-success" />
-                        @Html.ActionLink("Cancelar", "Listado", null, new { @class = "btn btn-danger ml-0 mr-2" })
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div>
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Provincia, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div>
+                    @Html.DropDownListFor(Model => Model.IdProvincia, (List<SelectListItem>)ViewBag.ProvinciasItems, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IdProvincia, "", new { @class = "text-danger " })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ciudad, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div>
+                    @Html.EditorFor(model => model.Ciudad, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ciudad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Calle, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div>
+                    @Html.EditorFor(model => model.Calle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Calle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Altura, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div>
+                    @Html.EditorFor(model => model.Altura, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Altura, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DiaVencimientoExpensas, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div>
+                    @Html.EditorFor(model => model.DiaVencimientoExpensas, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiaVencimientoExpensas, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FechaCreacion, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div>
+                    @Html.EditorFor(model => model.FechaCreacion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FechaCreacion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-success ml-0" />
+                    @Html.ActionLink("Cancelar", "Listado", null, new { @class = "btn btn-danger ml-0 mr-2" })
+                </div>
+            </div>
+        </div>
         }
     </article>
 
-    <article class="col-lg-6 col-sm-12 d-block text-center align-content-center">
+    <article class="col-lg-6 col-sm-12 d-block text-center align-middle">
 
-        <div>
-            @Model.Unidads.Count unidades
-        </div>
+        <article class="border rounded bg-light mb-5 mt-3">
+            <div class="card-body">
+                <h5 class="card-title m-4">@Model.Nombre</h5>
+                <div class="card-text">
 
-        <div class="">
-            @Html.ActionLink("Ver Unidades", "Unidades", new { id = Model.IdConsorcio })
-        </div>
-        <div>
-            @Html.ActionLink("Ver Expensas", "Expensas", new { id = Model.IdConsorcio })
-        </div>
-        <div>
-            @Html.ActionLink("Ver Gastos", "Gastos", new { id = Model.IdConsorcio })
-        </div>
-        <div>
-            @Html.ActionLink("Modificar", "Modificar", new { id = Model.IdConsorcio }, new { @class = "btn btn-primary" })
-        </div>
-        <div>
-            @Html.ActionLink("Eliminar", "Eliminar", new { id = Model.IdConsorcio }, new { @class = "btn btn-danger" })
-        </div>
-    </article>
-</section>
+                    @if (Model.Unidads.Count >= 1)
+                    {
+                        if (Model.Unidads.Count > 1)
+                        {
+                        <p>
+                            Cantidad de unidades total: @Model.Unidads.Count
+                        </p>
+                    }
+                    else
+                    {
+                        <p>
+                            1 unidad
+                        </p>
+                    }
+                        <div class="m-2">
+                            @Html.ActionLink("Ver Unidades", "Unidades", new { id = Model.IdConsorcio })
+                        </div>
+                        <div class="m-2">
+                            @Html.ActionLink("Ver Expensas", "Expensas", new { id = Model.IdConsorcio })
+                        </div>
+                        <div class="m-2">
+                            @Html.ActionLink("Ver Gastos", "Gastos", new { id = Model.IdConsorcio })
+                        </div>
+                        <div class="m-2">
+                            @Html.ActionLink("Eliminar Consorcio", "Eliminar", new { id = Model.IdConsorcio }, new { @class = "btn btn-danger" })
+                        </div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryval")
+                    }
+                    else
+                    {
+                        <p>
+                            Este consorcio no posee ninguna unidad.
+                        </p>
+                        <div class="m-2">
+                            @Html.ActionLink("Agregar Unidades", "Crear", "Unidad", new { id = Model.IdConsorcio }, null)
+                        </div>
+                        <div class="m-4">
+                            @Html.ActionLink("Eliminar Consorcio", "Eliminar", new { id = Model.IdConsorcio }, new { @class = "btn btn-danger" })
+                        </div>
+                    }
+
+                    </div>
+                </div>
+            </article>
+        </article>
+    </section>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")

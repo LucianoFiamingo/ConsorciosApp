@@ -12,6 +12,7 @@ namespace MVC.Controllers
     {
         ConsorcioService ConsorcioService;
         ProvinciaService ProvinciaService;
+
         public ConsorcioController()
         {
             PW3_TP_20202CEntities contexto = new PW3_TP_20202CEntities();
@@ -24,21 +25,23 @@ namespace MVC.Controllers
             List<Consorcio> consorcios = ConsorcioService.ObtenerTodos();
             return View(consorcios);
         }
+
         public ActionResult Crear()
         {
-            ViewBag.Provincias = ProvinciaService.ObtenerTodos();
+            ViewBag.ProvinciasItems = ObtenerComboProvincias();
             return View();
         }
 
         [HttpPost]
         public ActionResult Crear(Consorcio consorcio, string otraAccion)
         {
-            consorcio.IdUsuarioCreador = 1;//usuario logeado
+            consorcio.IdUsuarioCreador = 1;
             consorcio.FechaCreacion = DateTime.Now;
 
             if (!ModelState.IsValid)
             {
                 TempData["Creado"] = false;
+                ViewBag.ProvinciasItems = ObtenerComboProvincias();
                 return RedirectToAction("Crear");
             }
 
@@ -63,6 +66,7 @@ namespace MVC.Controllers
                 return RedirectToAction("Listado");
             }
 
+            ViewBag.ProvinciasItems = ObtenerComboProvincias();
             Consorcio consorcio = ConsorcioService.ObtenerPorId((int)id);
             return View(consorcio);
         }
@@ -73,12 +77,12 @@ namespace MVC.Controllers
             if (!ModelState.IsValid)
             {
                 TempData["Modificado"] = false;
+                ViewBag.ProvinciasItems = ObtenerComboProvincias();
                 return View(consorcio);
             }
 
             ConsorcioService.Modificar(consorcio);
             TempData["Modificado"] = true;
-
             return RedirectToAction("Listado");
         }
 
@@ -90,7 +94,6 @@ namespace MVC.Controllers
             }
 
             Consorcio consorcio = ConsorcioService.ObtenerPorId((int)id);
-
             return View(consorcio);
         }
 
@@ -107,6 +110,20 @@ namespace MVC.Controllers
             TempData["Eliminado"] = true;
 
             return RedirectToAction("Listado");
+        }
+       
+        public List<SelectListItem> ObtenerComboProvincias()
+        {
+            List<Provincia> provs = ProvinciaService.ObtenerTodos();
+
+            List<SelectListItem> ProvinciasItems = provs.Select(o => new SelectListItem()
+            {
+                Text = o.Nombre,
+                Value = o.IdProvincia.ToString()
+            }).ToList();
+            ProvinciasItems.Insert(0, new SelectListItem() { Value = "", Text = "Seleccione una provincia" });
+
+            return ProvinciasItems;
         }
     }
 }

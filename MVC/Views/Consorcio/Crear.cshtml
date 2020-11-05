@@ -2,16 +2,6 @@
 
 @{
     ViewBag.Title = "Crear Consorcio";
-
-    List<Entities.EDMX.Provincia> provs = ViewBag.Provincias as List<Entities.EDMX.Provincia>;
-
-    List<SelectListItem> provinciasItems = provs.Select(o => new SelectListItem()
-    {
-        Text = o.Nombre,
-        Value = o.IdProvincia.ToString()
-    }).ToList();
-
-    provinciasItems.Insert(0, new SelectListItem() { Value = "", Text = "Seleccione una provincia" });
 }
 
 <nav aria-label="breadcrumb">
@@ -63,7 +53,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Provincia, htmlAttributes: new { @class = "control-label col-md-6" })
             <div class="col-lg-6 col-md-12">
-                @Html.DropDownListFor(Model => Model.IdProvincia, provinciasItems, new { @class = "form-control" })
+                @Html.DropDownListFor(Model => Model.IdProvincia, (List<SelectListItem>) ViewBag.ProvinciasItems, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdProvincia, "", new { @class = "text-danger " })
             </div>
         </div>
