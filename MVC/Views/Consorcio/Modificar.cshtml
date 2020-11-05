@@ -49,6 +49,8 @@
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+        <input type="hidden" name="IdConsorcio" value="@Model.IdConsorcio" />
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
                 <div>

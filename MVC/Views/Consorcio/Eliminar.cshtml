@@ -103,6 +103,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
+            <input type="hidden" name="IdConsorcio" value="@Model.IdConsorcio" />
             <input type="submit" value="Eliminar" class="btn btn-danger ml-0" /> |
             @Html.ActionLink("Cancelar", "Listado", new { @class = "" })
         </div>
