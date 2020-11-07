@@ -6,7 +6,5 @@ namespace Repositories
 {
     public interface IConsorcioRepository
     {
-        Consorcio ObtenerConsorcioCompleto(long? IdConsorcio);
-
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using Entities;
 using Entities.EDMX;
 using Services;
@@ -66,8 +67,9 @@ namespace MVC.Controllers
                 return RedirectToAction("Listado");
             }
 
-            ViewBag.ProvinciasItems = ObtenerComboProvincias();
             Consorcio consorcio = ConsorcioService.ObtenerPorId((int)id);
+            ViewBag.ProvinciasItems = ObtenerComboProvincias(consorcio.IdProvincia);
+
             return View(consorcio);
         }
 
@@ -121,6 +123,22 @@ namespace MVC.Controllers
                 Text = o.Nombre,
                 Value = o.IdProvincia.ToString()
             }).ToList();
+
+            ProvinciasItems.Insert(0, new SelectListItem() { Value = "", Text = "Seleccione una provincia" });
+
+            return ProvinciasItems;
+        }
+        public List<SelectListItem> ObtenerComboProvincias(int id)
+        {
+            List<Provincia> provs = ProvinciaService.ObtenerTodos();
+
+            List<SelectListItem> ProvinciasItems = provs.Select(o => new SelectListItem()
+            {
+                Text = o.Nombre,
+                Value = o.IdProvincia.ToString(),
+                Selected = o.IdProvincia == id
+            }).ToList();
+
             ProvinciasItems.Insert(0, new SelectListItem() { Value = "", Text = "Seleccione una provincia" });
 
             return ProvinciasItems;

@@ -10,7 +10,5 @@ namespace Services
 {
     public interface IConsorcioService
     {
-        Consorcio ObtenerConsorcioCompleto(long? IdConsorcio);
-
     }
 }

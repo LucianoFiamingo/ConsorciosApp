@@ -12,9 +12,5 @@ namespace Services
         {
 
         }
-        public Consorcio ObtenerConsorcioCompleto(long? IdConsorcio)
-        {
-            return repo.ObtenerConsorcioCompleto(IdConsorcio);
-        }
     }
 }

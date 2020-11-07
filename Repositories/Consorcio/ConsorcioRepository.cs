@@ -23,10 +23,5 @@ namespace Repositories
 
             ctx.SaveChanges();
         }
-        public Consorcio ObtenerConsorcioCompleto(long? IdConsorcio)
-        {
-            Consorcio cons = ctx.Consorcios.Find(IdConsorcio);
-            return cons;
-        }
     }
 }

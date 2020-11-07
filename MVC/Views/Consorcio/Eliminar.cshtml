@@ -22,9 +22,9 @@
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3">
 
-    <h2>Eliminar Consorcio</h2>
+    <h2>Eliminar Consorcio "@Model.Nombre"</h2>
 
-    @Html.ActionLink("Volver", "Listado", null, new { @class = "btn btn-success" })
+    <a onclick="volver()" class="btn btn-success">Volver</a>
 
 </div>
 
@@ -32,71 +32,64 @@
     <p>A continuación se muestran los datos del consorcio a eliminar:</p>
     <hr />
 
-    <div class="bd-callout bd-callout-warning">
 
-        <h6> @Html.DisplayNameFor(model => model.Nombre)</h6>
+    <article class="">
 
-        <p>
-            @Html.DisplayFor(model => model.Nombre)
-        </p>
+        <article class="border rounded bg-light mb-5 mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Datos del consorcio</h5>
+                <div class="card-text">
 
-            <h6>
-                @Html.DisplayNameFor(model => model.IdProvincia)
-            </h6>
+                    <h6> @Html.DisplayNameFor(model => model.Nombre)</h6>
 
-            <p>
-                @Html.DisplayFor(model => model.IdProvincia)
-            </p>
+                    <p>
+                        @Html.DisplayFor(model => model.Nombre)
+                    </p>
 
-            <h6>
-                @Html.DisplayNameFor(model => model.Ciudad)
-            </h6>
+                    <h6>
+                        @Html.DisplayNameFor(model => model.Ciudad)
+                    </h6>
 
-            <p>
-                @Html.DisplayFor(model => model.Ciudad)
-            </p>
+                    <p>
+                        @Html.DisplayFor(model => model.Ciudad), provincia de @Html.DisplayFor(model => model.Provincia.Nombre)
+                    </p>
 
-            <h6>
-                @Html.DisplayNameFor(model => model.Calle)
-            </h6>
+                    <h6>
+                        @Html.DisplayNameFor(model => model.Calle)
+                    </h6>
 
-            <p>
-                @Html.DisplayFor(model => model.Calle)
-            </p>
+                    <p>
+                        @Html.DisplayFor(model => model.Calle),  @Html.DisplayFor(model => model.Altura)
+                    </p>
 
-            <h6>
-                @Html.DisplayNameFor(model => model.Altura)
-            </h6>
+                    <h6>
+                        @Html.DisplayNameFor(model => model.DiaVencimientoExpensas)
+                    </h6>
 
-            <p>
-                @Html.DisplayFor(model => model.Altura)
-            </p>
+                    <p>
+                        @Html.DisplayFor(model => model.DiaVencimientoExpensas)
+                    </p>
 
-            <h6>
-                @Html.DisplayNameFor(model => model.DiaVencimientoExpensas)
-            </h6>
+                    <h6>
+                        @Html.DisplayNameFor(model => model.FechaCreacion)
+                    </h6>
 
-            <p>
-                @Html.DisplayFor(model => model.DiaVencimientoExpensas)
-            </p>
+                    <p>
+                        @Html.DisplayFor(model => model.FechaCreacion)
+                    </p>
 
-            <h6>
-                @Html.DisplayNameFor(model => model.FechaCreacion)
-            </h6>
+                    <h6>
+                        @Html.DisplayNameFor(model => model.Usuario)
+                    </h6>
 
-            <p>
-                @Html.DisplayFor(model => model.FechaCreacion)
-            </p>
+                    <p>
+                        @Html.DisplayFor(model => model.Usuario)
+                    </p>
 
-            <h6>
-                @Html.DisplayNameFor(model => model.IdUsuarioCreador)
-            </h6>
-
-            <p>
-                @Html.DisplayFor(model => model.IdUsuarioCreador)
-            </p>
-
-    </div>
+                </div>
+            </div>
+        </article>
+    </article>
 
     @using (Html.BeginForm())
     {
@@ -105,7 +98,8 @@
         <div class="form-actions no-color">
             <input type="hidden" name="IdConsorcio" value="@Model.IdConsorcio" />
             <input type="submit" value="Eliminar" class="btn btn-danger ml-0" /> |
-            @Html.ActionLink("Cancelar", "Listado", new { @class = "" })
+            @Html.ActionLink("Cancelar", "Listado")
         </div>
     }
-</div>
+
+    @Scripts.Render("~/bundles/custom")
