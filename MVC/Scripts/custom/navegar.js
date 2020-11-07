@@ -1,0 +1,3 @@
+﻿function volver() {
+        history.back();
+}
