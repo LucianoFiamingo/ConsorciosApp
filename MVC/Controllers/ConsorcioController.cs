@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.Services.Description;
 using Entities;
 using Entities.EDMX;
 using Services;
@@ -13,12 +12,14 @@ namespace MVC.Controllers
     {
         ConsorcioService ConsorcioService;
         ProvinciaService ProvinciaService;
+        BreadcrumpService BreadcrumpService;
 
         public ConsorcioController()
         {
             PW3_TP_20202CEntities contexto = new PW3_TP_20202CEntities();
             ConsorcioService = new ConsorcioService(contexto);
             ProvinciaService = new ProvinciaService(contexto);
+            BreadcrumpService = new BreadcrumpService();
         }
 
         public ActionResult Listado()
@@ -30,6 +31,10 @@ namespace MVC.Controllers
         public ActionResult Crear()
         {
             ViewBag.ProvinciasItems = ObtenerComboProvincias();
+            
+            Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
+            Breadcrump nivel2 = new Breadcrump("Crear Consorcio", "Consorcio/Crear");
+            ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2);
             return View();
         }
 
@@ -114,7 +119,7 @@ namespace MVC.Controllers
 
             return RedirectToAction("Listado");
         }
-       
+
         public List<SelectListItem> ObtenerComboProvincias()
         {
             List<Provincia> provs = ProvinciaService.ObtenerTodos();
@@ -144,5 +149,6 @@ namespace MVC.Controllers
 
             return ProvinciasItems;
         }
+     
     }
 }

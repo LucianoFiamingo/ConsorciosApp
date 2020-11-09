@@ -4,18 +4,7 @@
     ViewBag.Title = "Crear Consorcio";
 }
 
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="/@ViewContext.RouteData.Values["controller"].ToString()/Listado">
-                Mis @ViewContext.RouteData.Values["controller"].ToString()s
-            </a>
-        </li>
-        <li class="breadcrumb-item">
-            @ViewContext.RouteData.Values["action"].ToString()
-        </li>
-    </ol>
-</nav>
+@{Html.RenderPartial("~/Views/Partials/pv_breadcrump.cshtml");}
 
 @if (TempData["Creado"] != null && (bool)TempData["Creado"] == true)
 {

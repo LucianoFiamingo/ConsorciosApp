@@ -99,6 +99,7 @@
     <Compile Include="Validaciones\UnidadMetadata.cs" />
     <Compile Include="Validaciones\Usuario.cs" />
     <Compile Include="Validaciones\UsuarioMetadata.cs" />
+    <Compile Include="VM\Breadcrump.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="EDMX\Model1.edmx">
@@ -129,9 +130,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="VM\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

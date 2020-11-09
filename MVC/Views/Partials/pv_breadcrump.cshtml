@@ -1,10 +1,26 @@
-﻿<nav aria-label="breadcrumb">
+﻿@using Entities;
+
+@{
+    List<Breadcrump> ListaBreadcrumps = (List<Breadcrump>)ViewBag.Breadcrumps;
+}
+
+<nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">@ViewContext.RouteData.Values["controller"].ToString()</a></li>
-       
-        <li class="breadcrumb-item"><a href="#">@ViewContext.RouteData.Values["action"].ToString()</a></li>
-        
-        <li class="breadcrumb-item active" aria-current="page"><a href="#">@Model.Nombre</a></li>
+        <li class="breadcrumb-item">
+
+            @for (int i = 0; i < ListaBreadcrumps.Count; i++)
+            {
+                <a href="/@ListaBreadcrumps[i].Link">
+
+                    @ListaBreadcrumps[i].Nombre.ToString()
+                </a>
+
+                if (i < ListaBreadcrumps.Count- 1)
+                {
+                    <span class="mx-1">/</span>
+                }
+            }
+
+        </li>
     </ol>
 </nav>
-

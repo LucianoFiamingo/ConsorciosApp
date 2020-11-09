@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Breadcrump\IBreadcrumpService.cs" />
+    <Compile Include="Breadcrump\BreadcrumpService.cs" />
     <Compile Include="Common\BaseService.cs" />
     <Compile Include="Gastos\IGastosService.cs" />
     <Compile Include="Gastos\GastosService.cs" />
