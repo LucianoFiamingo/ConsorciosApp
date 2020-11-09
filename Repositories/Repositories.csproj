@@ -52,6 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\BaseRepository.cs" />
+    <Compile Include="Gasto\GastoRepository.cs" />
+    <Compile Include="Gasto\IGastoRepository.cs" />
+    <Compile Include="Gasto\ITipoGasto.cs" />
+    <Compile Include="Gasto\TipoGastoRepository.cs" />
     <Compile Include="Provincia\ProvinciaRepository.cs" />
     <Compile Include="Provincia\IProvinciaRepository.cs" />
     <Compile Include="Consorcio\IConsorcioRepository.cs" />

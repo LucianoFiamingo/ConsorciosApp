@@ -36,6 +36,7 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Crear(Consorcio consorcio, string otraAccion)
         {
+            //luego se buscara por sesion
             consorcio.IdUsuarioCreador = 1;
             consorcio.FechaCreacion = DateTime.Now;
 

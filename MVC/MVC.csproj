@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ConsorcioController.cs" />
+    <Compile Include="Controllers\GastosController.cs" />
     <Compile Include="Controllers\UnidadController.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -297,6 +298,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Gastos\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

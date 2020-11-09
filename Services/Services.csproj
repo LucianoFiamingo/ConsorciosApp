@@ -43,6 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\BaseService.cs" />
+    <Compile Include="Gastos\IGastosService.cs" />
+    <Compile Include="Gastos\GastosService.cs" />
+    <Compile Include="Gastos\ITipoGastoService.cs" />
+    <Compile Include="Gastos\TipoGastoService.cs" />
     <Compile Include="Provincia\ProvinciaService.cs" />
     <Compile Include="Provincia\IProvinciaService.cs" />
     <Compile Include="Consorcio\ConsorcioService.cs" />
