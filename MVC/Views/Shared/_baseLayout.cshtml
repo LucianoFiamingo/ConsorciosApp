@@ -10,34 +10,12 @@
     <title>@ViewBag.Title - Admin consorcios</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 
 <body class="p-0">
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark unique-color py-3 ">
-            <a class="mr-2" href="#">
-                <img class="logo" id="logo-nav" src="@Url.Content("~/Content/Images/Marca/logo-blanco.svg")">
-            </a>
-            <a class="navbar-brand" href="/Home/Home">Administración de Consorcios</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/Home/Home">Inicio<span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <div class="container mt-5">
-        @RenderBody()
+    @RenderBody()
 
-    </div>
     @{Html.RenderPartial("~/Views/Partials/pv_footer.cshtml");}
 
     @Scripts.Render("~/bundles/jquery")

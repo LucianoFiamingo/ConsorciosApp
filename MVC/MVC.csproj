@@ -146,6 +146,8 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\Anonimo\avatar-blanco.svg" />
+    <Content Include="Content\Images\Anonimo\avatar.svg" />
     <Content Include="Content\Images\Marca\logo-blanco.svg" />
     <Content Include="Content\mdb.min.css" />
     <Content Include="favicon.ico" />
