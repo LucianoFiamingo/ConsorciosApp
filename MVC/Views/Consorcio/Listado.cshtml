@@ -68,7 +68,7 @@
 
     @foreach (var item in Model)
     {
-        <tr class="colorear @(TempData["VerConsorcio"] != null && item.IdConsorcio == (int)TempData["VerConsorcio"] ? "table-success" : null)">
+        <tr class="@(TempData["VerConsorcio"] != null && item.IdConsorcio == (int)TempData["VerConsorcio"] ? "colorear table-success" : null)">
 
             <td>
                 @item.Nombre

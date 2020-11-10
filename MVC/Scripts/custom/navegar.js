@@ -1,5 +1,5 @@
 ﻿function volver() {
-        history.back();
+    history.back();
 }
 
 function colorear() {
@@ -8,5 +8,10 @@ function colorear() {
 }
 
 $(document).ready(function () {
-    setTimeout(colorear, 1000);
+
+    $('html, body').animate({
+        scrollTop: $(".colorear").offset().top
+    }, 2000);
+
+    setTimeout(colorear, 2000);
 });
