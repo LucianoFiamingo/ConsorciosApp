@@ -14,4 +14,4 @@ packages
 *.psess
 webapp
 
-/MVC/connections.config
+MVC/connections.config
