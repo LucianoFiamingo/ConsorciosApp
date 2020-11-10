@@ -41,5 +41,10 @@ namespace MVC.Controllers
             return RedirectToAction("VerUnidades");
         }
 
+        public ActionResult EliminarUnidad(int id)
+        {
+            UnidadService.EliminarUnidad(id);
+            return RedirectToAction("VerUnidades");
+        }
     }
 }

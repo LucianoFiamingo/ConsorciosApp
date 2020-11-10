@@ -42,5 +42,11 @@ namespace Servicios
             b.EmailPropietario = a.EmailPropietario;
             b.Superficie = a.Superficie;
         }
+
+        public static void EliminarUnidad(int id)
+        {
+            Lista.RemoveAll(o => o.IdUnidad == id);
+        }
+
     }
 }
