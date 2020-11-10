@@ -8,17 +8,24 @@
 
 @if (TempData["Creado"] != null && (bool)TempData["Creado"] == true)
 {
-    <h6 class="bg-success p-4 text-light text-center mb-3">
-        Creado correctamente!
-    </h6>
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        ¡Consorcio <strong>creado correctamente!</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 }
 
 @if (TempData["Creado"] != null && (bool)TempData["Creado"] == false)
 {
-    <h6 class="bg-danger p-4 text-light text-center mb-3">
-        Error al crear!
-    </h6>
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        <strong>¡Error</strong> al crear!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 }
+
 
 <h2>Crear Consorcio</h2>
 

@@ -31,7 +31,7 @@ namespace MVC.Controllers
         public ActionResult Crear()
         {
             ViewBag.ProvinciasItems = ObtenerComboProvincias();
-            
+
             Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
             Breadcrump nivel2 = new Breadcrump("Crear Consorcio", "Consorcio/Crear");
             ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2);
@@ -149,6 +149,10 @@ namespace MVC.Controllers
 
             return ProvinciasItems;
         }
-     
+
+        public ActionResult ViewPrueba()
+        {
+            return View();
+        }
     }
 }

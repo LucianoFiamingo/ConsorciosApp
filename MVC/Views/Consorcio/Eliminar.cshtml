@@ -4,102 +4,46 @@
     ViewBag.Title = "Eliminar";
 }
 
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="/@ViewContext.RouteData.Values["controller"].ToString()/Listado">
-                Mis @ViewContext.RouteData.Values["controller"].ToString()s
-            </a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="/@ViewContext.RouteData.Values["controller"].ToString()/Listado">
-                @ViewContext.RouteData.Values["action"].ToString()
-            </a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">@Model.Nombre</li>
-    </ol>
-</nav>
+@*
+    @{Html.RenderPartial("~/Views/Partials/pv_breadcrump.cshtml");}
+*@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-1">
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3">
-
-    <h2>Eliminar Consorcio "@Model.Nombre"</h2>
+    <h2>Eliminar Consorcio</h2>
 
     <a onclick="volver()" class="btn btn-success">Volver</a>
 
 </div>
 
 <div>
-    <p>A continuación se muestran los datos del consorcio a eliminar:</p>
+    <p>Confirme la eliminación del consorcio seleccionado</p>
     <hr />
 
 
-    <article class="">
+    <article class="d-block text-center align-middle">
 
         <article class="border rounded bg-light mb-5 mt-3">
             <div class="card-body">
-                <h5 class="card-title">Datos del consorcio</h5>
+                <h3 class="card-title m-4">¿Desea eliminar el consorcio "@Model.Nombre"?</h3>
                 <div class="card-text">
 
-                    <h6> @Html.DisplayNameFor(model => model.Nombre)</h6>
-
-                    <p>
-                        @Html.DisplayFor(model => model.Nombre)
+                    <p class="text-danger font-weight-bold">
+                        Se borrará el consorcio y todos sus datos relacionados.
                     </p>
 
-                    <h6>
-                        @Html.DisplayNameFor(model => model.Ciudad)
-                    </h6>
-
-                    <p>
-                        @Html.DisplayFor(model => model.Ciudad), provincia de @Html.DisplayFor(model => model.Provincia.Nombre)
-                    </p>
-
-                    <h6>
-                        @Html.DisplayNameFor(model => model.Calle)
-                    </h6>
-
-                    <p>
-                        @Html.DisplayFor(model => model.Calle),  @Html.DisplayFor(model => model.Altura)
-                    </p>
-
-                    <h6>
-                        @Html.DisplayNameFor(model => model.DiaVencimientoExpensas)
-                    </h6>
-
-                    <p>
-                        @Html.DisplayFor(model => model.DiaVencimientoExpensas)
-                    </p>
-
-                    <h6>
-                        @Html.DisplayNameFor(model => model.FechaCreacion)
-                    </h6>
-
-                    <p>
-                        @Html.DisplayFor(model => model.FechaCreacion)
-                    </p>
-
-                    <h6>
-                        @Html.DisplayNameFor(model => model.Usuario)
-                    </h6>
-
-                    <p>
-                        @Html.DisplayFor(model => model.Usuario)
-                    </p>
+                    <div class="m-4">
+                        <form action="/Consorcio/Eliminar" method="post">
+                            <input type="submit" value="Eliminar" class="btn btn-danger" />
+                            <input type="hidden" name="IdConsorcio" value="@Model.IdConsorcio" />
+                            @Html.ActionLink("Cancelar", "Listado", "Consorcio", null, new { @class = "btn btn-success" })
+                        </form>
+                    </div>
 
                 </div>
             </div>
         </article>
     </article>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+</div>
 
-        <div class="form-actions no-color">
-            <input type="hidden" name="IdConsorcio" value="@Model.IdConsorcio" />
-            <input type="submit" value="Eliminar" class="btn btn-danger ml-0" /> |
-            @Html.ActionLink("Cancelar", "Listado")
-        </div>
-    }
-
-    @Scripts.Render("~/bundles/custom")
+@Scripts.Render("~/bundles/custom")
