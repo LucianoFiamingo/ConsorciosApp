@@ -22,6 +22,9 @@
     <table class="table">
         <tr>
             <th>
+                Id Unidad
+            </th>
+            <th>
                 Id Consorcio
             </th>
             <th>
@@ -49,32 +52,35 @@
 
    @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdConsorcio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombrePropietario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApellidoPropietario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmailPropietario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Superficie)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ })
-            </td>
-            <td>
-                @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdUnidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdConsorcio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombrePropietario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApellidoPropietario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailPropietario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Superficie)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "ModificarUnidad", new { id=item.IdUnidad })
+        </td>
+        <td>
+            @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
     }
     
     </table>

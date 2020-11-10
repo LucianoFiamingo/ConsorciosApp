@@ -296,6 +296,7 @@
     <Content Include="Views\Consorcio\Eliminar.cshtml" />
     <Content Include="Views\Partials\pv_breadcrump.cshtml" />
     <Content Include="Views\Shared\_UsuarioLayout.cshtml" />
+    <Content Include="Views\Unidad\ModificarUnidad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

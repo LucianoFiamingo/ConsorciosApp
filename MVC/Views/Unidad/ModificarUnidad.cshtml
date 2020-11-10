@@ -1,0 +1,48 @@
+﻿@model Entities.EDMX.Unidad
+
+@{
+    Layout = "~/Views/Shared/_baseLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Modificar Unidad";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>ModificarUnidad</title>
+</head>
+<body>
+    <h2>Modificar Unidad</h2>
+
+    <form action="/Unidad/ModificarUnidad" method="Post">
+        <input type="hidden" name="IdUnidad" value="@Model.IdUnidad" />
+        <input type="hidden" name="IdConsorcio" value="@Model.IdConsorcio"/>
+        Nombre
+        <br />
+        <input type="text" name="Nombre" value="@Model.Nombre"/>
+        <br />
+        Nombre Propietario
+        <br />
+        <input type="text" name="NombrePropietario" value="@Model.NombrePropietario" />
+        <br />
+        Apellido Propietario
+        <br />
+        <input type="text" name="ApellidoPropietario" value="@Model.ApellidoPropietario" />
+        <br />
+        Email Propietario
+        <br />
+        <input type="text" name="EmailPropietario" value="@Model.EmailPropietario" />
+        <br />
+        Superficie(m2)
+        <br />
+        <input type="number" name="Superficie" value="@Model.Superficie"/>
+        <br />
+        <br />
+        <input type="submit" value="Guardar" />
+    </form>
+
+</body>
+</html>
