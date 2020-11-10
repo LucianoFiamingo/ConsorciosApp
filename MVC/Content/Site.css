@@ -35,14 +35,8 @@ textarea {
     text-align: center;
 }
 
-.bd-callout {
-    padding: 1.25rem;
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
-    border: 1px solid #eee;
-    border-left-width: .25rem;
-}
-
-.bd-callout-warning {
-    border-left-color: #3f729b;
+@media screen and (max-width:991px) {
+    .cont-avatar {
+        display: none;
+    }
 }
