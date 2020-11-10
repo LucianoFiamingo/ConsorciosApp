@@ -6,7 +6,7 @@
 
 @{Html.RenderPartial("~/Views/Partials/pv_breadcrump.cshtml");}
 
-@if (TempData["Creado"] != null && (bool)TempData["Creado"] == true)
+@if (TempData["Creado"] != null && (string)TempData["Creado"] != "FALSO")
 {
     <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
         ¡Consorcio <strong>creado correctamente!</strong>
@@ -16,9 +16,9 @@
     </div>
 }
 
-@if (TempData["Creado"] != null && (bool)TempData["Creado"] == false)
+@if (TempData["Creado"] != null && (string)TempData["Creado"] == "FALSO")
 {
-    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
         <strong>¡Error</strong> al crear!
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>

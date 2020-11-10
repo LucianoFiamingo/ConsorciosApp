@@ -4,42 +4,40 @@
     ViewBag.Title = "Listado";
 }
 
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="/@ViewContext.RouteData.Values["controller"].ToString()/@ViewContext.RouteData.Values["action"].ToString()">
-                Mis @ViewContext.RouteData.Values["controller"].ToString()s
-            </a>
-        </li>
-        <li class="breadcrumb-item">@ViewContext.RouteData.Values["action"].ToString()</li>
-    </ol>
-</nav>
-
-
-@if (TempData["Creado"] != null && (bool)TempData["Creado"] == true)
+@if (TempData["Creado"] != null && (string)TempData["Creado"] != "FALSO")
 {
     <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-        ¡Consorcio <strong>creado correctamente!</strong>
+        ¡Consorcio <strong>@TempData["Creado"].ToString()</strong> creado correctamente!
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 }
 
-@if (TempData["Modificado"] != null && (bool)TempData["Modificado"] == true)
+@if (TempData["Modificado"] != null && (string)TempData["Modificado"] != "FALSO")
 {
     <div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
-        ¡Consorcio <strong>modificado correctamente!</strong>
+        ¡Consorcio <strong>@TempData["Modificado"].ToString()</strong> modificado correctamente!
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 }
 
-@if (TempData["Eliminado"] != null && (bool)TempData["Eliminado"] == true)
+@if (TempData["Eliminado"] != null && (string)TempData["Eliminado"] != "FALSO")
 {
     <div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
-        ¡Consorcio <strong>eliminado correctamente!</strong>
+        ¡Consorcio <strong>@TempData["Eliminado"].ToString()</strong> eliminado correctamente!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+@if (TempData["Eliminado"] != null && (string)TempData["Eliminado"] == "FALSO")
+{
+    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+        ¡Error al querer eliminar el <strong>consorcio</strong>!
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -74,7 +72,7 @@
         {
             <tr>
                 <td>
-                    @item.Nombre
+                    @Html.ActionLink(@item.Nombre, "Ver", "Consorcio", new { id = item.IdConsorcio }, new { @class = "" })
                 </td>
                 <td>
                     @item.Provincia.Nombre
@@ -92,9 +90,9 @@
                     @Html.ActionLink("Ver Gastos", "Gastos", new { id = item.IdConsorcio }, new { @class = "" })
                 </td>
                 <td>
-                    @Html.ActionLink("Modificar", "Modificar", new { id = item.IdConsorcio }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Modificar", "Modificar", new { id = item.IdConsorcio }, new { @class = "btn btn-primary mb-2 mb-lg-0" })
 
-                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdConsorcio }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdConsorcio }, new { @class = "btn btn-danger px-3" })
 
                 </td>
             </tr>

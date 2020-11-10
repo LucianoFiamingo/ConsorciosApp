@@ -4,21 +4,8 @@
     ViewBag.Title = "Modificar";
 }
 
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="/@ViewContext.RouteData.Values["controller"].ToString()/Listado">
-                Mis @ViewContext.RouteData.Values["controller"].ToString()s
-            </a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="/@ViewContext.RouteData.Values["controller"].ToString()/Listado">
-                @ViewContext.RouteData.Values["action"].ToString()
-            </a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">@Model.Nombre</li>
-    </ol>
-</nav>
+@{Html.RenderPartial("~/Views/Partials/pv_breadcrump.cshtml");}
+
 
 @if (TempData["Modificado"] != null && (bool)TempData["Modificado"] == false)
 {
@@ -102,7 +89,7 @@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Guardar" class="btn btn-success ml-0" />
-                        <a onclick="volver()" class = "btn btn-danger ml-0 mr-2">Cancelar</a>
+                        <a onclick="volver()" class="btn btn-danger ml-0 mr-2">Cancelar</a>
                     </div>
                 </div>
             </div>

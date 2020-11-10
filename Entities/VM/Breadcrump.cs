@@ -10,5 +10,14 @@
             this.Nombre = Nombre;
             this.Link = Link;
         }
+
+        public Breadcrump(string Nombre)
+        {
+            this.Nombre = Nombre;
+        }
+        public Breadcrump()
+        {
+        }
+
     }
 }

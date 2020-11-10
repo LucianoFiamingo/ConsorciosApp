@@ -33,7 +33,7 @@ namespace MVC.Controllers
             ViewBag.ProvinciasItems = ObtenerComboProvincias();
 
             Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
-            Breadcrump nivel2 = new Breadcrump("Crear Consorcio", "Consorcio/Crear");
+            Breadcrump nivel2 = new Breadcrump("Crear Consorcio");
             ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2);
             return View();
         }
@@ -47,13 +47,19 @@ namespace MVC.Controllers
 
             if (!ModelState.IsValid)
             {
-                TempData["Creado"] = false;
+                TempData["Creado"] = "FALSO";
+
                 ViewBag.ProvinciasItems = ObtenerComboProvincias();
-                return RedirectToAction("Crear");
+
+                Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
+                Breadcrump nivel2 = new Breadcrump("Crear Consorcio");
+                ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2);
+
+                return View(consorcio);
             }
 
             ConsorcioService.Alta(consorcio);
-            TempData["Creado"] = true;
+            TempData["Creado"] = consorcio.Nombre.ToString();
 
             if (otraAccion == "crearUnidades")
             {
@@ -74,8 +80,14 @@ namespace MVC.Controllers
             }
 
             Consorcio consorcio = ConsorcioService.ObtenerPorId((int)id);
+           
             ViewBag.ProvinciasItems = ObtenerComboProvincias(consorcio.IdProvincia);
 
+            Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
+            Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Ver/" + consorcio.IdConsorcio.ToString());
+            Breadcrump nivel3 = new Breadcrump("Modificar");
+            ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
+            
             return View(consorcio);
         }
 
@@ -84,13 +96,20 @@ namespace MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                TempData["Modificado"] = false;
-                ViewBag.ProvinciasItems = ObtenerComboProvincias();
+                TempData["Modificado"] = "FALSO";
+
+                ViewBag.ProvinciasItems = ObtenerComboProvincias(consorcio.IdProvincia);
+
+                Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
+                Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Ver/" + consorcio.IdConsorcio.ToString());
+                Breadcrump nivel3 = new Breadcrump("Modificar");
+                ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
+
                 return View(consorcio);
             }
 
             ConsorcioService.Modificar(consorcio);
-            TempData["Modificado"] = true;
+            TempData["Modificado"] = consorcio.Nombre.ToString();
             return RedirectToAction("Listado");
         }
 
@@ -102,6 +121,12 @@ namespace MVC.Controllers
             }
 
             Consorcio consorcio = ConsorcioService.ObtenerPorId((int)id);
+
+            Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
+            Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Ver/" + consorcio.IdConsorcio.ToString());
+            Breadcrump nivel3 = new Breadcrump("Eliminar");
+            ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
+
             return View(consorcio);
         }
 
@@ -110,12 +135,12 @@ namespace MVC.Controllers
         {
             if (consorcio == null)
             {
-                TempData["Eliminado"] = false;
+                TempData["Eliminado"] = "FALSO";
                 return RedirectToAction("Listado");
             }
 
+            TempData["Eliminado"] = consorcio.Nombre.ToString();
             ConsorcioService.Eliminar(consorcio.IdConsorcio);
-            TempData["Eliminado"] = true;
 
             return RedirectToAction("Listado");
         }
@@ -150,9 +175,5 @@ namespace MVC.Controllers
             return ProvinciasItems;
         }
 
-        public ActionResult ViewPrueba()
-        {
-            return View();
-        }
     }
 }
