@@ -55,51 +55,50 @@
 <p>A continuación se muestra la lista de todos sus consorcios</p>
 <hr class="mb-5" />
 
-<section class="table-responsive mb-5">
+<table class="table table-bordered table-hover mb-5">
+    <tr class="bg-light">
+        <th>Nombre</th>
+        <th>Provincia</th>
+        <th>Ciudad</th>
+        <th>Unidades</th>
+        <th>Expensas</th>
+        <th>Gastos</th>
+        <th>Acción</th>
+    </tr>
 
-    <table class="table table-bordered table-hover">
-        <tr class="bg-light">
-            <th>Nombre</th>
-            <th>Provincia</th>
-            <th>Ciudad</th>
-            <th>Unidades</th>
-            <th>Expensas</th>
-            <th>Gastos</th>
-            <th>Acción</th>
+    @foreach (var item in Model)
+    {
+        <tr class="colorear @(TempData["VerConsorcio"] != null && item.IdConsorcio == (int)TempData["VerConsorcio"] ? "table-success" : null)">
+
+            <td>
+                @item.Nombre
+            </td>
+            <td>
+                @item.Provincia.Nombre
+            </td>
+            <td>
+                @item.Ciudad
+            </td>
+            <td>
+                @Html.ActionLink("Ver Unidades", "Unidades", new { id = item.IdConsorcio }, new { @class = "" })
+            </td>
+            <td>
+                @Html.ActionLink("Ver Expensas", "Expensas", new { id = item.IdConsorcio }, new { @class = "" })
+            </td>
+            <td>
+                @Html.ActionLink("Ver Gastos", "Gastos", new { id = item.IdConsorcio }, new { @class = "" })
+            </td>
+            <td>
+                @Html.ActionLink("Modificar", "Modificar", new { id = item.IdConsorcio }, new { @class = "btn btn-primary mb-2 mb-lg-0" })
+
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdConsorcio }, new { @class = "btn btn-danger px-3" })
+
+            </td>
+
         </tr>
+    }
+</table>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.ActionLink(@item.Nombre, "Ver", "Consorcio", new { id = item.IdConsorcio }, new { @class = "" })
-                </td>
-                <td>
-                    @item.Provincia.Nombre
-                </td>
-                <td>
-                    @item.Ciudad
-                </td>
-                <td>
-                    @Html.ActionLink("Ver Unidades", "Unidades", new { id = item.IdConsorcio }, new { @class = "" })
-                </td>
-                <td>
-                    @Html.ActionLink("Ver Expensas", "Expensas", new { id = item.IdConsorcio }, new { @class = "" })
-                </td>
-                <td>
-                    @Html.ActionLink("Ver Gastos", "Gastos", new { id = item.IdConsorcio }, new { @class = "" })
-                </td>
-                <td>
-                    @Html.ActionLink("Modificar", "Modificar", new { id = item.IdConsorcio }, new { @class = "btn btn-primary mb-2 mb-lg-0" })
-
-                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdConsorcio }, new { @class = "btn btn-danger px-3" })
-
-                </td>
-            </tr>
-        }
-
-    </table>
-
-</section>
-
-
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/custom")

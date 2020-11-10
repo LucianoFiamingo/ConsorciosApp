@@ -145,6 +145,11 @@ namespace MVC.Controllers
             return RedirectToAction("Listado");
         }
 
+        public ActionResult Ver(int id) {
+
+            TempData["VerConsorcio"] = id;
+            return RedirectToAction("Listado");
+        }
         public List<SelectListItem> ObtenerComboProvincias()
         {
             List<Provincia> provs = ProvinciaService.ObtenerTodos();

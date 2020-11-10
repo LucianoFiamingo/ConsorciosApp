@@ -40,3 +40,11 @@ textarea {
         display: none;
     }
 }
+
+.colorear {
+    -webkit-transition: background 3s;
+    -moz-transition: background 3s;
+    -ms-transition: background 3s;
+    -o-transition: background 3s;
+    transition: background 3s;
+}
