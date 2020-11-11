@@ -10,5 +10,6 @@ namespace Services
 {
     public interface IConsorcioService
     {
+        List<Consorcio> ObtenerTodosOrdenadosPorNombre();
     }
 }

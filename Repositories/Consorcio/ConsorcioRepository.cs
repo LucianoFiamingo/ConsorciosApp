@@ -1,6 +1,7 @@
 ﻿using Entities;
 using Entities.EDMX;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Repositories
 {
@@ -22,6 +23,11 @@ namespace Repositories
             cons.Gastoes = t.Gastoes;
 
             ctx.SaveChanges();
+        }
+
+        public List<Consorcio> ObtenerTodosOrdenadosPorNombre()
+        {
+            return ctx.Consorcios.OrderBy(item => item.Nombre).ToList();
         }
     }
 }

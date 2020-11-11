@@ -6,5 +6,6 @@ namespace Repositories
 {
     public interface IConsorcioRepository
     {
+        List<Consorcio> ObtenerTodosOrdenadosPorNombre();
     }
 }

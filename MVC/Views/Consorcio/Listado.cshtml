@@ -78,7 +78,7 @@
             <tr class="@(TempData["VerConsorcio"] != null && item.IdConsorcio == (int)TempData["VerConsorcio"] ? "colorear table-success" : null)">
 
                 <td>
-                    @item.Nombre
+                    @Html.ActionLink(item.Nombre, "Modificar", new { id = item.IdConsorcio }, new { @class = "" })
                 </td>
                 <td>
                     @item.Provincia.Nombre

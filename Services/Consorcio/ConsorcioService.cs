@@ -12,5 +12,10 @@ namespace Services
         {
 
         }
+
+        public List<Consorcio> ObtenerTodosOrdenadosPorNombre()
+        {
+            return repo.ObtenerTodosOrdenadosPorNombre();
+        }
     }
 }

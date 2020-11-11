@@ -24,7 +24,7 @@ namespace MVC.Controllers
 
         public ActionResult Listado()
         {
-            List<Consorcio> consorcios = ConsorcioService.ObtenerTodos();
+            List<Consorcio> consorcios = ConsorcioService.ObtenerTodosOrdenadosPorNombre();
             return View(consorcios);
         }
 
