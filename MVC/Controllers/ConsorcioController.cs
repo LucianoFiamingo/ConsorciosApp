@@ -30,7 +30,7 @@ namespace MVC.Controllers
 
         public ActionResult Crear()
         {
-            ViewBag.ProvinciasItems = ObtenerComboProvincias();
+            ViewBag.ProvinciasItems = ProvinciaService.ObtenerComboProvincias();
 
             Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
             Breadcrump nivel2 = new Breadcrump("Crear Consorcio");
@@ -49,7 +49,7 @@ namespace MVC.Controllers
             {
                 TempData["Creado"] = "FALSO";
 
-                ViewBag.ProvinciasItems = ObtenerComboProvincias();
+                ViewBag.ProvinciasItems = ProvinciaService.ObtenerComboProvincias();
 
                 Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
                 Breadcrump nivel2 = new Breadcrump("Crear Consorcio");
@@ -81,7 +81,7 @@ namespace MVC.Controllers
 
             Consorcio consorcio = ConsorcioService.ObtenerPorId((int)id);
            
-            ViewBag.ProvinciasItems = ObtenerComboProvincias(consorcio.IdProvincia);
+            ViewBag.ProvinciasItems = ProvinciaService.ObtenerComboProvincias(consorcio.IdProvincia);
 
             Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
             Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Ver/" + consorcio.IdConsorcio.ToString());
@@ -98,7 +98,7 @@ namespace MVC.Controllers
             {
                 TempData["Modificado"] = "FALSO";
 
-                ViewBag.ProvinciasItems = ObtenerComboProvincias(consorcio.IdProvincia);
+                ViewBag.ProvinciasItems = ProvinciaService.ObtenerComboProvincias(consorcio.IdProvincia);
 
                 Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
                 Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Ver/" + consorcio.IdConsorcio.ToString());
@@ -150,35 +150,7 @@ namespace MVC.Controllers
             TempData["VerConsorcio"] = id;
             return RedirectToAction("Listado");
         }
-        public List<SelectListItem> ObtenerComboProvincias()
-        {
-            List<Provincia> provs = ProvinciaService.ObtenerTodos();
-
-            List<SelectListItem> ProvinciasItems = provs.Select(o => new SelectListItem()
-            {
-                Text = o.Nombre,
-                Value = o.IdProvincia.ToString()
-            }).ToList();
-
-            ProvinciasItems.Insert(0, new SelectListItem() { Value = "", Text = "Seleccione una provincia" });
-
-            return ProvinciasItems;
-        }
-        public List<SelectListItem> ObtenerComboProvincias(int id)
-        {
-            List<Provincia> provs = ProvinciaService.ObtenerTodos();
-
-            List<SelectListItem> ProvinciasItems = provs.Select(o => new SelectListItem()
-            {
-                Text = o.Nombre,
-                Value = o.IdProvincia.ToString(),
-                Selected = o.IdProvincia == id
-            }).ToList();
-
-            ProvinciasItems.Insert(0, new SelectListItem() { Value = "", Text = "Seleccione una provincia" });
-
-            return ProvinciasItems;
-        }
+       
 
     }
 }

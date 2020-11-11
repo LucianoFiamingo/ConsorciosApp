@@ -48,3 +48,7 @@ textarea {
     -o-transition: background 3s;
     transition: background 3s;
 }
+
+.link-avatar:hover {
+    cursor: pointer;
+}
