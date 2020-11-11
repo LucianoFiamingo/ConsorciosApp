@@ -4,45 +4,49 @@
     ViewBag.Title = "Listado";
 }
 
-@if (TempData["Creado"] != null && (string)TempData["Creado"] != "FALSO")
-{
-    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-        ¡Consorcio <strong>@TempData["Creado"].ToString()</strong> creado correctamente!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-}
+<link href="~/Content/Tables/jquery.dataTables.min.css" rel="stylesheet" />
 
-@if (TempData["Modificado"] != null && (string)TempData["Modificado"] != "FALSO")
-{
-    <div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
-        ¡Consorcio <strong>@TempData["Modificado"].ToString()</strong> modificado correctamente!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-}
+<section>
+    @if (TempData["Creado"] != null && (string)TempData["Creado"] != "FALSO")
+    {
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            ¡Consorcio <strong>@TempData["Creado"].ToString()</strong> creado correctamente!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
 
-@if (TempData["Eliminado"] != null && (string)TempData["Eliminado"] != "FALSO")
-{
-    <div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
-        ¡Consorcio <strong>@TempData["Eliminado"].ToString()</strong> eliminado correctamente!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-}
+    @if (TempData["Modificado"] != null && (string)TempData["Modificado"] != "FALSO")
+    {
+        <div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
+            ¡Consorcio <strong>@TempData["Modificado"].ToString()</strong> modificado correctamente!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
 
-@if (TempData["Eliminado"] != null && (string)TempData["Eliminado"] == "FALSO")
-{
-    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-        ¡Error al querer eliminar el <strong>consorcio</strong>!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-}
+    @if (TempData["Eliminado"] != null && (string)TempData["Eliminado"] != "FALSO")
+    {
+        <div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
+            ¡Consorcio <strong>@TempData["Eliminado"].ToString()</strong> eliminado correctamente!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    @if (TempData["Eliminado"] != null && (string)TempData["Eliminado"] == "FALSO")
+    {
+        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            ¡Error al querer eliminar el <strong>consorcio</strong>!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+</section>
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
 
@@ -55,50 +59,56 @@
 <p>A continuación se muestra la lista de todos sus consorcios</p>
 <hr class="mb-5" />
 
-<table class="table table-bordered table-hover mb-5">
-    <tr class="bg-light">
-        <th>Nombre</th>
-        <th>Provincia</th>
-        <th>Ciudad</th>
-        <th>Unidades</th>
-        <th>Expensas</th>
-        <th>Gastos</th>
-        <th>Acción</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr class="@(TempData["VerConsorcio"] != null && item.IdConsorcio == (int)TempData["VerConsorcio"] ? "colorear table-success" : null)">
-
-            <td>
-                @item.Nombre
-            </td>
-            <td>
-                @item.Provincia.Nombre
-            </td>
-            <td>
-                @item.Ciudad
-            </td>
-            <td>
-                @Html.ActionLink("Ver Unidades", "Unidades", new { id = item.IdConsorcio }, new { @class = "" })
-            </td>
-            <td>
-                @Html.ActionLink("Ver Expensas", "Expensas", new { id = item.IdConsorcio }, new { @class = "" })
-            </td>
-            <td>
-                @Html.ActionLink("Ver Gastos", "Gastos", new { id = item.IdConsorcio }, new { @class = "" })
-            </td>
-            <td>
-                @Html.ActionLink("Modificar", "Modificar", new { id = item.IdConsorcio }, new { @class = "btn btn-primary mb-2 mb-lg-0" })
-
-                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdConsorcio }, new { @class = "btn btn-danger px-3" })
-
-            </td>
-
+<table id="example" class="display table table-bordered table-hover mb-5">
+    <thead>
+        <tr class="bg-light">
+            <th>Nombre</th>
+            <th>Provincia</th>
+            <th>Ciudad</th>
+            <th>Unidades</th>
+            <th>Expensas</th>
+            <th>Gastos</th>
+            <th>Acción</th>
         </tr>
-    }
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="@(TempData["VerConsorcio"] != null && item.IdConsorcio == (int)TempData["VerConsorcio"] ? "colorear table-success" : null)">
+
+                <td>
+                    @item.Nombre
+                </td>
+                <td>
+                    @item.Provincia.Nombre
+                </td>
+                <td>
+                    @item.Ciudad
+                </td>
+                <td>
+                    @Html.ActionLink("Ver Unidades", "Unidades", new { id = item.IdConsorcio }, new { @class = "" })
+                </td>
+                <td>
+                    @Html.ActionLink("Ver Expensas", "Expensas", new { id = item.IdConsorcio }, new { @class = "" })
+                </td>
+                <td>
+                    @Html.ActionLink("Ver Gastos", "Gastos", new { id = item.IdConsorcio }, new { @class = "" })
+                </td>
+                <td>
+                    @Html.ActionLink("Modificar", "Modificar", new { id = item.IdConsorcio }, new { @class = "btn btn-primary mb-2 mb-lg-0" })
+
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdConsorcio }, new { @class = "btn btn-danger px-3" })
+
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
+<link href="~/Content/Tables/datatables.min.css" rel="stylesheet" />
+
 @Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/custom")
+<script src="~/Scripts/tables/dataTables.js"></script>
+<script src="~/Scripts/tables/datatables.min.js"></script>

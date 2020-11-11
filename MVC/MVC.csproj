@@ -149,6 +149,8 @@
     <Content Include="Content\Images\Anonimo\avatar.svg" />
     <Content Include="Content\Images\Marca\logo-blanco.svg" />
     <Content Include="Content\mdb.min.css" />
+    <Content Include="Content\Tables\datatables.min.css" />
+    <Content Include="Content\Tables\jquery.dataTables.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -178,6 +180,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="connections.config" />
+    <Content Include="Content\Tables\Json\Spanish.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -256,6 +259,8 @@
     <Content Include="Scripts\src\utils\setAttributes.js" />
     <Content Include="Scripts\src\utils\setStyles.js" />
     <Content Include="Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Scripts\tables\dataTables.js" />
+    <Content Include="Scripts\tables\datatables.min.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -298,6 +303,7 @@
     <Content Include="Views\Partials\pv_breadcrump.cshtml" />
     <Content Include="Views\Shared\_UsuarioLayout.cshtml" />
     <Content Include="Views\Unidad\ModificarUnidad.cshtml" />
+    <Content Include="Views\Consorcio\Prueba.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

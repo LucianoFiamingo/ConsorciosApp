@@ -9,9 +9,12 @@ function colorear() {
 
 $(document).ready(function () {
 
-    $('html, body').animate({
-        scrollTop: $(".colorear").offset().top
-    }, 2000);
+    if ($(".colorear").offset() != null && $(".colorear").offset().top != 'undefined') {
+        $('html, body').animate({
+            scrollTop: $(".colorear").offset().top - 300
+        }, 1000);
 
-    setTimeout(colorear, 2000);
+        setTimeout(colorear, 2000); 
+    }
+
 });
