@@ -21,5 +21,4 @@ $(document).ready(function () {
         setTimeout(desplazar, 2000);
     }
     setTimeout(decolorear, 2000);
-    //alert($(".colorear").offset().top );
 });
