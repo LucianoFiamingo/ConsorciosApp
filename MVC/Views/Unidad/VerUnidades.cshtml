@@ -1,12 +1,10 @@
 ﻿@model IEnumerable<Entities.EDMX.Unidad>
 
 @{
-    Layout = "~/Views/Shared/_baseLayout.cshtml";
-}
-
-@{
     ViewBag.Title = "Ver Unidades";
 }
+
+<link href="~/Content/Tables/jquery.dataTables.min.css" rel="stylesheet" />
 
 <!DOCTYPE html>
 
@@ -15,74 +13,87 @@
     <title>VerUnidades</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Nueva Unidad", "CrearUnidad", "Unidad")
-    </p>
 
-    <table class="table">
-        <tr>
-            <th>
-                Id Unidad
-            </th>
-            <th>
-                Id Consorcio
-            </th>
-            <th>
-                Nombre
-            </th>
-            <th>
-                Nombre Propietario
-            </th>
-            <th>
-                Apellido Propietario
-            </th>
-            <th>
-                Email Propietario
-            </th>
-            <th>
-                Superficie
-            </th>
-            <th>
-                Editar
-            </th>
-            <th>
-                Eliminar
-            </th>
-        </tr>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+        <h2>Listado de Mis Unidades</h2>
+        <p>
+            @Html.ActionLink("CREAR UNIDAD", "CrearUnidad", "Unidad", new { @class = "btn btn-success" })
+        </p>
+    </div>
 
-   @foreach (var item in Model)
-    {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdUnidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdConsorcio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombrePropietario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApellidoPropietario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmailPropietario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Superficie)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "ModificarUnidad", new { id=item.IdUnidad })
-        </td>
-        <td>
-            @Html.ActionLink("Eliminar", "EliminarUnidad", new { id=item.IdUnidad })
-        </td>
-    </tr>
-    }
-    
+    <p>A continuación se muestra la lista de todas sus unidades</p>
+    <hr class="mb-5" />
+
+    <table id="example" class="display table table-bordered table-hover mb-5">
+        <thead>
+            <tr class="bg-light">
+                <th>
+                    Id Unidad
+                </th>
+                <th>
+                    Id Consorcio
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Nombre Propietario
+                </th>
+                <th>
+                    Apellido Propietario
+                </th>
+                <th>
+                    Email Propietario
+                </th>
+                <th>
+                    Superficie
+                </th>
+                <th>
+                    Acción
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdUnidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdConsorcio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombrePropietario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApellidoPropietario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailPropietario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Superficie)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Modificar", "ModificarUnidad", new { id = item.IdUnidad }, new { @class = "btn btn-primary mb-2 mb-lg-0" })
+                        
+                        @Html.ActionLink("Eliminar", "EliminarUnidad", new { id = item.IdUnidad }, new { @class = "btn btn-danger px-3" })
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
+
+    @Scripts.Render("~/bundles/custom")
+
+    <link href="~/Content/Tables/datatables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/tables/dataTables.js"></script>
+    <script src="~/Scripts/tables/datatables.min.js"></script>
+
 </body>
 </html>
