@@ -35,14 +35,25 @@ textarea {
     text-align: center;
 }
 
-.bd-callout {
-    padding: 1.25rem;
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
-    border: 1px solid #eee;
-    border-left-width: .25rem;
+@media screen and (max-width:991px) {
+    .cont-avatar {
+        display: none;
+    }
 }
 
-.bd-callout-warning {
-    border-left-color: #3f729b;
+.colorear {
+    -webkit-transition: background 3s;
+    -moz-transition: background 3s;
+    -ms-transition: background 3s;
+    -o-transition: background 3s;
+    transition: background 3s;
+}
+
+.link-avatar:hover {
+    cursor: pointer;
+}
+
+.desplegable-avatar {
+    margin-right: 15px;
+    margin-top: -18px !important;
 }

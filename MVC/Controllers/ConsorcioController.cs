@@ -24,16 +24,16 @@ namespace MVC.Controllers
 
         public ActionResult Listado()
         {
-            List<Consorcio> consorcios = ConsorcioService.ObtenerTodos();
+            List<Consorcio> consorcios = ConsorcioService.ObtenerTodosOrdenadosPorNombre();
             return View(consorcios);
         }
 
         public ActionResult Crear()
         {
-            ViewBag.ProvinciasItems = ObtenerComboProvincias();
-            
+            ViewBag.ProvinciasItems = ProvinciaService.ObtenerComboProvincias();
+
             Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
-            Breadcrump nivel2 = new Breadcrump("Crear Consorcio", "Consorcio/Crear");
+            Breadcrump nivel2 = new Breadcrump("Crear Consorcio");
             ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2);
             return View();
         }
@@ -47,13 +47,19 @@ namespace MVC.Controllers
 
             if (!ModelState.IsValid)
             {
-                TempData["Creado"] = false;
-                ViewBag.ProvinciasItems = ObtenerComboProvincias();
-                return RedirectToAction("Crear");
+                TempData["Creado"] = "FALSO";
+
+                ViewBag.ProvinciasItems = ProvinciaService.ObtenerComboProvincias();
+
+                Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
+                Breadcrump nivel2 = new Breadcrump("Crear Consorcio");
+                ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2);
+
+                return View(consorcio);
             }
 
             ConsorcioService.Alta(consorcio);
-            TempData["Creado"] = true;
+            TempData["Creado"] = consorcio.Nombre.ToString();
 
             if (otraAccion == "crearUnidades")
             {
@@ -74,8 +80,14 @@ namespace MVC.Controllers
             }
 
             Consorcio consorcio = ConsorcioService.ObtenerPorId((int)id);
-            ViewBag.ProvinciasItems = ObtenerComboProvincias(consorcio.IdProvincia);
+           
+            ViewBag.ProvinciasItems = ProvinciaService.ObtenerComboProvincias(consorcio.IdProvincia);
 
+            Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
+            Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Ver/" + consorcio.IdConsorcio.ToString());
+            Breadcrump nivel3 = new Breadcrump("Modificar");
+            ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
+            
             return View(consorcio);
         }
 
@@ -84,13 +96,20 @@ namespace MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                TempData["Modificado"] = false;
-                ViewBag.ProvinciasItems = ObtenerComboProvincias();
+                TempData["Modificado"] = "FALSO";
+
+                ViewBag.ProvinciasItems = ProvinciaService.ObtenerComboProvincias(consorcio.IdProvincia);
+
+                Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
+                Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Ver/" + consorcio.IdConsorcio.ToString());
+                Breadcrump nivel3 = new Breadcrump("Modificar");
+                ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
+
                 return View(consorcio);
             }
 
             ConsorcioService.Modificar(consorcio);
-            TempData["Modificado"] = true;
+            TempData["Modificado"] = consorcio.Nombre.ToString();
             return RedirectToAction("Listado");
         }
 
@@ -102,6 +121,12 @@ namespace MVC.Controllers
             }
 
             Consorcio consorcio = ConsorcioService.ObtenerPorId((int)id);
+
+            Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
+            Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Ver/" + consorcio.IdConsorcio.ToString());
+            Breadcrump nivel3 = new Breadcrump("Eliminar");
+            ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
+
             return View(consorcio);
         }
 
@@ -110,45 +135,22 @@ namespace MVC.Controllers
         {
             if (consorcio == null)
             {
-                TempData["Eliminado"] = false;
+                TempData["Eliminado"] = "FALSO";
                 return RedirectToAction("Listado");
             }
 
+            TempData["Eliminado"] = consorcio.Nombre.ToString();
             ConsorcioService.Eliminar(consorcio.IdConsorcio);
-            TempData["Eliminado"] = true;
 
             return RedirectToAction("Listado");
         }
 
-        public List<SelectListItem> ObtenerComboProvincias()
-        {
-            List<Provincia> provs = ProvinciaService.ObtenerTodos();
+        public ActionResult Ver(int id) {
 
-            List<SelectListItem> ProvinciasItems = provs.Select(o => new SelectListItem()
-            {
-                Text = o.Nombre,
-                Value = o.IdProvincia.ToString()
-            }).ToList();
-
-            ProvinciasItems.Insert(0, new SelectListItem() { Value = "", Text = "Seleccione una provincia" });
-
-            return ProvinciasItems;
+            TempData["VerConsorcio"] = id;
+            return RedirectToAction("Listado");
         }
-        public List<SelectListItem> ObtenerComboProvincias(int id)
-        {
-            List<Provincia> provs = ProvinciaService.ObtenerTodos();
+       
 
-            List<SelectListItem> ProvinciasItems = provs.Select(o => new SelectListItem()
-            {
-                Text = o.Nombre,
-                Value = o.IdProvincia.ToString(),
-                Selected = o.IdProvincia == id
-            }).ToList();
-
-            ProvinciasItems.Insert(0, new SelectListItem() { Value = "", Text = "Seleccione una provincia" });
-
-            return ProvinciasItems;
-        }
-     
     }
 }

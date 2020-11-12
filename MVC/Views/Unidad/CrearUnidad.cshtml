@@ -1,10 +1,6 @@
 ﻿@model Entities.EDMX.Unidad
 
 @{
-    Layout = "~/Views/Shared/_baseLayout.cshtml";
-}
-
-@{
     ViewBag.Title = "Crear Unidad";
 }
 
@@ -15,35 +11,50 @@
     <title>CrearUnidad</title>
 </head>
 <body>
-    <h2>Crear Unidad</h2>
+    <h2>Nueva Unidad</h2>
 
     <form action="/Unidad/CrearUnidad" method="Post">
-        Consorcio
-        <br />
-        <input type="number" name="IdConsorcio" />
-        <br />
-        Nombre
-        <br />
-        <input type="text" name="Nombre" />
-        <br />
-        Nombre Propietario
-        <br />
-        <input type="text" name="NombrePropietario" />
-        <br />
-        Apellido Propietario
-        <br />
-        <input type="text" name="ApellidoPropietario" />
-        <br />
-        Email Propietario
-        <br />
-        <input type="text" name="EmailPropietario" />
-        <br />
-        Superficie(m2)
-        <br />
-        <input type="number" name="Superficie" />
-        <br />
-        <br />
-        <input type="submit" value="Guardar" />
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="IdUnidad">Id Unidad</label>
+                    <input type="number" class="form-control" name="IdUnidad">
+                </div>
+
+                <div class="form-group">
+                    <label for="IdConsorcio">Id Consorcio</label>
+                    <input type="number" class="form-control" name="IdConsorcio">
+                </div>
+
+                <div class="form-group">
+                    <label for="Nombre">Nombre</label>
+                    <input type="text" class="form-control" name="Nombre">
+                </div>
+
+                <div class="form-group">
+                    <label for="NombrePropietario">Nombre Propietario</label>
+                    <input type="text" class="form-control" name="NombrePropietario">
+                </div>
+
+                <div class="form-group">
+                    <label for="ApellidoPropietario">Apellido Propietario</label>
+                    <input type="text" class="form-control" name="ApellidoPropietario">
+                </div>
+
+                <div class="form-group">
+                    <label for="EmailPropietario">Email Propietario</label>
+                    <input type="email" class="form-control" name="EmailPropietario">
+                </div>
+
+                <div class="form-group">
+                    <label for="Superficie">Superficie(m2)</label>
+                    <input type="number" class="form-control" name="Superficie">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+            <div class="col"></div>
+        </div>
     </form>
 
 </body>

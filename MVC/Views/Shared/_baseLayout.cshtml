@@ -9,7 +9,7 @@
     <link rel="icon" href="~/Content/Images/Marca/logo-azul.svg">
     <title>@ViewBag.Title - Admin consorcios</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
 </head>
 
 <body class="p-0">
@@ -18,9 +18,9 @@
 
     @{Html.RenderPartial("~/Views/Partials/pv_footer.cshtml");}
 
-    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/mdb.min.css")
+
     @RenderSection("scripts", required: false)
 </body>
 

@@ -4,7 +4,7 @@
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark unique-color py-3 ">
-        <a class="mr-2" href="#">
+        <a class="mr-2 px-2" href="#">
             <img class="logo" id="logo-nav" src="@Url.Content("~/Content/Images/Marca/logo-blanco.svg")">
         </a>
         <a class="navbar-brand" href="/Home/Home">Administración de Consorcios</a>
@@ -13,32 +13,45 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/Home/Home">Inicio<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link ml-lg-3" href="/Consorcio/Listado">Mis Consorcios<span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-        </div>
+        <div class="d-flex justify-content-around w-100 mx-lg-3">
 
-        <div class="btn-group">
-            <button type="button" class="btn btn-md btn-white rounded py-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                nombre_usuario
-                <img class="logo" id="logo-nav" src="~/Content/Images/Anonimo/avatar.svg">
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a href="" class="dropdown-item" type="button">Mi perfil</a>
-                <a href="" class="dropdown-item" type="button">Cerrar Sesión</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/Home">Inicio<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ml-lg-3" href="/Consorcio/Listado">Mis Consorcios<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="d-lg-none nav-item">
+                        <a class="nav-link ml-lg-3" href="/Consorcio/Listado">Mi perfil<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="d-lg-none nav-item">
+                        <a class="nav-link ml-lg-3" href="/Consorcio/Listado">Cerrar sesión<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="cont-avatar">
+                <p class="link-avatar text-white rounded py-1 my-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    nombre_usuario
+                    <img class="logo" id="logo-nav" src="~/Content/Images/Anonimo/avatar-blanco.svg">
+                </p>
+                <div class="dropdown-menu dropdown-menu-right desplegable-avatar">
+                    <a href="" class="dropdown-item" type="button">Mi perfil</a>
+                    <a href="" class="dropdown-item" type="button">Cerrar Sesión</a>
+                </div>
             </div>
         </div>
-
     </nav>
 </header>
 
-<div class="container mt-5">
-    @RenderBody()
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10">
+            @RenderBody()
+        </div>
+        <div class="col"></div>
+    </div>
 </div>
-

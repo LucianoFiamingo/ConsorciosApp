@@ -7,20 +7,21 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-
             @for (int i = 0; i < ListaBreadcrumps.Count; i++)
             {
-                <a href="/@ListaBreadcrumps[i].Link">
-
-                    @ListaBreadcrumps[i].Nombre.ToString()
-                </a>
-
-                if (i < ListaBreadcrumps.Count- 1)
+                if (i < ListaBreadcrumps.Count - 1)
                 {
+                    <a href="/@ListaBreadcrumps[i].Link">
+
+                        @ListaBreadcrumps[i].Nombre.ToString()
+                    </a>
                     <span class="mx-1">/</span>
                 }
+                else
+                {
+                    <span class="mx-1">@ListaBreadcrumps[i].Nombre.ToString()</span>
+                }
             }
-
         </li>
     </ol>
 </nav>
