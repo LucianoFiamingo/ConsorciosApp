@@ -1,0 +1,71 @@
+﻿@model Entities.EDMX.Usuario
+@{
+    ViewBag.Title = "Registrar";
+
+}
+
+
+@if (TempData["Creado"] != null && (bool)TempData["Creado"] == true)
+{
+    <h6 class="bg-success p-4 text-light text-center mb-3">
+        Creado correctamente!
+    </h6>
+}
+
+@if (TempData["Creado"] != null && (bool)TempData["Creado"] == false)
+{
+    <h6 class="bg-danger p-4 text-light text-center mb-3">
+        Error al crear!
+    </h6>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="container d-flex justify-content-center mt-3">
+    <div class="card">
+
+        <h5 class="card-header unique-color-dark white-text text-center py-4 ">
+            <strong>Registrarse</strong>
+        </h5>
+        <div class="card-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-6" })
+
+                @Html.EditorFor(model => Model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-6" })
+
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-6" })
+
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="container text-center">
+                <input type="submit" value="Registrarse" class="btn unique-color-dark text-white ml-0 mr-2" />
+                @Html.ActionLink("Cancelar", "Listado", null, new { @class = "btn btn-danger ml-0 mr-2" })
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    }
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/custom")
+

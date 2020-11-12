@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Entities;
+using Entities.EDMX;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +11,13 @@ namespace MVC.Controllers
 {
     public class HomeController : Controller
     {
+        BreadcrumpService BreadcrumpService;
+
+        public HomeController()
+        {
+            PW3_TP_20202CEntities contexto = new PW3_TP_20202CEntities();
+            BreadcrumpService = new BreadcrumpService();
+        }
         public ActionResult Home()
         {
             return View();
@@ -26,11 +36,10 @@ namespace MVC.Controllers
             return View();
         }
         */
-        public ActionResult Contact()
+        public ActionResult Registrar()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
+       
     }
 }

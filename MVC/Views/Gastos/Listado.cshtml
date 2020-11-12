@@ -1,0 +1,99 @@
+﻿@model List<Entities.EDMX.Gasto>
+
+@{
+    ViewBag.Title = "Listado de gastos";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/@ViewContext.RouteData.Values["controller"].ToString()/@ViewContext.RouteData.Values["action"].ToString()">
+                Mis @ViewContext.RouteData.Values["controller"].ToString()s
+            </a>
+        </li>
+        <li class="breadcrumb-item">@ViewContext.RouteData.Values["action"].ToString()</li>
+    </ol>
+</nav>
+
+
+@if (TempData["Creado"] != null && (bool)TempData["Creado"] == true)
+{
+    <h6 class="bg-success p-4 text-light text-center mb-3">
+        Consorcio creado correctamente!
+    </h6>
+}
+
+@if (TempData["Modificado"] != null && (bool)TempData["Modificado"] == true)
+{
+    <h6 class="bg-success p-4 text-light text-center mb-3">
+        Modificado correctamente!
+    </h6>
+}
+
+@if (TempData["Eliminado"] != null && (bool)TempData["Eliminado"] == true)
+{
+    <h6 class="bg-success p-4 text-light text-center mb-3">
+        Consorcio eliminado correctamente!
+    </h6>
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+
+    <h2>Listado de Mis Gastos</h2>
+
+    @Html.ActionLink("Crear Gasto", "Crear", null, new { @class = "btn btn-success" })
+
+</div>
+
+<p>A continuación se muestra la lista de todos sus consorcios</p>
+<hr class="mb-5" />
+
+<section class="table-responsive mb-5">
+
+    <table class="table table-bordered table-hover">
+        <tr class="bg-light">
+            <th>Año</th>
+            <th>Mes</th>
+            <th>Nombre</th>
+            <th>Tipo Gasto</th>
+            <th>Fecha</th>
+            <th>Monto($)</th>
+            <th>Comprobante</th>
+            <th>Eliminar</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.AnioExpensa
+                </td>
+                <td>
+                    @item.MesExpensa
+                </td>
+                <td>
+                    @item.Nombre
+                </td>
+                <td>
+                    @item.TipoGasto
+                </td>
+                <td>
+                    @item.FechaGasto
+                </td>
+                <td>
+                    @item.Monto
+                </td>
+                <td>
+                    @Html.ActionLink("Descargar Comprobante", "Descargar Comprobante", new { id = item.IdConsorcio }, new { @class = "btn btn-info" })
+
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdConsorcio }, new { @class = "btn btn-danger" })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</section>
+
+
