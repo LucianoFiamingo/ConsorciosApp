@@ -17,5 +17,10 @@ namespace MVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+        protected void Session_Start(Object sender, EventArgs e)
+        {
+            Session["usuarioID"]= String.Empty;
+            Session["nombre"] = String.Empty;
+}
     }
 }

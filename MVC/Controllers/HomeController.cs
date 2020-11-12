@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entities.EDMX;
+using Services.Usuario;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,16 @@ namespace MVC.Controllers
 {
     public class HomeController : Controller
     {
+        UsuarioService usuarioService;
+
+        public HomeController()
+        {
+            PW3_TP_20202CEntities contexto = new PW3_TP_20202CEntities();
+            UsuarioService usuarioService = new UsuarioService(contexto);
+        
+
+        }
+
         public ActionResult Home()
         {
             return View();
@@ -19,13 +31,23 @@ namespace MVC.Controllers
             
             return View();
         }
-        
-        /*[HttpPost]
-        public ActionResult Ingresar(Usuario usuario)
+
+        [HttpPost]
+        public ActionResult Ingresar(String email , String password)
         {
-            return View();
+            Usuario usu = usuarioService.validarInicioSesion(email, password);
+           if (usu== null)
+            {
+                return Redirect("Home/Ingresar");
+            }
+            else
+            {
+                Session["usuarioId"] = usu.IdUsuario;
+
+                return Redirect("");
+            }
         }
-        */
+       
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
