@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Entities;
+﻿using Entities;
 using Entities.EDMX;
 using Services;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace MVC.Controllers
 {
@@ -145,5 +144,16 @@ namespace MVC.Controllers
             return RedirectToAction("Listado");
         }
 
+        public String Existe(string nombre)
+        {
+            Boolean existe = ConsorcioService.ObtenerPorNombre(nombre);
+
+            if (existe)
+            {
+                return "Tenga en cuenta que ya existe un consorcio con el mismo nombre";
+
+            }
+            return null;
+        }
     }
 }

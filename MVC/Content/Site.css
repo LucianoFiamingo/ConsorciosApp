@@ -57,3 +57,13 @@ textarea {
     margin-right: 15px;
     margin-top: -18px !important;
 }
+
+.linkVolver {
+    color: #007bff !important;
+    text-decoration: none !important;
+}
+
+.linkVolver:hover {
+    color: #0056b3 !important;
+    text-decoration: underline !important;
+}

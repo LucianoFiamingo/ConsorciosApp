@@ -24,7 +24,7 @@ namespace Entities.EDMX
         public int Altura { get; set; }
 
         [Range(1, 28, ErrorMessage = "Rango válido del 1 al 28")]
-        [Required(ErrorMessage = "La fecha del vencimiento es requerida")]
+        [Required(ErrorMessage = "El día del vencimiento es requerido")]
         [Display(Name = "Dia de Vencimiento de Expensas")]
         public int DiaVencimientoExpensas { get; set; }
 
