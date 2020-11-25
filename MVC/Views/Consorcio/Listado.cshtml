@@ -72,10 +72,10 @@
         </tr>
     </thead>
 
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr class="@(TempData["VerConsorcio"] != null && item.IdConsorcio == (int)TempData["VerConsorcio"] ? "colorear table-success" : null)">
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="@(TempData["VerConsorcio"] != null && item.IdConsorcio == (int)TempData["VerConsorcio"] ? "colorear table-success" : null)">
 
                 <td>
                     @Html.ActionLink(item.Nombre, "Modificar", new { id = item.IdConsorcio }, new { @class = "" })

@@ -16,6 +16,11 @@ namespace Services
         public List<Consorcio> ObtenerTodosOrdenadosPorNombre()
         {
             return repo.ObtenerTodosOrdenadosPorNombre();
+        } 
+        
+        public Boolean ObtenerPorNombre(string nombre)
+        {
+            return repo.ObtenerPorNombre(nombre);
         }
     }
 }

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Entities;
+﻿using Entities;
 using Entities.EDMX;
 using Services;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace MVC.Controllers
 {
@@ -84,7 +83,7 @@ namespace MVC.Controllers
             ViewBag.ProvinciasItems = ProvinciaService.ObtenerComboProvincias(consorcio.IdProvincia);
 
             Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
-            Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Ver/" + consorcio.IdConsorcio.ToString());
+            Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Modificar/" + consorcio.IdConsorcio.ToString());
             Breadcrump nivel3 = new Breadcrump("Modificar");
             ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
             
@@ -101,7 +100,7 @@ namespace MVC.Controllers
                 ViewBag.ProvinciasItems = ProvinciaService.ObtenerComboProvincias(consorcio.IdProvincia);
 
                 Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
-                Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Ver/" + consorcio.IdConsorcio.ToString());
+                Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Modificar/" + consorcio.IdConsorcio.ToString());
                 Breadcrump nivel3 = new Breadcrump("Modificar");
                 ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
 
@@ -123,7 +122,7 @@ namespace MVC.Controllers
             Consorcio consorcio = ConsorcioService.ObtenerPorId((int)id);
 
             Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
-            Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Ver/" + consorcio.IdConsorcio.ToString());
+            Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Modificar/" + consorcio.IdConsorcio.ToString());
             Breadcrump nivel3 = new Breadcrump("Eliminar");
             ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
 
@@ -145,12 +144,16 @@ namespace MVC.Controllers
             return RedirectToAction("Listado");
         }
 
-        public ActionResult Ver(int id) {
+        public String Existe(string nombre)
+        {
+            Boolean existe = ConsorcioService.ObtenerPorNombre(nombre);
 
-            TempData["VerConsorcio"] = id;
-            return RedirectToAction("Listado");
+            if (existe)
+            {
+                return "Tenga en cuenta que ya existe un consorcio con el mismo nombre";
+
+            }
+            return null;
         }
-       
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Entities;
 using Entities.EDMX;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,6 +29,17 @@ namespace Repositories
         public List<Consorcio> ObtenerTodosOrdenadosPorNombre()
         {
             return ctx.Consorcios.OrderBy(item => item.Nombre).ToList();
+        }
+
+        public Boolean ObtenerPorNombre(string nombre)
+        {
+            var encontrado = ctx.Consorcios.Where(item => item.Nombre == nombre).FirstOrDefault();
+
+            if (encontrado != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

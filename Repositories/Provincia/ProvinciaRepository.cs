@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Repositories
 {
-    public class UsuarioRepository : BaseRepository<Provincia>, IProvinciaRepository
+    public class ProvinciaRepository : BaseRepository<Provincia>, IProvinciaRepository
     {
-        public UsuarioRepository(PW3_TP_20202CEntities contexto) : base(contexto)
+        public ProvinciaRepository(PW3_TP_20202CEntities contexto) : base(contexto)
         {
 
         }

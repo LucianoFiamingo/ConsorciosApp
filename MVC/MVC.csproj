@@ -158,6 +158,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom\custom-ajax.js" />
     <Content Include="Scripts\custom\navegar.js" />
     <Content Include="Scripts\custom\crear.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -301,7 +302,6 @@
     <Content Include="Views\Partials\pv_breadcrump.cshtml" />
     <Content Include="Views\Shared\_UsuarioLayout.cshtml" />
     <Content Include="Views\Unidad\ModificarUnidad.cshtml" />
-    <Content Include="Views\Consorcio\Prueba.cshtml" />
     <Content Include="Views\Gastos\Listado.cshtml" />
     <Content Include="Views\Home\Registrar.cshtml" />
     <Content Include="Views\Gastos\Crear.cshtml" />
