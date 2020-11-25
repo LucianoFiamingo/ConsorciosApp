@@ -87,13 +87,13 @@
                     @item.Ciudad
                 </td>
                 <td>
-                    @Html.ActionLink("Ver Unidades", "Unidades", new { id = item.IdConsorcio }, new { @class = "" })
+                    @Html.ActionLink("Ver Unidades", "VerUnidades", "Unidad", new { id = item.IdConsorcio }, new { @class = "" })
                 </td>
                 <td>
                     @Html.ActionLink("Ver Expensas", "Expensas", new { id = item.IdConsorcio }, new { @class = "" })
                 </td>
                 <td>
-                    @Html.ActionLink("Ver Gastos", "Gastos", new { id = item.IdConsorcio }, new { @class = "" })
+                    @Html.ActionLink("Ver Gastos", "Listado", "Gastos", new { id = item.IdConsorcio }, new { @class = "" })
                 </td>
                 <td>
                     @Html.ActionLink("Modificar", "Modificar", new { id = item.IdConsorcio }, new { @class = "btn btn-primary mb-2 mb-lg-0" })

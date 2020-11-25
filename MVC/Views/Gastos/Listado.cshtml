@@ -64,32 +64,33 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @item.AnioExpensa
-                </td>
-                <td>
-                    @item.MesExpensa
-                </td>
-                <td>
-                    @item.Nombre
-                </td>
-                <td>
-                    @item.TipoGasto
-                </td>
-                <td>
-                    @item.FechaGasto
-                </td>
-                <td>
-                    @item.Monto
-                </td>
-                <td>
-                    @Html.ActionLink("Descargar Comprobante", "Descargar Comprobante", new { id = item.IdConsorcio }, new { @class = "btn btn-info" })
+    <tr>
+        <td>
+            @item.AnioExpensa
+        </td>
+        <td>
+            @item.MesExpensa
+        </td>
+        <td>
+            @item.Nombre
+        </td>
+        <td>
+            @item.TipoGasto.Nombre
+        </td>
+        <td>
+            @item.FechaGasto
+        </td>
+        <td>
+            @item.Monto
+        </td>
+        <td>
+            @Html.ActionLink("Descargar Comprobante", "Descargar Comprobante", new { id = item.IdConsorcio }, new { @class = "btn btn-info" })
+        </td>
+        <td>
+            @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdConsorcio }, new { @class = "btn btn-danger" })
+        </td>
 
-                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdConsorcio }, new { @class = "btn btn-danger" })
-
-                </td>
-            </tr>
+    </tr>
         }
 
     </table>

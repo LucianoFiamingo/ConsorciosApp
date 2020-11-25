@@ -15,7 +15,7 @@ namespace MVC.Controllers
         public HomeController()
         {
             PW3_TP_20202CEntities contexto = new PW3_TP_20202CEntities();
-            UsuarioService usuarioService = new UsuarioService(contexto);
+            this.usuarioService = new UsuarioService(contexto);
         
 
         }
@@ -48,10 +48,8 @@ namespace MVC.Controllers
             }
         }
        
-        public ActionResult Contact()
+        public ActionResult Registrar()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

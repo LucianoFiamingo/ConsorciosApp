@@ -22,5 +22,10 @@ namespace Repositories.Gasto
 
             ctx.SaveChanges();
         }
+
+        public List<Entities.EDMX.Gasto> ObtenerGastosPorConsorcio(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

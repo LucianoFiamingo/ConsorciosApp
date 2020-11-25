@@ -8,5 +8,6 @@ namespace Repositories.Gasto
 {
     public interface ITipoGastoRepository
     {
+        List<Entities.EDMX.Gasto> ObtenerGastosPorConsorcio(int id);
     }
 }

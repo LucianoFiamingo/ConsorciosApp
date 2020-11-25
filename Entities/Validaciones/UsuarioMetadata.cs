@@ -14,5 +14,8 @@ namespace Entities.EDMX
         [DataType(DataType.DateTime)]
         [Required(ErrorMessage = "La fecha de registracion es requerida")]
         public System.DateTime FechaRegistracion { get; set; }
+
+
+
     }
 }

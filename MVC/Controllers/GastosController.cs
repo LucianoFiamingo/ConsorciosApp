@@ -10,28 +10,33 @@ namespace MVC.Controllers
 {
     public class GastosController : Controller
     {
-        GastosService GastoService;
-        TipoGastoService TipoGastoService;
+        GastosService gastosService;
+        TipoGastoService tipoGastoService;
         
 
         public GastosController()
         {
             PW3_TP_20202CEntities contexto = new PW3_TP_20202CEntities();
-            GastosService gastosService = new GastosService(contexto);
-            TipoGastoService tipoGastoService = new TipoGastoService(contexto);
+            this.gastosService = new GastosService(contexto);
+            this.tipoGastoService = new TipoGastoService(contexto);
            
         }
         // GET: Gastos
-        public ActionResult Listado()
+        public ActionResult Listado(int? id)
         {
-            List<Gasto> gastos = GastoService.ObtenerTodos();
+            if (id == null)
+            {
+                return RedirectToAction("Listado");
+            }
+
+            List<Gasto> gastos = gastosService.ObtenerGastosPorConsorcio((int)id);
             return View(gastos);
         }
 
         
         public ActionResult Crear()
         {
-            ViewBag.TipoGastoItems = ObtenerComboTipoGasto();
+            ViewBag.TipoGastoItems = tipoGastoService.ObtenerComboTipoGasto();
             return View();
         }
 
@@ -46,11 +51,11 @@ namespace MVC.Controllers
             if (!ModelState.IsValid)
             {
                 TempData["Creado"] = false;
-                ViewBag.TipoGastoItem = ObtenerComboTipoGasto();
+                //ViewBag.TipoGastoItem = TipoGastoService.ObtenerComboTipoGasto();
                 return RedirectToAction("Crear");
             }
 
-            GastoService.Alta(gasto);
+            gastosService.Alta(gasto);
             TempData["Creado"] = true;
 
             if (otraAccion == "crearGasto")
@@ -71,8 +76,8 @@ namespace MVC.Controllers
                 return RedirectToAction("Listado");
             }
 
-            Gasto gasto = GastoService.ObtenerPorId((int)id);
-            ViewBag.TipoGastoItem = ObtenerComboTipoGasto(gasto.IdTipoGasto);
+            Gasto gasto = gastosService.ObtenerPorId((int)id);
+            ViewBag.TipoGastoItem = tipoGastoService.ObtenerComboTipoGasto(gasto.IdTipoGasto);
 
             return View(gasto);
         }
@@ -83,11 +88,11 @@ namespace MVC.Controllers
             if (!ModelState.IsValid)
             {
                 TempData["Modificado"] = false;
-                ViewBag.TipoGastoItem = ObtenerComboTipoGasto();
+                ViewBag.TipoGastoItem = tipoGastoService.ObtenerComboTipoGasto();
                 return View(gasto);
             }
 
-            GastoService.Modificar(gasto);
+            gastosService.Modificar(gasto);
             TempData["Modificado"] = true;
             return RedirectToAction("Listado");
         }
@@ -99,7 +104,7 @@ namespace MVC.Controllers
                 return RedirectToAction("Listado");
             }
 
-           Gasto gasto = GastoService.ObtenerPorId((int)id);
+           Gasto gasto = gastosService.ObtenerPorId((int)id);
             return View(gasto);
         }
 
@@ -112,43 +117,14 @@ namespace MVC.Controllers
                 return RedirectToAction("Listado");
             }
 
-            GastoService.Eliminar(gasto.IdGasto);
+            gastosService.Eliminar(gasto.IdGasto);
             TempData["Eliminado"] = true;
 
             return RedirectToAction("Listado");
         }
 
 
-        public List<SelectListItem> ObtenerComboTipoGasto()
-        {
-            List<TipoGasto> tipoGastos = TipoGastoService.ObtenerTodos();
-
-            List<SelectListItem> TipoGastoItems = tipoGastos.Select(o => new SelectListItem()
-            {
-                Text = o.Nombre,
-                Value = o.IdTipoGasto.ToString()
-            }).ToList();
-
-            TipoGastoItems.Insert(0, new SelectListItem() { Value = "", Text = "Seleccione un tipo de gasto" });
-
-            return TipoGastoItems;
-        }
-
-        public List<SelectListItem> ObtenerComboTipoGasto(int id)
-        {
-            List<TipoGasto> tipoGastos = TipoGastoService.ObtenerTodos();
-
-            List<SelectListItem> TipoGastoItems = tipoGastos.Select(o => new SelectListItem()
-            {
-                Text = o.Nombre,
-                Value = o.IdTipoGasto.ToString(),
-                Selected = o.IdTipoGasto == id
-            }).ToList();
-
-            TipoGastoItems.Insert(0, new SelectListItem() { Value = "", Text = "Seleccione un tipo de gasto" });
-
-            return TipoGastoItems;
-        }
+        
         
 
 

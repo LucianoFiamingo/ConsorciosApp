@@ -30,5 +30,14 @@ namespace Repositories.Gasto
             ctx.SaveChanges();
 
         }
+        public List<Entities.EDMX.Gasto> ObtenerGastosPorConsorcio(int id)
+        {
+            var gasto = from Gasto in ctx.Gastoes
+                        where Gasto.IdConsorcio == id
+                        select Gasto;
+            List<Entities.EDMX.Gasto> gastosPorConsorcio = gasto.ToList();
+            
+            return gastosPorConsorcio;
+        }
     }
 }
