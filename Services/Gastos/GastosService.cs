@@ -1,4 +1,5 @@
 ﻿using Entities.EDMX;
+using Entities.VM;
 using Repositories.Gasto;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,26 @@ namespace Services.Gastos
 
         }
 
+        public List<Expensa> ObtenerDatosExpensaPorConsorcio(int id)
+        {
+            return repo.ObtenerDatosExpensaPorConsorcio(id);
+        }
+
+        
+
         public List<Gasto> ObtenerGastosPorConsorcio(int id)
         {
             return repo.ObtenerGastosPorConsorcio(id);
+        }
+
+        public Expensa ObtenerGastosTotalUltimoMes(int id)
+        {
+            return repo.ObtenerGastosTotalUltimoMes(id);
+        }
+
+        public int ObtenerTotalUnidadesPorConsorcio(int id)
+        {
+            return repo.ObtenerTotalUnidadesPorConsorcio(id);
         }
     }
 

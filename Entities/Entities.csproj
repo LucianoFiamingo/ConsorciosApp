@@ -100,6 +100,7 @@
     <Compile Include="Validaciones\Usuario.cs" />
     <Compile Include="Validaciones\UsuarioMetadata.cs" />
     <Compile Include="VM\Breadcrump.cs" />
+    <Compile Include="VM\Expensa.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="EDMX\Model1.edmx">
