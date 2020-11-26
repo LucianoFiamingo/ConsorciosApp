@@ -45,17 +45,11 @@ namespace Repositories.Gasto
         {
             var expensaQuery = from g in ctx.Gastoes
                                where g.IdConsorcio == id &&  g.MesExpensa.Equals(DateTime.Now.Month) && g.AnioExpensa.Equals(DateTime.Now.Year)
-                               group g by new
-                               {
-                                   g.MesExpensa,
-                                   g.AnioExpensa,
-                                   g.IdConsorcio
-                               } into g
                                select new Expensa
                                {
-                                   anio = g.Key.AnioExpensa,
-                                   mes = g.Key.MesExpensa,
-                                   gastoTotal = (int)g.Sum(x => x.Monto)
+                                   anio = g.AnioExpensa,
+                                   mes = g.MesExpensa,
+                                   gastoTotal = (int)g.Monto
                                };
 
             Expensa datosExpensa = expensaQuery.First();
