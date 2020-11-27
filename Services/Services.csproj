@@ -76,10 +76,12 @@
     <Compile Include="Breadcrump\IBreadcrumpService.cs" />
     <Compile Include="Breadcrump\BreadcrumpService.cs" />
     <Compile Include="Common\BaseService.cs" />
+    <Compile Include="Expensas\ExpensasService.cs" />
+    <Compile Include="Expensas\IExpensasService.cs" />
     <Compile Include="Gastos\IGastosService.cs" />
     <Compile Include="Gastos\GastosService.cs" />
-    <Compile Include="Gastos\ITipoGastoService.cs" />
-    <Compile Include="Gastos\TipoGastoService.cs" />
+    <Compile Include="TipoGasto\ITipoGastoService.cs" />
+    <Compile Include="TipoGasto\TipoGastoService.cs" />
     <Compile Include="Provincia\ProvinciaService.cs" />
     <Compile Include="Provincia\IProvinciaService.cs" />
     <Compile Include="Consorcio\ConsorcioService.cs" />

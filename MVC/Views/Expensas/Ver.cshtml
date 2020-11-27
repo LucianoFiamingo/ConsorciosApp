@@ -1,0 +1,45 @@
+﻿@model Entities.DTO.ExpensaDTO
+
+@{
+    ViewBag.Title = "Expensas";
+}
+
+<h2>@ViewBag.NombreConsorcio - Expensas</h2>
+
+<p>
+    Cantidad de Unidades por Consorcio: @Model.CantidadUnidades
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GastosMes.First().Anio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GastosMes.First().Mes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GastosMes.First().GastoTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GastosMes.First().ExpensaPorUnidad)
+        </th>
+    </tr>
+
+@foreach (var item in Model.GastosMes) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Anio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GastoTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpensaPorUnidad)
+        </td>   
+    </tr>
+}
+
+</table>

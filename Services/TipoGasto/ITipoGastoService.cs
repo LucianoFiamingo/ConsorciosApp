@@ -10,7 +10,6 @@ namespace Services.Gastos
     public interface ITipoGastoService
     {
         List<SelectListItem> ObtenerComboTipoGasto();
-
         List<SelectListItem> ObtenerComboTipoGasto(int id);
     }
 }

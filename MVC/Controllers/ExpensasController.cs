@@ -1,38 +1,41 @@
-﻿using Entities.EDMX;
+﻿using Entities.DTO;
+using Entities.EDMX;
 using Newtonsoft.Json;
+using Services;
 using Services.Gastos;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using WebApi_Expensas.Models;
 
 namespace MVC.Controllers
 {
     public class ExpensasController : Controller
     {
-        GastosService gastosService;
-       
+        ConsorcioService ConsorcioService;
+
         public ExpensasController()
         {
             PW3_TP_20202CEntities contexto = new PW3_TP_20202CEntities();
-            this.gastosService = new GastosService(contexto);
+            ConsorcioService = new ConsorcioService(contexto);
         }
 
-            public ActionResult Index()
+        public ActionResult Ver(int? id)
         {
-            List<ExpensaDTO> expensas = GetExpensas("1");
+            if (id == null)
+            {
+                return Redirect("/Consorcio/Listado");
+            }
+            ViewBag.NombreConsorcio = ConsorcioService.ObtenerPorId((int)id).Nombre;
+            ExpensaDTO expensas = GetExpensas((int)id);
             return View(expensas);
         }
 
-        private List<ExpensaDTO> GetExpensas(string id)
+        private ExpensaDTO GetExpensas(int id)
         {
             var url = $"https://localhost:44345/api/expensasdto/{id}";
             var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "GetAllPorConsorcio";
+            request.Method = "GET";
             request.ContentType = "application/json";
             request.Accept = "application/json";
 
@@ -40,11 +43,11 @@ namespace MVC.Controllers
             {
                 using (Stream strReader = response.GetResponseStream())
                 {
-                    if (strReader == null) return new List<ExpensaDTO>();
+                    if (strReader == null) return new ExpensaDTO();
                     using (StreamReader objReader = new StreamReader(strReader))
                     {
                         string responseBody = objReader.ReadToEnd();
-                        var result = JsonConvert.DeserializeObject<List<ExpensaDTO>>(responseBody);
+                        var result = JsonConvert.DeserializeObject<ExpensaDTO>(responseBody);
                         return result;
                     }
                 }

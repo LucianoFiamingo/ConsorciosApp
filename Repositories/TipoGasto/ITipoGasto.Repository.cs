@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repositories.Gasto
+namespace Repositories
 {
-   public interface ITipoGasto
+   public interface ITipoGastoRepository
     {
     }
 }

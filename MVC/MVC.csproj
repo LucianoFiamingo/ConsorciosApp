@@ -306,11 +306,11 @@
     <Content Include="Views\Gastos\Listado.cshtml" />
     <Content Include="Views\Home\Registrar.cshtml" />
     <Content Include="Views\Gastos\Crear.cshtml" />
+    <Content Include="Views\Expensas\Ver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Expensas\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -335,10 +335,6 @@
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{8eae9d58-f959-4385-a424-af290efc191b}</Project>
       <Name>Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebApi Expensas\WebApi Expensas.csproj">
-      <Project>{f1be6f0a-13e6-4aea-8466-8f504fd99c1c}</Project>
-      <Name>WebApi Expensas</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
