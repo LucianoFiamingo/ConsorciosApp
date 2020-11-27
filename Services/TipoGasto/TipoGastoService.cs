@@ -5,13 +5,11 @@ using System.Web.Mvc;
 using Entities;
 using Entities.EDMX;
 using Repositories;
-using Repositories.Gasto;
 
 namespace Services.Gastos
 {
    public class TipoGastoService : BaseService<TipoGastoRepository,TipoGasto>, ITipoGastoService
     {
-      
         public TipoGastoService(PW3_TP_20202CEntities contexto) : base(contexto)
         {
         }

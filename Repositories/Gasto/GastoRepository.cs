@@ -1,14 +1,10 @@
 ﻿using Entities.EDMX;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Repositories.Gasto
+namespace Repositories
 {
-    public class GastoRepository : BaseRepository<Entities.EDMX.Gasto>, ITipoGastoRepository
+    public class GastoRepository : BaseRepository<Gasto>, IGastoRepository
     {
         
         
@@ -16,10 +12,9 @@ namespace Repositories.Gasto
         {
 
         }
-
-        public override void Modificar(Entities.EDMX.Gasto t)
+        public override void Modificar(Gasto t)
         {
-            Entities.EDMX.Gasto gasto = ObtenerPorId(t.IdGasto);
+            Gasto gasto = ObtenerPorId(t.IdGasto);
             gasto.MesExpensa = t.MesExpensa;
             gasto.Monto = t.Monto;
             gasto.Nombre = t.Nombre;
@@ -32,13 +27,13 @@ namespace Repositories.Gasto
             ctx.SaveChanges();
 
         }
-        public List<Entities.EDMX.Gasto> ObtenerGastosPorConsorcio(int id)
+        public List<Gasto> ObtenerGastosPorConsorcio(int id)
         {
             var gasto = from Gasto in ctx.Gastoes
                         where Gasto.IdConsorcio == id
                         select Gasto;
-            List<Entities.EDMX.Gasto> gastosPorConsorcio = gasto.ToList();
-            
+            List<Gasto> gastosPorConsorcio = gasto.ToList();
+
             return gastosPorConsorcio;
         }
     }

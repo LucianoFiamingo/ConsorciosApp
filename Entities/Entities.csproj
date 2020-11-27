@@ -53,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\GastoDTO.cs" />
+    <Compile Include="DTO\ExpensaDTO.cs" />
     <Compile Include="EDMX\Consorcio.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

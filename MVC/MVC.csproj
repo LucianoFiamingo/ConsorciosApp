@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ConsorcioController.cs" />
+    <Compile Include="Controllers\ExpensasController.cs" />
     <Compile Include="Controllers\GastosController.cs" />
     <Compile Include="Controllers\UnidadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -307,6 +308,7 @@
     <Content Include="Views\Gastos\Crear.cshtml" />
     <Content Include="Views\Gastos\Modificar.cshtml" />
     <Content Include="Views\Gastos\Eliminar.cshtml" />
+    <Content Include="Views\Expensas\Ver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -336,6 +338,9 @@
       <Project>{8eae9d58-f959-4385-a424-af290efc191b}</Project>
       <Name>Services</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

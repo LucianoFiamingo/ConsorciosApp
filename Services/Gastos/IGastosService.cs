@@ -1,14 +1,10 @@
-﻿using System;
+﻿using Entities.EDMX;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
 
-namespace Services.Gastos
+namespace Services
 {
     public interface IGastosService
     {
-        List<Entities.EDMX.Gasto> ObtenerGastosPorConsorcio(int id);
+        List<Gasto> ObtenerGastosPorConsorcio(int id);
     }
 }
