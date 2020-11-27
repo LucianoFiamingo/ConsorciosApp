@@ -22,9 +22,15 @@
                     </div>
                     <div class="lg-form">
                         <i class="fas fa-lock prefix"></i>
-                        @Html.TextBoxFor(model => model.Password, htmlAttributes: new { @class = "form-control text-capitalize", placeholder = "Password" , type = "password"})
+                        @Html.TextBoxFor(model => model.Password, htmlAttributes: new { @class = "form-control text-capitalize", placeholder = "Password", type = "password" })
                         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                     </div>
+                    @if (ViewBag.Invalido != null && (bool)ViewBag.Invalido)
+                    {
+                        <div class="text-danger">
+                            Email y/o Contraseña inválidos
+                        </div>
+                    }
                     <div class="container text-center">
                         <button type="submit" class="btn unique-color-dark text-white">Ingresar</button>
                     </div>
@@ -32,7 +38,6 @@
             </div>
         </div>
     </div>
-
-
-
 }
+
+@Scripts.Render("~/bundles/jqueryval")

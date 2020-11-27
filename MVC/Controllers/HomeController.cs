@@ -37,6 +37,7 @@ namespace MVC.Controllers
             Usuario usLog = usuarioService.validarInicioSesion(us.Email, us.Password);
             if (usLog == null)
             {
+                ViewBag.Invalido = true;
                 return View(us);
             }
 

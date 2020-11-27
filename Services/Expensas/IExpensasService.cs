@@ -12,6 +12,6 @@ namespace Services
     public interface IExpensasService
     {
         ExpensaDTO ObtenerDatosExpensaPorConsorcio(int id);
-
+        ExpensaDTO GetExpensas(int id);
     }
 }

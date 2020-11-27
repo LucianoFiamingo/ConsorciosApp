@@ -1,9 +1,8 @@
-﻿using Entities.DTO;
+﻿using Entities;
+using Entities.DTO;
 using Entities.EDMX;
-using Newtonsoft.Json;
 using Services;
-using System.IO;
-using System.Net;
+using System;
 using System.Web.Mvc;
 
 namespace MVC.Controllers
@@ -11,47 +10,42 @@ namespace MVC.Controllers
     public class ExpensasController : Controller
     {
         ConsorcioService ConsorcioService;
+        ExpensasService ExpensasService;
+        BreadcrumpService BreadcrumpService;
 
         public ExpensasController()
         {
             PW3_TP_20202CEntities contexto = new PW3_TP_20202CEntities();
             ConsorcioService = new ConsorcioService(contexto);
+            ExpensasService = new ExpensasService(contexto);
+            BreadcrumpService = new BreadcrumpService();
         }
 
         public ActionResult Ver(int? id)
         {
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            {
+                return Redirect("/Home/Ingresar");
+            }
+
             if (id == null)
             {
                 return Redirect("/Consorcio/Listado");
             }
-            ViewBag.NombreConsorcio = ConsorcioService.ObtenerPorId((int)id).Nombre;
-            ExpensaDTO expensas = GetExpensas((int)id);
+            
+            ExpensaDTO expensas = ExpensasService.GetExpensas((int)id);
+
+            string nombre = ConsorcioService.ObtenerPorId((int)id).Nombre;
+            ViewBag.NombreConsorcio = nombre;
+
+            Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
+            Breadcrump nivel2 = new Breadcrump("Consorcio " + nombre, "Expensas/Ver/" + id.ToString());
+            Breadcrump nivel3 = new Breadcrump("Expensas");
+
+            ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
+
             return View(expensas);
         }
-
-        private ExpensaDTO GetExpensas(int id)
-        {
-            var url = $"https://localhost:44345/api/expensasdto/{id}";
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "GET";
-            request.ContentType = "application/json";
-            request.Accept = "application/json";
-
-            using (WebResponse response = request.GetResponse())
-            {
-                using (Stream strReader = response.GetResponseStream())
-                {
-                    if (strReader == null) return new ExpensaDTO();
-                    using (StreamReader objReader = new StreamReader(strReader))
-                    {
-                        string responseBody = objReader.ReadToEnd();
-                        var result = JsonConvert.DeserializeObject<ExpensaDTO>(responseBody);
-                        return result;
-                    }
-                }
-            }
-        }
-
 
     }
 }

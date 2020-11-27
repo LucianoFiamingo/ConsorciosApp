@@ -4,42 +4,79 @@
     ViewBag.Title = "Expensas";
 }
 
-<h2>@ViewBag.NombreConsorcio - Expensas</h2>
+@{Html.RenderPartial("~/Views/Partials/pv_breadcrump.cshtml");}
 
-<p>
-    Cantidad de Unidades por Consorcio: @Model.CantidadUnidades
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.GastosMes.First().Anio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GastosMes.First().Mes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GastosMes.First().GastoTotal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GastosMes.First().ExpensaPorUnidad)
-        </th>
-    </tr>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
 
-@foreach (var item in Model.GastosMes) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Anio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GastoTotal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpensaPorUnidad)
-        </td>   
-    </tr>
+    <h2>Listado de Mis Expensas</h2>
+
+    <a onclick="volver()" class="btn btn-success">Volver</a>
+
+</div>
+
+<div class="my-4">
+    <p>
+        Cantidad de Unidades por Consorcio: @Model.CantidadUnidades
+    </p>
+</div>
+
+@if (Model.GastosMes.Count() > 0)
+{
+
+    <table id="example" class="display table table-bordered table-hover mb-5">
+        <thead>
+            <tr class="bg-light">
+                <th>
+                    @Html.DisplayNameFor(model => model.GastosMes.First().Anio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GastosMes.First().Mes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GastosMes.First().GastoTotal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GastosMes.First().ExpensaPorUnidad)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.GastosMes)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Anio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GastoTotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExpensaPorUnidad)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <article class="border rounded bg-light mb-5 mt-3 text-center">
+        <div class="card-body">
+            <h5 class="card-title p-2">@ViewBag.NombreConsorcio</h5>
+            <div class="card-text">
+                Este consorcio aún no posee ningún dato de expensa.
+            </div>
+        </div>
+    </article>
 }
 
-</table>
+@Scripts.Render("~/bundles/custom")
+
+<link href="~/Content/Tables/datatables.min.css" rel="stylesheet" />
+<script src="~/Scripts/tables/dataTables.js"></script>
+<script src="~/Scripts/tables/datatables.min.js"></script>
+

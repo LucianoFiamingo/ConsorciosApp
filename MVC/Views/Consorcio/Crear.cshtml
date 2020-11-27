@@ -42,7 +42,7 @@
             <div class="col-lg-6 col-md-12">
                 @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { onkeyup = "buscarConsorcioPorNombre(this.value)", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-                <div id="existeNombreCons" class="text-warning"></div>
+                <div id="existeNombreCons" class="text-danger"></div>
             </div>
         </div>
 
@@ -105,6 +105,5 @@
     </div>
 }
 
-@Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/custom")
