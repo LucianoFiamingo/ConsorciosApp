@@ -24,10 +24,16 @@ namespace Repositories
         }
         public Usuario validarInicioSesion(string email, string password)
         {
-            var usu = (from usuario in ctx.Usuarios
-                           where usuario.Email.Equals(email) && usuario.Password.Equals(password)
-                           select usuario).First();
-            return usu;
+            var usuQuery = (from usuario in ctx.Usuarios
+                            where usuario.Email.Equals(email) && usuario.Password.Equals(password)
+                            select usuario);
+
+            if (usuQuery.Count() > 0)
+            {
+                Usuario us = usuQuery.First();
+                return us;
+            }
+            return null;
         }
     }
 }

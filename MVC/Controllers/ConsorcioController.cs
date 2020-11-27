@@ -23,7 +23,7 @@ namespace MVC.Controllers
 
         public ActionResult Listado()
         {
-            if (!String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
                 return Redirect("/Home/Ingresar");
             }
@@ -35,7 +35,7 @@ namespace MVC.Controllers
 
         public ActionResult Crear()
         {
-            if (!String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
                 return Redirect("/Home/Ingresar");
             }
@@ -51,7 +51,7 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Crear(Consorcio consorcio, string otraAccion)
         {
-            if (!String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
                 return Redirect("/Home/Ingresar");
             }
@@ -88,7 +88,7 @@ namespace MVC.Controllers
 
         public ActionResult Modificar(int? id)
         {
-            if (!String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
                 return Redirect("/Home/Ingresar");
             }
@@ -113,7 +113,7 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Modificar(Consorcio consorcio)
         {
-            if (!String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
                 return Redirect("/Home/Ingresar");
             }
@@ -139,7 +139,7 @@ namespace MVC.Controllers
 
         public ActionResult Eliminar(int? id)
         {
-            if (!String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
                 return Redirect("/Home/Ingresar");
             }
@@ -162,7 +162,7 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Eliminar(Consorcio consorcio)
         {
-            if (!String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
                 return Redirect("/Home/Ingresar");
             }

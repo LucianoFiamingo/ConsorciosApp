@@ -37,6 +37,7 @@ namespace MVC.Controllers
             Usuario usLog = usuarioService.validarInicioSesion(us.Email, us.Password);
             if (usLog == null)
             {
+                ViewBag.Invalido = true;
                 return View(us);
             }
 
@@ -54,7 +55,8 @@ namespace MVC.Controllers
             {
                 return Redirect("/Consorcio/Listado");
             }
-            return View();
+            Usuario us = new Usuario();
+            return View(us);
         }
 
         [HttpPost]
@@ -64,12 +66,17 @@ namespace MVC.Controllers
             {
                 return View(usuario);
             }
+            /*if (usuarioService.ExisteEmail(usuario.Email) != null)
+            {
+                ViewBag.Invalido = true;
+                return View(usuario);
+            }*/
             usuario.FechaRegistracion = DateTime.Now;
             usuarioService.Alta(usuario);
 
             Session["usuarioId"] = usuario.IdUsuario;
             usuario.FechaUltLogin = DateTime.Now;
-            return Redirect("/Consorcio/Listado");
+            return Redirect("Ingresar");
         }
         public ActionResult Salir()
         {
