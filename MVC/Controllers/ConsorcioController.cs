@@ -23,7 +23,12 @@ namespace MVC.Controllers
 
         public ActionResult Listado()
         {
-            List<Consorcio> consorcios = ConsorcioService.ObtenerTodosOrdenadosPorNombre();
+            if (Session["usuarioId"] == null)
+            {
+                return Redirect("/Home/Ingresar");
+            }
+            int id = (int)Session["usuarioId"];
+            List<Consorcio> consorcios = ConsorcioService.ObtenerTodosOrdenadosPorNombre(id);
             return View(consorcios);
         }
 
@@ -40,8 +45,11 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Crear(Consorcio consorcio, string otraAccion)
         {
-            //luego se buscara por sesion
-            consorcio.IdUsuarioCreador = 1;
+            if (Session["usuarioId"] == null)
+            {
+                return Redirect("/Home/Ingresar");
+            }
+            consorcio.IdUsuarioCreador = (int)Session["usuarioId"];
             consorcio.FechaCreacion = DateTime.Now;
 
             if (!ModelState.IsValid)
@@ -146,7 +154,7 @@ namespace MVC.Controllers
 
         public String Existe(string nombre)
         {
-            Boolean existe = ConsorcioService.ObtenerPorNombre(nombre);
+            Boolean existe = ConsorcioService.ExisteNombre(nombre);
 
             if (existe)
             {

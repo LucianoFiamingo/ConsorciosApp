@@ -7,7 +7,7 @@
         <a class="mr-2 px-2" href="#">
             <img class="logo" id="logo-nav" src="@Url.Content("~/Content/Images/Marca/logo-blanco.svg")">
         </a>
-        <a class="navbar-brand" href="/Home/Home">Administración de Consorcios</a>
+        <a class="navbar-brand" href="/Home/Inicio">Administración de Consorcios</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -18,16 +18,18 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/Home/Home">Inicio<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/Home/Inicio">Inicio<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link ml-lg-3" href="/Consorcio/Listado">Mis Consorcios<span class="sr-only">(current)</span></a>
                     </li>
+                    @*
+                        <li class="d-lg-none nav-item">
+                            <a class="nav-link ml-lg-3" href="/Consorcio/Listado">Mi perfil<span class="sr-only">(current)</span></a>
+                        </li>
+                    *@
                     <li class="d-lg-none nav-item">
-                        <a class="nav-link ml-lg-3" href="/Consorcio/Listado">Mi perfil<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="d-lg-none nav-item">
-                        <a class="nav-link ml-lg-3" href="/Consorcio/Listado">Cerrar sesión<span class="sr-only">(current)</span></a>
+                        <a class="nav-link ml-lg-3" href="/Home/Salir">Cerrar sesión<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
             </div>
@@ -35,11 +37,11 @@
             <div class="cont-avatar">
                 <p class="link-avatar text-white rounded py-1 my-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     nombre_usuario
-                    <img class="logo" id="logo-nav" src="~/Content/Images/Anonimo/avatar-blanco.svg">
+                    @*<img class="logo" id="logo-nav" src="~/Content/Images/Anonimo/avatar-blanco.svg">*@
                 </p>
                 <div class="dropdown-menu dropdown-menu-right desplegable-avatar">
-                    <a href="" class="dropdown-item" type="button">Mi perfil</a>
-                    <a href="" class="dropdown-item" type="button">Cerrar Sesión</a>
+                    @*<a href="/Home/Salir" class="dropdown-item" type="button">Mi perfil</a>*@
+                    <a href="/Home/Salir" class="dropdown-item" type="button">Cerrar Sesión</a>
                 </div>
             </div>
         </div>

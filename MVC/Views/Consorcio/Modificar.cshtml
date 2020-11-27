@@ -118,18 +118,17 @@
                             </p>
                         }
                         <div class="m-2">
-                            @Html.ActionLink("Ver Unidades", "Unidades", new { id = Model.IdConsorcio })
+                            @Html.ActionLink("Ver Unidades", "Listado", "Unidades", new { id = Model.IdConsorcio }, new { id = Model.IdConsorcio })
                         </div>
                         <div class="m-2">
-                            @Html.ActionLink("Ver Expensas", "Expensas", new { id = Model.IdConsorcio })
+                            @Html.ActionLink("Ver Expensas", "Ver", "Expensas", new { id = Model.IdConsorcio }, new { id = Model.IdConsorcio })
                         </div>
                         <div class="m-2">
-                            @Html.ActionLink("Ver Gastos", "Gastos", new { id = Model.IdConsorcio })
+                            @Html.ActionLink("Ver Gastos", "Listado", "Gastos", new { id = Model.IdConsorcio }, new { id = Model.IdConsorcio })
                         </div>
                         <div class="m-2">
                             @Html.ActionLink("Eliminar Consorcio", "Eliminar", new { id = Model.IdConsorcio }, new { @class = "btn btn-danger" })
                         </div>
-
                     }
                     else
                     {

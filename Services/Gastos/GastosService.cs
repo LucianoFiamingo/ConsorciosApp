@@ -1,7 +1,5 @@
 ﻿using Entities.EDMX;
 using Repositories;
-using Repositories.Gasto;
-using System;
 using System.Collections.Generic;
 
 namespace Services

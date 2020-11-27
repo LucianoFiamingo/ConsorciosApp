@@ -291,7 +291,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_BaseLayout.cshtml" />
-    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Home\Inicio.cshtml" />
     <Content Include="Views\Home\Ingresar.cshtml" />
     <Content Include="Views\Partials\pv_footer.cshtml" />
     <Content Include="Views\Consorcio\Listado.cshtml" />

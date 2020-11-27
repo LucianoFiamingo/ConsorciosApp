@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Entities.EDMX;
+using System;
 
-namespace Repositories.Usuario
+namespace Repositories
 {
     public interface IUsuarioRepository
     {
-        Entities.EDMX.Usuario validarInicioSesion(String email, String password);
-
-
-        
+        Usuario validarInicioSesion(String email, String password);
     }
 }

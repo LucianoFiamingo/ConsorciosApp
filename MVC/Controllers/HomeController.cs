@@ -1,9 +1,6 @@
 ﻿using Entities.EDMX;
-using Services.Usuario;
+using Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MVC.Controllers
@@ -11,52 +8,73 @@ namespace MVC.Controllers
     public class HomeController : Controller
     {
         UsuarioService usuarioService;
-
         public HomeController()
         {
             PW3_TP_20202CEntities contexto = new PW3_TP_20202CEntities();
             this.usuarioService = new UsuarioService(contexto);
-        
-
         }
-
-        public ActionResult Home()
+        public ActionResult Inicio()
         {
             return View();
         }
-
-       
         public ActionResult Ingresar()
         {
-            
+            if (Session["usuarioId"] != null)
+            {
+                return Redirect("/Consorcio/Listado");
+            }
             return View();
         }
 
         [HttpPost]
-        public ActionResult Ingresar(String email , String password)
+        public ActionResult Ingresar(Usuario us)
         {
-            Usuario usu = usuarioService.validarInicioSesion(email, password);
-           if (usu== null)
+            if (!ModelState.IsValid)
             {
-                return Redirect("Home/Ingresar");
+                return View(us);
             }
-            else
+            
+            Usuario usLog = usuarioService.validarInicioSesion(us.Email, us.Password);
+            if (usLog == null)
             {
-                Session["usuarioId"] = usu.IdUsuario;
+                return View(us);
+            }
 
-                return Redirect("");
-            }
+            Session["usuarioId"] = usLog.IdUsuario;
+            
+            usLog.FechaUltLogin = DateTime.Now;
+            usuarioService.Modificar(usLog);
+
+            return Redirect("/Consorcio/Listado");
         }
-       
+
         public ActionResult Registrar()
         {
+            if (Session["usuarioId"] != null)
+            {
+                return Redirect("/Consorcio/Listado");
+            }
             return View();
         }
+
         [HttpPost]
         public ActionResult Registrar(Usuario usuario)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(usuario);
+            }
+            usuario.FechaRegistracion = DateTime.Now;
             usuarioService.Alta(usuario);
-            return RedirectToAction("Ingresar");
+
+            Session["usuarioId"] = usuario.IdUsuario;
+            usuario.FechaUltLogin = DateTime.Now;
+            return Redirect("/Consorcio/Listado");
+        }
+        public ActionResult Salir()
+        {
+            Session["usuarioId"] = null;
+            return Redirect("/Home/Ingresar");
         }
     }
 }
