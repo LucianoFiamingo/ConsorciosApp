@@ -305,6 +305,8 @@
     <Content Include="Views\Gastos\Listado.cshtml" />
     <Content Include="Views\Home\Registrar.cshtml" />
     <Content Include="Views\Gastos\Crear.cshtml" />
+    <Content Include="Views\Gastos\Modificar.cshtml" />
+    <Content Include="Views\Gastos\Eliminar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

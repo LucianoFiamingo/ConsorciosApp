@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Data.Entity;
 namespace Repositories.Usuario
 {
    public class UsuarioRepository : BaseRepository<Entities.EDMX.Usuario>, IUsuarioRepository
     {
+        DbSet<Entities.EDMX.Usuario> dbSet;
         public UsuarioRepository(PW3_TP_20202CEntities contexto) : base(contexto)
         {
-
+            dbSet = ctx.Set<Entities.EDMX.Usuario>();
         }
 
         public override void Modificar(Entities.EDMX.Usuario t)
@@ -29,7 +30,13 @@ namespace Repositories.Usuario
 
             ctx.SaveChanges();
         }
-
+        
+        public override void Alta (Entities.EDMX.Usuario t)
+        {
+            t.FechaRegistracion = DateTime.Now ;
+            dbSet.Add(t);
+            ctx.SaveChanges();
+        }
         public Entities.EDMX.Usuario validarInicioSesion(string email, string password)
         {
             Entities.EDMX.Usuario usu= (Entities.EDMX.Usuario)(from usuario in ctx.Usuarios

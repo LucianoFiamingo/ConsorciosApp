@@ -9,5 +9,8 @@ namespace Repositories.Usuario
     public interface IUsuarioRepository
     {
         Entities.EDMX.Usuario validarInicioSesion(String email, String password);
+
+
+        
     }
 }

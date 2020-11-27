@@ -10,6 +10,8 @@ namespace Repositories.Gasto
 {
     public class GastoRepository : BaseRepository<Entities.EDMX.Gasto>, ITipoGastoRepository
     {
+        
+        
         public GastoRepository(PW3_TP_20202CEntities contexto) : base(contexto)
         {
 

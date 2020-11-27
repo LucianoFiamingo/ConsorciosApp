@@ -1,4 +1,5 @@
 ﻿using Entities.EDMX;
+using Repositories;
 using Repositories.Gasto;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Services.Gastos
 {
     public class GastosService : BaseService<GastoRepository,Gasto>, IGastosService
     {
-
+       
       public GastosService(PW3_TP_20202CEntities contexto) : base(contexto)
         {
 
@@ -21,6 +22,7 @@ namespace Services.Gastos
         {
             return repo.ObtenerGastosPorConsorcio(id);
         }
+       
     }
 
    

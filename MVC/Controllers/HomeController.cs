@@ -52,5 +52,11 @@ namespace MVC.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Registrar(Usuario usuario)
+        {
+            usuarioService.Alta(usuario);
+            return RedirectToAction("Ingresar");
+        }
     }
 }
