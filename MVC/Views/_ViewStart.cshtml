@@ -1,5 +1,5 @@
 ﻿@{
-    if (Session["usuarioId"] != null)
+    if (!String.IsNullOrEmpty(Session["usuarioId"].ToString()))
     {
         Layout = "~/Views/Shared/_UsuarioLayout.cshtml";
     }

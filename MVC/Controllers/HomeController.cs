@@ -19,7 +19,7 @@ namespace MVC.Controllers
         }
         public ActionResult Ingresar()
         {
-            if (Session["usuarioId"] != null)
+            if (!String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
                 return Redirect("/Consorcio/Listado");
             }
@@ -50,7 +50,7 @@ namespace MVC.Controllers
 
         public ActionResult Registrar()
         {
-            if (Session["usuarioId"] != null)
+            if (!String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
                 return Redirect("/Consorcio/Listado");
             }
@@ -73,7 +73,7 @@ namespace MVC.Controllers
         }
         public ActionResult Salir()
         {
-            Session["usuarioId"] = null;
+            HttpContext.Session.Abandon();
             return Redirect("/Home/Ingresar");
         }
     }
