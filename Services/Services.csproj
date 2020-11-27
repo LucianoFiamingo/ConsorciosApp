@@ -91,7 +91,7 @@
     <Compile Include="Consorcio\IConsorcioService.cs" />
     <Compile Include="Common\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnidadService.cs" />
+    <Compile Include="Unidad\UnidadService.cs" />
     <Compile Include="Usuario\IUsuarioService.cs" />
     <Compile Include="Usuario\UsuarioService.cs" />
   </ItemGroup>
