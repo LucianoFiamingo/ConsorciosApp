@@ -1,5 +1,5 @@
 ﻿using Entities.EDMX;
-using Servicios;
+using Services;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -7,43 +7,43 @@ namespace MVC.Controllers
 {
     public class UnidadController : Controller
     {
-        [HttpGet]
+        UnidadService UnidadService;
+
+        public UnidadController()
+        {
+            PW3_TP_20202CEntities contexto = new PW3_TP_20202CEntities();
+            UnidadService = new UnidadService(contexto);
+        }
+       
+        public ActionResult VerUnidades(int id)
+        {
+            IEnumerable<Unidad> unidCons = UnidadService.ObtenerUnidadesPorIdConsorcio(id);
+            return View(unidCons);
+        }
         public ActionResult CrearUnidad()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult CrearUnidad(Unidad a)
         {
-            UnidadService.CrearUnidad(a);
+            UnidadService.Alta(a);
             return RedirectToAction("VerUnidades");
         }
-
-        [HttpGet]
-        public ActionResult VerUnidades()
-        {
-            List<Unidad> Lista = UnidadService.ObtenerTodos();
-            return View(Lista);
-        }
-
-        [HttpGet]
         public ActionResult ModificarUnidad(int id)
         {
             Unidad a = UnidadService.ObtenerPorId(id);
             return View(a);
         }
-
         [HttpPost]
         public ActionResult ModificarUnidad(Unidad a)
         {
-            UnidadService.ModificarUnidad(a);
+            UnidadService.Modificar(a);
             return RedirectToAction("VerUnidades");
         }
-
         public ActionResult EliminarUnidad(int id)
         {
-            UnidadService.EliminarUnidad(id);
+            UnidadService.Eliminar(id);
             return RedirectToAction("VerUnidades");
         }
     }

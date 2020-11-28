@@ -17,38 +17,51 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <label for="IdUnidad">Id Unidad</label>
-                    <input type="number" class="form-control" name="IdUnidad">
-                </div>
-
-                <div class="form-group">
-                    <label for="IdConsorcio">Id Consorcio</label>
-                    <input type="number" class="form-control" name="IdConsorcio">
+                    <label for="Equipo">Consorcio</label>
+                    <div>
+                        @Html.EditorFor(Model => Model.Superficie)
+                        @Html.ValidationMessageFor(Model => Model.Superficie)
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="Nombre">Nombre</label>
-                    <input type="text" class="form-control" name="Nombre">
+                    <div>
+                        @Html.EditorFor(Model => Model.Nombre)
+                        @Html.ValidationMessageFor(Model => Model.Nombre)
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="NombrePropietario">Nombre Propietario</label>
-                    <input type="text" class="form-control" name="NombrePropietario">
+                    <div>
+                        @Html.EditorFor(Model => Model.NombrePropietario)
+                        @Html.ValidationMessageFor(Model => Model.NombrePropietario)
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="ApellidoPropietario">Apellido Propietario</label>
-                    <input type="text" class="form-control" name="ApellidoPropietario">
+                    <div>
+                        @Html.EditorFor(Model => Model.ApellidoPropietario)
+                        @Html.ValidationMessageFor(Model => Model.ApellidoPropietario)
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="EmailPropietario">Email Propietario</label>
-                    <input type="email" class="form-control" name="EmailPropietario">
+                    <div>
+                        @Html.EditorFor(Model => Model.EmailPropietario)
+                        @Html.ValidationMessageFor(Model => Model.EmailPropietario)
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="Superficie">Superficie(m2)</label>
-                    <input type="number" class="form-control" name="Superficie">
+                    <div>
+                        @Html.EditorFor(Model => Model.Superficie)
+                        @Html.ValidationMessageFor(Model => Model.Superficie)
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Guardar</button>

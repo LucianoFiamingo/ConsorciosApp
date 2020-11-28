@@ -1,52 +1,19 @@
-﻿using Entities.EDMX;
+﻿using System;
 using System.Collections.Generic;
-using System.Web;
+using Entities;
+using Entities.EDMX;
+using Repositories;
 
-namespace Servicios
+namespace Services
 {
-    public class UnidadService
+    public class UnidadService : BaseService<UnidadRepository, Unidad>
     {
-        private static List<Unidad> Lista
+        public UnidadService(PW3_TP_20202CEntities contexto) : base(contexto)
         {
-            get
-            {
-                if (HttpContext.Current.Session["Lista"] == null)
-                    HttpContext.Current.Session["Lista"] = new List<Unidad>();
-                return (List<Unidad>)HttpContext.Current.Session["Lista"];
-            }
         }
-
-        public static void CrearUnidad(Unidad a)
+        public IEnumerable<Unidad> ObtenerUnidadesPorIdConsorcio(int id)
         {
-            Lista.Add(a);
+            return repo.ObtenerUnidadesPorIdConsorcio(id);
         }
-
-        public static List<Unidad> ObtenerTodos()
-        {
-            return Lista;
-        }
-
-        public static Unidad ObtenerPorId(int id)
-        {
-            return Lista.Find(o => o.IdUnidad == id);
-        }
-
-        public static void ModificarUnidad(Unidad a)
-        {
-            Unidad b = ObtenerPorId(a.IdUnidad);
-            b.IdUnidad = a.IdUnidad;
-            b.IdConsorcio = a.IdConsorcio;
-            b.Nombre = a.Nombre;
-            b.NombrePropietario = a.NombrePropietario;
-            b.ApellidoPropietario = a.ApellidoPropietario;
-            b.EmailPropietario = a.EmailPropietario;
-            b.Superficie = a.Superficie;
-        }
-
-        public static void EliminarUnidad(int id)
-        {
-            Lista.RemoveAll(o => o.IdUnidad == id);
-        }
-
     }
 }
