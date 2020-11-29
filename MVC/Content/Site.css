@@ -67,3 +67,11 @@ textarea {
     color: #0056b3 !important;
     text-decoration: underline !important;
 }
+
+.form-ingre {
+    min-width: 320px !important;
+}
+
+.cuerpo {
+    min-height: 425px;
+}

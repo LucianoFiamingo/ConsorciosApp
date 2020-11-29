@@ -23,12 +23,25 @@ namespace MVC.Controllers
 
         public ActionResult Listado()
         {
-            List<Consorcio> consorcios = ConsorcioService.ObtenerTodosOrdenadosPorNombre();
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            {
+                TempData["Redirect"] = "/Consorcio/Listado";
+                return Redirect("/Home/Ingresar");
+            }
+
+            int id = (int)Session["usuarioId"];
+            List<Consorcio> consorcios = ConsorcioService.ObtenerTodosOrdenadosPorNombre(id);
             return View(consorcios);
         }
 
         public ActionResult Crear()
         {
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            {
+                TempData["Redirect"] = "/Consorcio/Crear";
+                return Redirect("/Home/Ingresar");
+            }
+
             ViewBag.ProvinciasItems = ProvinciaService.ObtenerComboProvincias();
 
             Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
@@ -40,8 +53,12 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Crear(Consorcio consorcio, string otraAccion)
         {
-            //luego se buscara por sesion
-            consorcio.IdUsuarioCreador = 1;
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            {
+                return Redirect("/Home/Ingresar");
+            }
+
+            consorcio.IdUsuarioCreador = (int)Session["usuarioId"];
             consorcio.FechaCreacion = DateTime.Now;
 
             if (!ModelState.IsValid)
@@ -73,26 +90,42 @@ namespace MVC.Controllers
 
         public ActionResult Modificar(int? id)
         {
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            {
+                TempData["Redirect"] = "/Consorcio/Modificar/" + id.ToString();
+                return Redirect("/Home/Ingresar");
+            }
+
             if (id == null)
             {
                 return RedirectToAction("Listado");
             }
 
             Consorcio consorcio = ConsorcioService.ObtenerPorId((int)id);
-           
+            int idUs = (int)consorcio.IdUsuarioCreador;
+            if (idUs != (int)Session["usuarioId"])
+            {
+                return RedirectToAction("Listado");
+            }
+
             ViewBag.ProvinciasItems = ProvinciaService.ObtenerComboProvincias(consorcio.IdProvincia);
 
             Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
             Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Modificar/" + consorcio.IdConsorcio.ToString());
             Breadcrump nivel3 = new Breadcrump("Modificar");
             ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
-            
+
             return View(consorcio);
         }
 
         [HttpPost]
         public ActionResult Modificar(Consorcio consorcio)
         {
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            {
+                return Redirect("/Home/Ingresar");
+            }
+
             if (!ModelState.IsValid)
             {
                 TempData["Modificado"] = "FALSO";
@@ -114,12 +147,23 @@ namespace MVC.Controllers
 
         public ActionResult Eliminar(int? id)
         {
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            {
+                TempData["Redirect"] = "/Consorcio/Modificar/{id}";
+                return Redirect("/Home/Ingresar");
+            }
+
             if (id == null)
             {
                 return RedirectToAction("Listado");
             }
 
             Consorcio consorcio = ConsorcioService.ObtenerPorId((int)id);
+            int idUs = (int)consorcio.IdUsuarioCreador;
+            if (idUs != (int)Session["usuarioId"])
+            {
+                return RedirectToAction("Listado");
+            }
 
             Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
             Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Modificar/" + consorcio.IdConsorcio.ToString());
@@ -132,6 +176,11 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Eliminar(Consorcio consorcio)
         {
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            {
+                return Redirect("/Home/Ingresar");
+            }
+
             if (consorcio == null)
             {
                 TempData["Eliminado"] = "FALSO";
@@ -144,14 +193,13 @@ namespace MVC.Controllers
             return RedirectToAction("Listado");
         }
 
-        public String Existe(string nombre)
+        public String Existe(string nombre, string id)
         {
-            Boolean existe = ConsorcioService.ObtenerPorNombre(nombre);
+            Boolean existe = ConsorcioService.ExisteNombre(nombre, Convert.ToInt32(id));
 
             if (existe)
             {
-                return "Tenga en cuenta que ya existe un consorcio con el mismo nombre";
-
+                return "Tenga en cuenta que ya creó un consorcio con el mismo nombre";
             }
             return null;
         }

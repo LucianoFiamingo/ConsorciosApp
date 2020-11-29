@@ -1,24 +1,24 @@
 ﻿using Entities.EDMX;
-using Services.Gastos;
+using Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MVC.Controllers
 {
     public class GastosController : Controller
     {
+        ConsorcioService consorcioService;
         GastosService gastosService;
         TipoGastoService tipoGastoService;
-        
+        BreadcrumpService BreadcrumpService;
 
         public GastosController()
         {
             PW3_TP_20202CEntities contexto = new PW3_TP_20202CEntities();
             this.gastosService = new GastosService(contexto);
             this.tipoGastoService = new TipoGastoService(contexto);
+            this.consorcioService = new ConsorcioService(contexto);
            
         }
         // GET: Gastos
@@ -34,9 +34,16 @@ namespace MVC.Controllers
         }
 
         
-        public ActionResult Crear()
+        public ActionResult Crear(int? id)
         {
-            ViewBag.TipoGastoItems = tipoGastoService.ObtenerComboTipoGasto();
+            if (id == null)
+            {
+                return RedirectToAction("Listado");
+            }
+
+            Gasto gasto = gastosService.ObtenerPorId((int)id);
+            ViewBag.TipoGastoItem = tipoGastoService.ObtenerComboTipoGasto(gasto.IdTipoGasto);
+
             return View();
         }
 
@@ -116,11 +123,11 @@ namespace MVC.Controllers
                 TempData["Eliminado"] = false;
                 return RedirectToAction("Listado");
             }
-
+            var idConsorcio = consorcioService.ObtenerPorId(gasto.Consorcio.IdConsorcio);
             gastosService.Eliminar(gasto.IdGasto);
             TempData["Eliminado"] = true;
 
-            return RedirectToAction("Listado");
+            return RedirectToAction("Listado" + "/" + idConsorcio);
         }
 
 

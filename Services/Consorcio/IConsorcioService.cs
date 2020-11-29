@@ -11,6 +11,7 @@ namespace Services
     public interface IConsorcioService
     {
         List<Consorcio> ObtenerTodosOrdenadosPorNombre();
-        Boolean ObtenerPorNombre(string nombre);
+        List<Consorcio> ObtenerTodosOrdenadosPorNombre(int id);
+        Boolean ExisteNombre(string nombre, int id);
     }
 }

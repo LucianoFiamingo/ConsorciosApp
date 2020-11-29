@@ -52,16 +52,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\BaseRepository.cs" />
+    <Compile Include="Expensas\IExpensasRepository.cs" />
+    <Compile Include="Expensas\ExpensasRepository.cs" />
     <Compile Include="Gasto\GastoRepository.cs" />
     <Compile Include="Gasto\IGastoRepository.cs" />
-    <Compile Include="Gasto\ITipoGasto.cs" />
-    <Compile Include="Gasto\TipoGastoRepository.cs" />
+    <Compile Include="TipoGasto\ITipoGasto.Repository.cs" />
+    <Compile Include="TipoGasto\TipoGastoRepository.cs" />
     <Compile Include="Provincia\ProvinciaRepository.cs" />
     <Compile Include="Provincia\IProvinciaRepository.cs" />
     <Compile Include="Consorcio\IConsorcioRepository.cs" />
     <Compile Include="Consorcio\ConsorcioRepository.cs" />
     <Compile Include="Common\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unidad\UnidadRepository.cs" />
     <Compile Include="Usuario\IUsuarioRepository.cs" />
     <Compile Include="Usuario\UsuarioRepository.cs" />
   </ItemGroup>

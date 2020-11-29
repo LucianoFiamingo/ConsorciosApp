@@ -3,32 +3,26 @@
 }
 
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark unique-color py-3 ">
+    <nav class="navbar navbar-expand-lg navbar-dark unique-color py-3 px-lg-5">
         <a class="mr-2" href="#">
             <img class="logo" id="logo-nav" src="@Url.Content("~/Content/Images/Marca/logo-blanco.svg")">
         </a>
-        <a class="navbar-brand" href="/Home/Home">Administración de Consorcios</a>
+        <a class="navbar-brand" href="/Home/Inicio">Administración de Consorcios</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse mx-lg-3" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/Home/Home">Inicio<span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home/Inicio">Inicio<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
     </nav>
 </header>
 
-<div class="container-fluid mt-5">
-    <div class="row">
-        <div class="col"></div>
-        <div class="col-10">
+<div class="container mt-5 cuerpo">
             @RenderBody()
-        </div>
-        <div class="col"></div>
-    </div>
 </div>

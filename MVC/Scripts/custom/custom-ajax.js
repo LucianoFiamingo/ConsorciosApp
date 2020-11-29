@@ -1,4 +1,4 @@
-﻿function buscarConsorcioPorNombre(nombre) {
+﻿function buscarConsorcioPorNombre(nombre, id) {
     var xhttp;
     if (nombre == "") {
         document.getElementById("existeNombreCons").innerHTML = "";
@@ -10,6 +10,6 @@
             document.getElementById("existeNombreCons").innerHTML = this.responseText;
         }
     };
-    xhttp.open("GET", "Existe/?nombre=" + nombre, true);
+    xhttp.open("GET", "Existe/?nombre=" + nombre + "&id=" + id, true);
     xhttp.send();
 }

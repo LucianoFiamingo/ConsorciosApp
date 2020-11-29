@@ -1,0 +1,123 @@
+﻿@model Entities.EDMX.Gasto
+
+@{
+    ViewBag.Title = "Modificar";
+}
+
+
+@if (TempData["Modificado"] != null && (bool)TempData["Modificado"] == false)
+{
+    <h6 class="bg-danger p-4 text-light text-center mb-3">
+        Error al modificar!
+    </h6>
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+
+    <h2>Modificar Gasto</h2>
+
+    <a onclick="volver()" class="btn btn-success">Volver</a>
+</div>
+
+<p>A continuación puede modificar los datos del gasto</p>
+<hr />
+
+<section class="row flex-wrap-reverse">
+
+    <article class="col-lg-6 col-sm-12">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h5 class="mb-4">Datos del Gasto</h5>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <input type="hidden" name="IdGasto" value="@Model.IdGasto" />
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.Consorcio.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div class="col-lg-6 col-md-12">
+                    @Html.TextBoxFor(model => model.Consorcio.Nombre, new { @readonly = "readonly", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Consorcio.Nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TipoGasto, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div>
+                    @Html.DropDownListFor(Model => Model.IdTipoGasto, (List<SelectListItem>)ViewBag.TipoGastoItem, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IdTipoGasto, "", new { @class = "text-danger " })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div>
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div class="col-lg-6 col-md-12">
+                    @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FechaGasto, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div class="col-lg-6 col-md-12">
+                    @Html.EditorFor(model => model.FechaGasto, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FechaGasto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MesExpensa, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div class="col-lg-6 col-md-12">
+                    @Html.EditorFor(model => model.MesExpensa, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MesExpensa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AnioExpensa, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div class="col-lg-6 col-md-12">
+                    @Html.EditorFor(model => model.AnioExpensa, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AnioExpensa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ArchivoComprobante, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div class="col-lg-6 col-md-12">
+                    @Html.EditorFor(model => model.ArchivoComprobante, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ArchivoComprobante, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div class="col-lg-6 col-md-12">
+                    @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-success ml-0" />
+                    <a onclick="volver()" class="btn btn-danger ml-0 mr-2">Cancelar</a>
+                </div>
+            </div>
+        </div>
+        }
+    </article>
+
+</section>
+
+@Scripts.Render("~/bundles/custom")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")

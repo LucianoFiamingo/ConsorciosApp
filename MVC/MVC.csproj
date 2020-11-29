@@ -291,7 +291,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_BaseLayout.cshtml" />
-    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Home\Inicio.cshtml" />
     <Content Include="Views\Home\Ingresar.cshtml" />
     <Content Include="Views\Partials\pv_footer.cshtml" />
     <Content Include="Views\Consorcio\Listado.cshtml" />
@@ -306,7 +306,9 @@
     <Content Include="Views\Gastos\Listado.cshtml" />
     <Content Include="Views\Home\Registrar.cshtml" />
     <Content Include="Views\Gastos\Crear.cshtml" />
-    <Content Include="Views\Expensas\Index.cshtml" />
+    <Content Include="Views\Gastos\Modificar.cshtml" />
+    <Content Include="Views\Gastos\Eliminar.cshtml" />
+    <Content Include="Views\Expensas\Ver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -340,6 +342,9 @@
       <Project>{f1be6f0a-13e6-4aea-8466-8f504fd99c1c}</Project>
       <Name>WebApi Expensas</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

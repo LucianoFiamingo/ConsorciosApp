@@ -1,56 +1,51 @@
-﻿using Entities.EDMX;
-using Newtonsoft.Json;
-using Services.Gastos;
+﻿using Entities;
+using Entities.DTO;
+using Entities.EDMX;
+using Services;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using WebApi_Expensas.Models;
 
 namespace MVC.Controllers
 {
     public class ExpensasController : Controller
     {
-        GastosService gastosService;
-       
+        ConsorcioService ConsorcioService;
+        ExpensasService ExpensasService;
+        BreadcrumpService BreadcrumpService;
+
         public ExpensasController()
         {
             PW3_TP_20202CEntities contexto = new PW3_TP_20202CEntities();
-            this.gastosService = new GastosService(contexto);
+            ConsorcioService = new ConsorcioService(contexto);
+            ExpensasService = new ExpensasService(contexto);
+            BreadcrumpService = new BreadcrumpService();
         }
 
-            public ActionResult Index()
+        public ActionResult Ver(int? id)
         {
-            List<ExpensaDTO> expensas = GetExpensas("1");
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            {
+                return Redirect("/Home/Ingresar");
+            }
+
+            if (id == null)
+            {
+                return Redirect("/Consorcio/Listado");
+            }
+            
+            ExpensaDTO expensas = ExpensasService.GetExpensas((int)id);
+
+            string nombre = ConsorcioService.ObtenerPorId((int)id).Nombre;
+            ViewBag.NombreConsorcio = nombre;
+
+            Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
+            Breadcrump nivel2 = new Breadcrump("Consorcio " + nombre, "Expensas/Ver/" + id.ToString());
+            Breadcrump nivel3 = new Breadcrump("Expensas");
+
+            ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
+
             return View(expensas);
         }
-
-        private List<ExpensaDTO> GetExpensas(string id)
-        {
-            var url = $"https://localhost:44345/api/expensasdto/{id}";
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "GetAllPorConsorcio";
-            request.ContentType = "application/json";
-            request.Accept = "application/json";
-
-            using (WebResponse response = request.GetResponse())
-            {
-                using (Stream strReader = response.GetResponseStream())
-                {
-                    if (strReader == null) return new List<ExpensaDTO>();
-                    using (StreamReader objReader = new StreamReader(strReader))
-                    {
-                        string responseBody = objReader.ReadToEnd();
-                        var result = JsonConvert.DeserializeObject<List<ExpensaDTO>>(responseBody);
-                        return result;
-                    }
-                }
-            }
-        }
-
 
     }
 }

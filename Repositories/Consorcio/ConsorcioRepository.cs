@@ -30,10 +30,17 @@ namespace Repositories
         {
             return ctx.Consorcios.OrderBy(item => item.Nombre).ToList();
         }
-
-        public Boolean ObtenerPorNombre(string nombre)
+        
+        public List<Consorcio> ObtenerTodosOrdenadosPorNombre(int id)
         {
-            var encontrado = ctx.Consorcios.Where(item => item.Nombre == nombre).FirstOrDefault();
+            return ctx.Consorcios.Where(item => item.IdUsuarioCreador == id)
+                                 .OrderBy(item => item.Nombre).ToList();
+        }
+
+        public Boolean ExisteNombre(string nombre, int id)
+        {
+            var encontrado = ctx.Consorcios.Where(item => item.IdUsuarioCreador == id
+                                            && item.Nombre == nombre).FirstOrDefault();
 
             if (encontrado != null)
             {

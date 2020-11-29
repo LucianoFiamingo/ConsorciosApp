@@ -16,11 +16,16 @@ namespace Services
         public List<Consorcio> ObtenerTodosOrdenadosPorNombre()
         {
             return repo.ObtenerTodosOrdenadosPorNombre();
+        }  
+        
+        public List<Consorcio> ObtenerTodosOrdenadosPorNombre(int id)
+        {
+            return repo.ObtenerTodosOrdenadosPorNombre(id);
         } 
         
-        public Boolean ObtenerPorNombre(string nombre)
+        public Boolean ExisteNombre(string nombre, int id)
         {
-            return repo.ObtenerPorNombre(nombre);
+            return repo.ExisteNombre(nombre, id);
         }
     }
 }

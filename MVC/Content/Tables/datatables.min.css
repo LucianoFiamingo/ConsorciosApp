@@ -1276,3 +1276,7 @@ div.dtsp-hidden {
         min-width: 98% !important
     }
 }
+
+#example_wrapper > .row {
+    margin-bottom: 18px;
+}

@@ -1,16 +1,15 @@
 ﻿using Entities.EDMX;
 using Repositories;
-using Repositories.Usuario;
 
-namespace Services.Usuario
+namespace Services
 {
-    public class UsuarioService : BaseService<Repositories.Usuario.UsuarioRepository, Entities.EDMX.Usuario>, IUsuarioService
+    public class UsuarioService : BaseService<UsuarioRepository, Usuario>, IUsuarioService
     {
         public UsuarioService(PW3_TP_20202CEntities contexto) : base(contexto)
-    {
-    }
+        {
+        }
 
-        public Entities.EDMX.Usuario validarInicioSesion(string email, string password)
+        public Usuario validarInicioSesion(string email, string password)
         {
             return repo.validarInicioSesion(email, password);
         }

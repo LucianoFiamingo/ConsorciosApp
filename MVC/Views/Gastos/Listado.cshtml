@@ -4,48 +4,41 @@
     ViewBag.Title = "Listado de gastos";
 }
 
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="/@ViewContext.RouteData.Values["controller"].ToString()/@ViewContext.RouteData.Values["action"].ToString()">
-                Mis @ViewContext.RouteData.Values["controller"].ToString()s
-            </a>
-        </li>
-        <li class="breadcrumb-item">@ViewContext.RouteData.Values["action"].ToString()</li>
-    </ol>
-</nav>
 
+<link href="~/Content/Tables/jquery.dataTables.min.css" rel="stylesheet" />
 
-@if (TempData["Creado"] != null && (bool)TempData["Creado"] == true)
-{
-    <h6 class="bg-success p-4 text-light text-center mb-3">
-        Consorcio creado correctamente!
-    </h6>
-}
+<section>
+    @if (TempData["Creado"] != null && (string)TempData["Creado"] != "FALSO")
+    {
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            ¡Consorcio <strong>@TempData["Creado"].ToString()</strong> creado correctamente!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
 
-@if (TempData["Modificado"] != null && (bool)TempData["Modificado"] == true)
-{
-    <h6 class="bg-success p-4 text-light text-center mb-3">
-        Modificado correctamente!
-    </h6>
-}
+    @if (TempData["Modificado"] != null && (string)TempData["Modificado"] != "FALSO")
+    {
+        <div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
+            ¡Consorcio <strong>@TempData["Modificado"].ToString()</strong> modificado correctamente!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
 
-@if (TempData["Eliminado"] != null && (bool)TempData["Eliminado"] == true)
-{
-    <h6 class="bg-success p-4 text-light text-center mb-3">
-        Consorcio eliminado correctamente!
-    </h6>
-}
-
+</section>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
 
     <h2>Listado de Mis Gastos</h2>
 
-    @Html.ActionLink("Crear Gasto", "Crear", null, new { @class = "btn btn-success" })
-
-</div>
+        @Html.ActionLink("Crear Gasto", "Crear",null, new { @class = "btn btn-success" })
+    
+    </div>
 
 <p>A continuación se muestra la lista de todos sus consorcios</p>
+
 <hr class="mb-5" />
 
 <section class="table-responsive mb-5">
@@ -60,11 +53,14 @@
             <th>Monto($)</th>
             <th>Comprobante</th>
             <th>Eliminar</th>
+
         </tr>
 
         @foreach (var item in Model)
         {
-    <tr>
+            
+
+    <tr class="@(TempData["VerGasto"] != null && item.IdGasto == (int)TempData["VerGasto"] ? "colorear table-success" : null)">
         <td>
             @item.AnioExpensa
         </td>
@@ -72,7 +68,7 @@
             @item.MesExpensa
         </td>
         <td>
-            @item.Nombre
+            @Html.ActionLink(item.Nombre, "Modificar", new { id = item.IdConsorcio }, null)
         </td>
         <td>
             @item.TipoGasto.Nombre
@@ -87,8 +83,9 @@
             @Html.ActionLink("Descargar Comprobante", "Descargar Comprobante", new { id = item.IdConsorcio }, new { @class = "btn btn-info" })
         </td>
         <td>
-            @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdConsorcio }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdGasto}, new { @class = "btn btn-danger" })
         </td>
+
 
     </tr>
         }
