@@ -3,6 +3,10 @@
 @{
     ViewBag.Title = "Expensas";
 }
+@{
+    int monto = 0;
+    int gastoMes = 0;
+}
 
 @{Html.RenderPartial("~/Views/Partials/pv_breadcrump.cshtml");}
 
@@ -15,14 +19,36 @@
 </div>
 
 <div class="my-4">
+
     <p>
-        Cantidad de Unidades por Consorcio: @Model.CantidadUnidades
+        Gasto total del mes actual (hasta el momento): $
+
+        @foreach (var item in Model.GastosMes)
+        {
+            if (item.Anio == DateTime.Now.Year && item.Mes == DateTime.Now.Month)
+            {
+                gastoMes = item.GastoTotal;
+                monto = item.ExpensaPorUnidad;
+            }
+        }
+        @gastoMes.ToString()
     </p>
+
+    <div class="row">
+
+        <p class="col-lg-3 col-md-4 col-6">
+            Unidades del Consorcio: @Model.CantidadUnidades
+        </p>
+
+        <p class="col">
+            Monto por unidad: @monto
+        </p>
+
+    </div>
 </div>
 
 @if (Model.GastosMes.Count() > 0)
 {
-
     <table id="example" class="display table table-bordered table-hover mb-5">
         <thead>
             <tr class="bg-light">
@@ -43,24 +69,26 @@
         <tbody>
             @foreach (var item in Model.GastosMes)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Anio)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Mes)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.GastoTotal)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ExpensaPorUnidad)
-                    </td>
-                </tr>
+                if (item.Anio != DateTime.Now.Year || item.Mes != DateTime.Now.Month)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Anio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mes)
+                        </td>
+                        <td>
+                            $ @Html.DisplayFor(modelItem => item.GastoTotal)
+                        </td>
+                        <td>
+                            $ @Html.DisplayFor(modelItem => item.ExpensaPorUnidad)
+                        </td>
+                    </tr>
+                }
             }
         </tbody>
     </table>
-
 }
 else
 {

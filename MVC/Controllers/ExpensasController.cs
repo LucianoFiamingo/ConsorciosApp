@@ -39,7 +39,7 @@ namespace MVC.Controllers
             ViewBag.NombreConsorcio = nombre;
 
             Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
-            Breadcrump nivel2 = new Breadcrump("Consorcio " + nombre, "Expensas/Ver/" + id.ToString());
+            Breadcrump nivel2 = new Breadcrump("Consorcio " + nombre, "Consorcio/Modificar/" + id.ToString());
             Breadcrump nivel3 = new Breadcrump("Expensas");
 
             ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
