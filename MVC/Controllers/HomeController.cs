@@ -23,6 +23,11 @@ namespace MVC.Controllers
             {
                 return Redirect("/Consorcio/Listado");
             }
+
+            if (TempData["Redirect"] != null)
+            {
+                TempData["Redirect"] = TempData["Redirect"];
+            }
             return View();
         }
 
@@ -45,6 +50,11 @@ namespace MVC.Controllers
             
             usLog.FechaUltLogin = DateTime.Now;
             usuarioService.Modificar(usLog);
+
+            if (TempData["Redirect"] != null && !String.IsNullOrEmpty(TempData["Redirect"].ToString()))
+            {
+                return Redirect(TempData["Redirect"].ToString());
+            }
 
             return Redirect("/Consorcio/Listado");
         }

@@ -25,6 +25,7 @@ namespace MVC.Controllers
         {
             if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
+                TempData["Redirect"] = "/Consorcio/Listado";
                 return Redirect("/Home/Ingresar");
             }
 
@@ -37,6 +38,7 @@ namespace MVC.Controllers
         {
             if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
+                TempData["Redirect"] = "/Consorcio/Crear";
                 return Redirect("/Home/Ingresar");
             }
 
@@ -90,6 +92,7 @@ namespace MVC.Controllers
         {
             if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
+                TempData["Redirect"] = "/Consorcio/Modificar/" + id.ToString();
                 return Redirect("/Home/Ingresar");
             }
 
@@ -99,6 +102,11 @@ namespace MVC.Controllers
             }
 
             Consorcio consorcio = ConsorcioService.ObtenerPorId((int)id);
+            int idUs = (int)consorcio.IdUsuarioCreador;
+            if (idUs != (int)Session["usuarioId"])
+            {
+                return RedirectToAction("Listado");
+            }
 
             ViewBag.ProvinciasItems = ProvinciaService.ObtenerComboProvincias(consorcio.IdProvincia);
 
@@ -141,6 +149,7 @@ namespace MVC.Controllers
         {
             if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
+                TempData["Redirect"] = "/Consorcio/Modificar/{id}";
                 return Redirect("/Home/Ingresar");
             }
 
@@ -150,6 +159,11 @@ namespace MVC.Controllers
             }
 
             Consorcio consorcio = ConsorcioService.ObtenerPorId((int)id);
+            int idUs = (int)consorcio.IdUsuarioCreador;
+            if (idUs != (int)Session["usuarioId"])
+            {
+                return RedirectToAction("Listado");
+            }
 
             Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
             Breadcrump nivel2 = new Breadcrump(consorcio.Nombre.ToString(), "Consorcio/Modificar/" + consorcio.IdConsorcio.ToString());
