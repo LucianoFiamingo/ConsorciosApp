@@ -1,10 +1,22 @@
 ﻿@{
     ViewBag.Title = "Inicio";
-    
-}
 
-<div class="container text-center">
-    <h1 class="my-5">Sistema para la Administracion de Consorcios</h1>
-    @Html.ActionLink("Ingresar", "Ingresar", null, new { @class = "btn btn-outline-black btn-rounded waves-effect" })
-    @Html.ActionLink("Registrarse", "Registrar", null, new { @class = "btn btn-outline-black btn-rounded waves-effect" })
+}
+<div class="container">
+
+    <div class="jumbotron my-5">
+        <h1 class="display-4">Sistema de administración de consorcios</h1>
+        <p class="lead my-4">A continuación podrá crear consorcios junto con sus unidades y gastos</p>
+        @{
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            {
+                @Html.ActionLink("Ingresar", "Ingresar", null, new { @class = "btn btn-primary btn-lg btn-rounded waves-effect" })
+                @Html.ActionLink("Registrarse", "Registrar", null, new { @class = "btn btn-primary btn-lg btn-rounded waves-effect" })
+            }
+            else
+            {
+                @Html.ActionLink("Ir al listado de Consorcios", "Listado", "Consorcio", null, new { @class = "btn btn-primary btn-lg btn-rounded waves-effect" })
+            }
+        }
+    </div>
 </div>

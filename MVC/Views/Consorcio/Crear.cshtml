@@ -40,7 +40,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
             <div class="col-lg-6 col-md-12">
-                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { onkeyup = "buscarConsorcioPorNombre(this.value, " + (int)Session["usuarioId"] + ")", @class = "form-control" } })
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { onkeyup = "buscarConsorcioPorNombre(this.value, " + Session["usuarioId"].ToString() + ")", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                 <div id="existeNombreCons" class="text-danger"></div>
             </div>

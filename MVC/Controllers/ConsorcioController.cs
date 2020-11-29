@@ -179,14 +179,13 @@ namespace MVC.Controllers
             return RedirectToAction("Listado");
         }
 
-        public String Existe(string nombre, int id)
+        public String Existe(string nombre, string id)
         {
-            Boolean existe = ConsorcioService.ExisteNombre(nombre, id);
+            Boolean existe = ConsorcioService.ExisteNombre(nombre, Convert.ToInt32(id));
 
             if (existe)
             {
                 return "Tenga en cuenta que ya creó un consorcio con el mismo nombre";
-
             }
             return null;
         }

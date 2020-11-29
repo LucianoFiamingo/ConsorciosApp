@@ -10,6 +10,6 @@
             document.getElementById("existeNombreCons").innerHTML = this.responseText;
         }
     };
-    xhttp.open("GET", "Existe/?nombre=" + nombre + "&?id=" + id, true);
+    xhttp.open("GET", "Existe/?nombre=" + nombre + "&id=" + id, true);
     xhttp.send();
 }
