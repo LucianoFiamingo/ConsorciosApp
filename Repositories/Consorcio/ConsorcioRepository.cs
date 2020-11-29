@@ -37,9 +37,10 @@ namespace Repositories
                                  .OrderBy(item => item.Nombre).ToList();
         }
 
-        public Boolean ExisteNombre(string nombre)
+        public Boolean ExisteNombre(string nombre, int id)
         {
-            var encontrado = ctx.Consorcios.Where(item => item.Nombre == nombre).FirstOrDefault();
+            var encontrado = ctx.Consorcios.Where(item => item.IdUsuarioCreador == id
+                                            && item.Nombre == nombre).FirstOrDefault();
 
             if (encontrado != null)
             {

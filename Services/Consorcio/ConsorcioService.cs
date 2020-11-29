@@ -23,9 +23,9 @@ namespace Services
             return repo.ObtenerTodosOrdenadosPorNombre(id);
         } 
         
-        public Boolean ExisteNombre(string nombre)
+        public Boolean ExisteNombre(string nombre, int id)
         {
-            return repo.ExisteNombre(nombre);
+            return repo.ExisteNombre(nombre, id);
         }
     }
 }

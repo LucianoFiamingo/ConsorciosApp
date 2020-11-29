@@ -3,7 +3,7 @@
 }
 
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark unique-color py-3 ">
+    <nav class="navbar navbar-expand-lg navbar-dark unique-color py-3 px-lg-5">
         <a class="mr-2 px-2" href="#">
             <img class="logo" id="logo-nav" src="@Url.Content("~/Content/Images/Marca/logo-blanco.svg")">
         </a>
@@ -34,20 +34,33 @@
                 </ul>
             </div>
 
-            <div class="cont-avatar">
-                <p class="link-avatar text-white rounded py-1 my-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    nombre_usuario
-                    @*<img class="logo" id="logo-nav" src="~/Content/Images/Anonimo/avatar-blanco.svg">*@
-                </p>
-                <div class="dropdown-menu dropdown-menu-right desplegable-avatar">
-                    @*<a href="/Home/Salir" class="dropdown-item" type="button">Mi perfil</a>*@
-                    <a href="/Home/Salir" class="dropdown-item" type="button">Cerrar Sesión</a>
-                </div>
+            <div class="cont-avatar navbar-nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="/Home/Salir" class="nav-link">Cerrar Sesión</a>
+                    </li>
+                </ul>
             </div>
+            @*<div class="cont-avatar">
+
+                <a href="/Home/Salir" class="" type="button">Cerrar Sesión</a>
+
+
+                    <p class="link-avatar text-white rounded py-1 my-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        nombre_usuario
+                        <img class="logo" id="logo-nav" src="~/Content/Images/Anonimo/avatar-blanco.svg">
+                            </p>
+
+                            <div class="dropdown-menu dropdown-menu-right desplegable-avatar">
+                                <a href="/Home/Salir" class="dropdown-item" type="button">Mi perfil</a>
+                        <a href="/Home/Salir" class="dropdown-item" type="button">Cerrar Sesión</a>
+                    </div>
+                    </div>
+            *@
         </div>
     </nav>
 </header>
 
 <div class="container mt-5 cuerpo">
-            @RenderBody()
+    @RenderBody()
 </div>

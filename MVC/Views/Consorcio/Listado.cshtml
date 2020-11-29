@@ -59,49 +59,66 @@
 <p>A continuación se muestra la lista de todos sus consorcios</p>
 <hr class="mb-5" />
 
-<table id="example" class="display table table-bordered table-hover mb-5">
-    <thead>
-        <tr class="bg-light">
-            <th>Nombre</th>
-            <th>Provincia</th>
-            <th>Ciudad</th>
-            <th>Unidades</th>
-            <th>Expensas</th>
-            <th>Gastos</th>
-            <th>Acción</th>
-        </tr>
-    </thead>
 
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr class="@(TempData["VerConsorcio"] != null && item.IdConsorcio == (int)TempData["VerConsorcio"] ? "colorear table-success" : null)">
-
-                <td>
-                    @Html.ActionLink(item.Nombre, "Modificar", new { id = item.IdConsorcio }, new { @class = "" })
-                </td>
-                <td>
-                    @item.Provincia.Nombre
-                </td>
-                <td>
-                    @item.Ciudad
-                </td>
-                <td>
-                    @Html.ActionLink("Ver Unidades", "VerUnidades", "Unidad", new { id = item.IdConsorcio }, new { @class = "" })
-                </td>
-                <td>
-                    @Html.ActionLink("Ver Expensas", "Ver", "Expensas", new { id = item.IdConsorcio }, new { @class = "" })
-                </td>
-                <td>
-                    @Html.ActionLink("Ver Gastos", "Listado", "Gastos", new { id = item.IdConsorcio }, new { @class = "" })
-                </td>
-                <td>
-                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdConsorcio }, new { @class = "btn btn-danger px-3" })
-                </td>
+@if (Model.Count() > 0)
+{
+    <table id="example" class="display table table-bordered table-hover mb-5">
+        <thead>
+            <tr class="bg-light">
+                <th>Nombre</th>
+                <th>Provincia</th>
+                <th>Ciudad</th>
+                <th>Unidades</th>
+                <th>Expensas</th>
+                <th>Gastos</th>
+                <th>Acción</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="@(TempData["VerConsorcio"] != null && item.IdConsorcio == (int)TempData["VerConsorcio"] ? "colorear table-success" : null)">
+
+                    <td>
+                        @Html.ActionLink(item.Nombre, "Modificar", new { id = item.IdConsorcio }, new { @class = "" })
+                    </td>
+                    <td>
+                        @item.Provincia.Nombre
+                    </td>
+                    <td>
+                        @item.Ciudad
+                    </td>
+                    <td>
+                        @Html.ActionLink("Ver Unidades", "VerUnidades", "Unidad", new { id = item.IdConsorcio }, new { @class = "" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Ver Expensas", "Ver", "Expensas", new { id = item.IdConsorcio }, new { @class = "" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Ver Gastos", "Listado", "Gastos", new { id = item.IdConsorcio }, new { @class = "" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdConsorcio }, new { @class = "btn btn-danger px-3" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <article class="border rounded bg-light mb-5 mt-3 text-center">
+        <div class="card-body">
+            <h5 class="card-title p-2">¡Gracias por usar nuestra aplicación!</h5>
+            <div class="card-text">
+                Aún no tenes ningún consorcio. Creá un
+                @Html.ActionLink("nuevo consorcio", "Crear")
+                para empezar a usar la aplicación.
+            </div>
+        </div>
+    </article>
+}
 
 @Scripts.Render("~/bundles/custom")
 

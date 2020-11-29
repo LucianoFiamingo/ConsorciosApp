@@ -9,6 +9,6 @@ namespace Repositories
     {
         List<Consorcio> ObtenerTodosOrdenadosPorNombre();
         List<Consorcio> ObtenerTodosOrdenadosPorNombre(int id);
-        Boolean ExisteNombre(string nombre);
+        Boolean ExisteNombre(string nombre, int id);
     }
 }
