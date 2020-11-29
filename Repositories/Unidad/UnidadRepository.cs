@@ -1,4 +1,6 @@
-﻿using Entities;
+﻿
+
+using Entities;
 using Entities.EDMX;
 using System;
 using System.Collections.Generic;
@@ -12,13 +14,13 @@ namespace Repositories
         {
 
         }
-        public IEnumerable<Unidad> ObtenerUnidadesPorIdConsorcio(int id)
+        public IEnumerable<Unidad> ObtenerUnidadesPorIdConsorcio(int id, int idUsuarioCreador)
         {
             IEnumerable<Unidad> g;
 
             g = from u in ctx.Unidads
-                 where u.IdConsorcio == id
-                 select u;
+                where u.IdConsorcio == id && u.Consorcio.IdUsuarioCreador == idUsuarioCreador
+                select u;
 
             return g;
         }
