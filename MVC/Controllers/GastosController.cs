@@ -130,10 +130,11 @@ namespace MVC.Controllers
             return RedirectToAction("Listado" + "/" + idConsorcio);
         }
 
-        public FileResult DescargarComprobante()
+        public FileResult DescargarComprobante(int? id)
         {
-            var ruta = Server.MapPath("Gastos/fumigacion-20200812.pdf");
-            return File(ruta, "application/pdf", "Ejemplo.pdf");
+            Gasto gasto = gastosService.ObtenerPorId((int)id);
+            var ruta = Server.MapPath($".\\.\\{gasto.ArchivoComprobante}");
+            return File(ruta, "application/pdf", gasto.ArchivoComprobante);
         }
 
 

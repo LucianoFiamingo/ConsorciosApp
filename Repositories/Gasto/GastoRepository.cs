@@ -32,12 +32,8 @@ namespace Repositories
             var gasto = from Gasto in ctx.Gastoes
                         where Gasto.IdConsorcio == id && Gasto.IdUsuarioCreador == idUsuarioCreador
                         select Gasto;
+
             List<Gasto> gastosPorConsorcio = gasto.ToList();
-
-
-            return ctx.Gastoes.Where(item => item.IdUsuarioCreador == id)
-                                 .OrderBy(item => item.Nombre).ToList();
-
 
             return gastosPorConsorcio;
         }

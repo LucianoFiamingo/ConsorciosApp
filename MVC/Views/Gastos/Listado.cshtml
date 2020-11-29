@@ -80,7 +80,7 @@
             @item.Monto
         </td>
         <td>
-            @Html.ActionLink("Descargar Comprobante", "DescargarComprobante", new { id = item.IdConsorcio }, new { @class = "btn btn-info" })
+            @Html.ActionLink("Descargar Comprobante", "DescargarComprobante",null, new { id = item.IdGasto }, new { @class = "btn btn-info" })
         </td>
         <td>
             @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdGasto}, new { @class = "btn btn-danger" })

@@ -183,6 +183,12 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="connections.config" />
     <Content Include="Content\Tables\Json\Spanish.json" />
+    <Content Include="Gastos\DescargarComprobante\Gastos\fumigacion-20200812.pdf" />
+    <Content Include="Gastos\DescargarComprobante\Gastos\Gastosfumigacion-2020-09-20.pdf" />
+    <Content Include="Gastos\DescargarComprobante\Gastos\GastosLimpieza-2020-09-02.pdf" />
+    <Content Include="Gastos\DescargarComprobante\Gastos\Gastosliquidacion-sueldos-2020-08.pdf" />
+    <Content Include="Gastos\DescargarComprobante\Gastos\GastosReparacion-2020-09-12.pdf" />
+    <Content Include="Gastos\DescargarComprobante\Gastos\GastosSum08.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -309,6 +315,7 @@
     <Content Include="Views\Gastos\Modificar.cshtml" />
     <Content Include="Views\Gastos\Eliminar.cshtml" />
     <Content Include="Views\Expensas\Ver.cshtml" />
+    <Content Include="Views\Gastos\fumigacion-20200812.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
