@@ -10,9 +10,9 @@ namespace Services
       public GastosService(PW3_TP_20202CEntities contexto) : base(contexto)
         {
         }
-        public List<Gasto> ObtenerGastosPorConsorcio(int id)
+        public List<Gasto> ObtenerGastosPorConsorcio(int id , int idUsuarioCreador)
         {
-            return repo.ObtenerGastosPorConsorcio(id);
+            return repo.ObtenerGastosPorConsorcio(id , idUsuarioCreador);
         }
        
     }

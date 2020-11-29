@@ -28,13 +28,13 @@ namespace MVC.Controllers
             {
                 return RedirectToAction("Listado");
             }
-
-            List<Gasto> gastos = gastosService.ObtenerGastosPorConsorcio((int)id);
+            int idUsuarioCreador = (int)Session["usuarioId"];
+            List<Gasto> gastos = gastosService.ObtenerGastosPorConsorcio((int)id , idUsuarioCreador);
             return View(gastos);
         }
 
         
-        public ActionResult Crear(int? id)
+        public ActionResult Crear(int? id )
         {
             if (id == null)
             {
@@ -128,6 +128,12 @@ namespace MVC.Controllers
             TempData["Eliminado"] = true;
 
             return RedirectToAction("Listado" + "/" + idConsorcio);
+        }
+
+        public FileResult DescargarComprobante()
+        {
+            var ruta = Server.MapPath("Gastos/fumigacion-20200812.pdf");
+            return File(ruta, "application/pdf", "Ejemplo.pdf");
         }
 
 

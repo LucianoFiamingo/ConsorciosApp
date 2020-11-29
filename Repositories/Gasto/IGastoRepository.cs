@@ -5,6 +5,6 @@ namespace Repositories
 {
     public interface IGastoRepository
     {
-        List<Gasto> ObtenerGastosPorConsorcio(int id);
+        List<Gasto> ObtenerGastosPorConsorcio(int id , int idUsuarioCreador);
     }
 }

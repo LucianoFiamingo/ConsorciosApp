@@ -5,6 +5,6 @@ namespace Services
 {
     public interface IGastosService
     {
-        List<Gasto> ObtenerGastosPorConsorcio(int id);
+        List<Gasto> ObtenerGastosPorConsorcio(int id , int idUsuarioCreador);
     }
 }

@@ -96,7 +96,7 @@
                         @Html.ActionLink("Ver Expensas", "Ver", "Expensas", new { id = item.IdConsorcio }, new { @class = "" })
                     </td>
                     <td>
-                        @Html.ActionLink("Ver Gastos", "Listado", "Gastos", new { id = item.IdConsorcio }, new { @class = "" })
+                        @Html.ActionLink("Ver Gastos", "Listado", "Gastos", new { id = item.IdConsorcio , idUsuarioCreador = item.IdUsuarioCreador }, new { @class = "" })
                     </td>
                     <td>
                         @Html.ActionLink("Eliminar", "Eliminar", new { id = item.IdConsorcio }, new { @class = "btn btn-danger px-3" })
