@@ -48,6 +48,7 @@ namespace MVC.Controllers
             }
             Consorcio consorcio = consorcioService.ObtenerPorId((int)id);
             ViewBag.nombreConsorcio = consorcio.Nombre;
+            ViewBag.idConsorcio = consorcio.IdConsorcio;
             ViewBag.TipoGastoItem = tipoGastoService.ObtenerComboTipoGasto();
             Breadcrump nivel1 = new Breadcrump("Mis gastos", "Gastos/Listado");
             Breadcrump nivel2 = new Breadcrump("Gastos/Crear/" + ViewBag.idConsorcio);
@@ -58,21 +59,25 @@ namespace MVC.Controllers
 
 
         [HttpPost]
-        public ActionResult Crear(Gasto gasto, string otraAccion, HttpPostedFileBase file)
+        public ActionResult Crear(Gasto gasto, string otraAccion, HttpPostedFileBase ArchivoComprobante)
         {
-            
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            {
+                return Redirect("/Home/Ingresar");
+            }
+
             gasto.IdUsuarioCreador = 1;
             gasto.FechaCreacion = DateTime.Now;
-            gasto.ArchivoComprobante = file.FileName;
+            string archivo = (DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + ArchivoComprobante.FileName).ToLower();
+            gasto.ArchivoComprobante = archivo;
+            ArchivoComprobante.SaveAs(Server.MapPath("~/" + archivo));
 
-            string archivo = (DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + file.FileName).ToLower();
-            file.SaveAs(Server.MapPath("~/Gastos/" + archivo));
-
-                
             if (!ModelState.IsValid)
             {
                 TempData["Creado"] = "FALSO";
                 Consorcio consorcio = consorcioService.ObtenerPorId(gasto.IdConsorcio);
+                ViewBag.idConsorcio = consorcio.IdConsorcio;
+                ViewBag.nombreConsorcio = consorcio.Nombre;
                 ViewBag.TipoGastoItem = tipoGastoService.ObtenerComboTipoGasto();
                 Breadcrump nivel1 = new Breadcrump("Mis gastos", "Gastos/Listado");
                 Breadcrump nivel2 = new Breadcrump("Gastos/Crear/" + ViewBag.idConsorcio);
@@ -82,15 +87,16 @@ namespace MVC.Controllers
             }
 
             gastosService.Alta(gasto);
-            TempData["Creado"] = true;
+
+            TempData["Creado"] = gasto.Nombre.ToString();
 
             if (otraAccion == "crearGasto")
             {
-                return Redirect("/Gasto/Crear");
+                return Redirect("/Gasto/Crear" + gasto.IdConsorcio);
             }
             if (otraAccion == "crearOtro")
             {
-                return Redirect("Crear");
+                return Redirect("Crear/" + gasto.IdConsorcio);
             }
 
             return RedirectToAction("Listado/" + gasto.IdConsorcio);
