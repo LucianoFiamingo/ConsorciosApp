@@ -28,7 +28,6 @@ namespace Entities.EDMX
         [Display(Name = "Email del Propietario")]
         public string EmailPropietario { get; set; }
 
-        [Required(ErrorMessage = "Debe proporcionar la superficie")]
         [RegularExpression("^[0-9]+$", ErrorMessage = "Ingrese un valor númerico entero")]
         [Range(0, int.MaxValue, ErrorMessage = "Superficie ")]
         public Nullable<int> Superficie { get; set; }

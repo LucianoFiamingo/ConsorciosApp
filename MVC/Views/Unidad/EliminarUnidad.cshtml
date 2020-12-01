@@ -1,7 +1,7 @@
 ﻿@model Entities.EDMX.Unidad
 
 @{
-    ViewBag.Title = "Unidad";
+    ViewBag.Title = "Eliminar Unidad";
 }
 
 @{Html.RenderPartial("~/Views/Partials/pv_breadcrump.cshtml");}
@@ -15,7 +15,7 @@
 </div>
 
 <div>
-    <p>Confirme la eliminación del consorcio seleccionado</p>
+    <p>Confirme la eliminación de la unidad seleccionada</p>
     <hr />
 
 
@@ -23,21 +23,22 @@
 
         <article class="border rounded bg-light mb-5 mt-3">
             <div class="card-body">
-                <h3 class="card-title m-4">¿Desea eliminar el consorcio "@Model.Nombre"?</h3>
+                <h3 class="card-title m-4">¿Desea eliminar la unidad "@Model.Nombre"?</h3>
                 <div class="card-text">
 
                     <p class="text-danger font-weight-bold">
-                        Se borrará el consorcio y todos sus datos relacionados.
+                        Se borrará la unidad y todos sus datos relacionados.
                     </p>
 
                     <div class="m-4">
-                        <form action="/Consorcio/Eliminar" method="post">
+                        <form action="/Unidad/EliminarUnidad" method="post">
 
-                            <input type="hidden" name="IdConsorcio" value="@Model.IdConsorcio" />
+                            <input type="hidden" name="IdUnidad" value="@Model.IdUnidad" />
                             <input type="hidden" name="Nombre" value="@Model.Nombre" />
+                            <input type="hidden" name="IdConsorcio" value="@Model.IdConsorcio" />
                             <input type="submit" value="Eliminar" class="btn btn-danger" />
 
-                            @Html.ActionLink("Cancelar", "Listado", "Unidad", new { id = Model.IdConsorcio }, new { @class = "btn btn-success" })
+                            @Html.ActionLink("Cancelar", "VerUnidades", "Unidad", new { id = Model.IdConsorcio }, new { @class = "btn btn-success" })
                         </form>
                     </div>
 

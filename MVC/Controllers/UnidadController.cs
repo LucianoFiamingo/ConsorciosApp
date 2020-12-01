@@ -81,7 +81,6 @@ namespace MVC.Controllers
                 return Redirect("/Home/Ingresar");
             }
 
-
             unid.IdUsuarioCreador = (int)Session["usuarioId"];
             unid.FechaCreacion = DateTime.Now;
 
@@ -108,63 +107,63 @@ namespace MVC.Controllers
                 return Redirect("/Unidad/CrearUnidad/" + unid.IdConsorcio);
             }
 
-            return Redirect("VerUnidades" + unid.IdConsorcio);
+            return Redirect("/Unidad/VerUnidades/" + unid.IdConsorcio);
         }
 
         public ActionResult ModificarUnidad(int? id)
         {
+            if (id == null)
+            {
+                return Redirect("/Consorcio/Listado");
+            }
             if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
                 TempData["Redirect"] = "/Unidad/ModificarUnidad" + id;
                 return Redirect("/Home/Ingresar");
             }
 
-            if (id == null)
-            {
-                return Redirect("Listado");
-            }
-            Unidad a = UnidadService.ObtenerPorId((int)id);
+            Unidad unid = UnidadService.ObtenerPorId((int)id);
 
-            int idUs = (int)a.Consorcio.IdUsuarioCreador;
-
+            int idUs = (int)unid.Consorcio.IdUsuarioCreador;
             if (idUs != (int)Session["usuarioId"])
             {
-                return Redirect("Listado");
+                return Redirect("/Consorcio/Listado");
             }
 
-            Consorcio c = UnidadService.ObtenerPorIdConsorcio(a.IdConsorcio);
+            Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
+            Breadcrump nivel2 = new Breadcrump("Consorcio " + unid.Consorcio.Nombre.ToString(), "Unidad/ModificarUnidad/" + unid.Consorcio.IdConsorcio);
+            Breadcrump nivel3 = new Breadcrump("Unidades", "Unidad/VerUnidades/" + unid.Consorcio.IdConsorcio);
+            Breadcrump nivel4 = new Breadcrump("Modificar Unidad");
+            ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3, nivel4);
 
-            ViewBag.Nombre = c.Nombre;
-            ViewBag.IdConsorcio = c.IdConsorcio;
-
-            return View(a);
+            return View(unid);
         }
 
         [HttpPost]
-        public ActionResult ModificarUnidad(Unidad a)
+        public ActionResult ModificarUnidad(Unidad unid)
         {
             if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
-                TempData["Redirect"] = "/Unidad/ModificarUnidad" + a.IdConsorcio;
+                TempData["Redirect"] = "/Unidad/ModificarUnidad" + unid.IdConsorcio;
                 return Redirect("/Home/Ingresar");
             }
 
             if (!ModelState.IsValid)
             {
-                Consorcio c = UnidadService.ObtenerPorIdConsorcio(a.IdConsorcio);
+                ViewBag.Consorcio = unid.Consorcio;
 
-                ViewBag.Nombre = c.Nombre;
-                ViewBag.IdConsorcio = c.IdConsorcio;
+                Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
+                Breadcrump nivel2 = new Breadcrump("Consorcio " + unid.Consorcio.Nombre.ToString(), "Unidad/ModificarUnidad/" + unid.Consorcio.IdConsorcio);
+                Breadcrump nivel3 = new Breadcrump("Unidades", "Unidad/VerUnidades/" + unid.Consorcio.IdConsorcio);
+                Breadcrump nivel4 = new Breadcrump("Modificar Unidad");
+                ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3, nivel4);
 
-                return View(a);
+                return View(unid);
             }
 
-            a.IdUsuarioCreador = (int)Session["usuarioId"];
-            a.FechaCreacion = DateTime.Now;
+            UnidadService.Modificar(unid);
 
-            UnidadService.Modificar(a);
-
-            return Redirect("VerUnidades" + a.IdConsorcio);
+            return Redirect("/Unidad/VerUnidades/" + unid.IdConsorcio);
         }
 
 
@@ -196,23 +195,23 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Eliminar(Unidad unidad)
+        public ActionResult EliminarUnidad(Unidad unidad)
         {
+
+            if (unidad == null)
+            {
+                return Redirect("/Consorcio/Listado");
+            }
             if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
                 TempData["Redirect"] = "/Unidad/EliminarUnidad/" + unidad.IdConsorcio;
                 return Redirect("/Home/Ingresar");
             }
 
-            if (unidad == null)
-            {
-                return Redirect("/Consorcio/Listado");
-            }
-
             TempData["Eliminado"] = unidad.Nombre.ToString();
-            UnidadService.Eliminar(unidad.IdConsorcio);
+            UnidadService.Eliminar(unidad.IdUnidad);
 
-            return RedirectToAction("Listado/" + unidad.IdConsorcio);
+            return Redirect("/Unidad/VerUnidades/" + unidad.IdConsorcio);
         }
 
     }
