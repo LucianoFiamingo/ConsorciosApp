@@ -159,7 +159,6 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\custom\custom-ajax2.js" />
     <Content Include="Scripts\custom\custom-ajax.js" />
     <Content Include="Scripts\custom\navegar.js" />
     <Content Include="Scripts\custom\crear.js" />
@@ -317,6 +316,8 @@
     <Content Include="Views\Gastos\Modificar.cshtml" />
     <Content Include="Views\Gastos\Eliminar.cshtml" />
     <Content Include="Views\Expensas\Ver.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Unidad\EliminarUnidad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

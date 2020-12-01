@@ -19,8 +19,20 @@ namespace MVC
         }
         protected void Session_Start(Object sender, EventArgs e)
         {
-            Session["usuarioID"]= String.Empty;
+            Session["usuarioID"] = String.Empty;
             Session["nombre"] = String.Empty;
-}
+        }
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            Response.Clear();
+
+            HttpException httpException = exception as HttpException;
+
+            int error = httpException != null ? httpException.GetHttpCode() : 0;
+
+            Server.ClearError();
+            Response.Redirect(String.Format("~/Home/Error/{0}", error, exception.Message));
+        }
     }
 }

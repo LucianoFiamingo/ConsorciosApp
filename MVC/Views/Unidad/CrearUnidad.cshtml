@@ -1,84 +1,128 @@
 ﻿@model Entities.EDMX.Unidad
 
 @{
-    ViewBag.Title = "Crear Unidad";
-    var IdConsorcio = ViewBag.IdConsorcio;
-    var Nombre = ViewBag.Nombre;
+    ViewBag.Title = "Crear Consorcio";
 }
 
-<!DOCTYPE html>
+@{Html.RenderPartial("~/Views/Partials/pv_breadcrump.cshtml");}
 
-<html>
-<head>
-    <title>CrearUnidad</title>
-</head>
-<body>
-    <h2>Nueva Unidad</h2>
+@if (TempData["Creado"] != null && (string)TempData["Creado"] != "FALSO")
+{
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        ¡Unidad <strong>creada correctamente!</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+@if (TempData["Creado"] != null && (string)TempData["Creado"] == "FALSO")
+{
+    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+        <strong>¡Error</strong> al crear!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
 
-    <form action="/Unidad/CrearUnidad" method="Post">
-        <div class="row">
-            <div class="col-2">
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-1">
+
+    <h2>Crear Unidad</h2>
+    <a onclick="volver()" class="btn btn-success">Volver</a>
+
+</div>
+
+<p>A continuación ingrese los datos de la unidad nueva</p>
+<hr />
+@using (Html.BeginForm())
+{
+    <section class="row">
+
+        <article class="col-lg-6 col-sm-12">
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
                 <div class="form-group">
-                    <label for="IdConsorcio"></label>
-                    <div>
-                        @Html.HiddenFor(Model => Model.IdConsorcio)
-                        @Html.ValidationMessageFor(Model => Model.IdConsorcio)
+                    @Html.LabelFor(model => model.Consorcio.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="">
+                        <input class="form-control" id="disabledInput" type="text" placeholder="@ViewBag.Consorcio.Nombre" disabled>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="Equipo">Consorcio</label>
-                    <div>
-                        <input class="form-control" type="text" placeholder="Readonly input here…" readonly
-                               value=@Nombre>
+                    @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { onkeyup = "buscarConsorcioPorNombre(this.value, " + Session["usuarioId"].ToString() + ")", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                        <div id="existeNombreCons" class="text-danger"></div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="Nombre">Nombre</label>
-                    <div>
-                        @Html.EditorFor(Model => Model.Nombre)
-                        @Html.ValidationMessageFor(Model => Model.Nombre)
+                    @Html.LabelFor(model => model.NombrePropietario, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="">
+                        @Html.EditorFor(model => model.NombrePropietario, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NombrePropietario, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="NombrePropietario">Nombre Propietario</label>
-                    <div>
-                        @Html.EditorFor(Model => Model.NombrePropietario)
-                        @Html.ValidationMessageFor(Model => Model.NombrePropietario)
+                    @Html.LabelFor(model => model.ApellidoPropietario, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="">
+                        @Html.EditorFor(model => model.ApellidoPropietario, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ApellidoPropietario, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="ApellidoPropietario">Apellido Propietario</label>
-                    <div>
-                        @Html.EditorFor(Model => Model.ApellidoPropietario)
-                        @Html.ValidationMessageFor(Model => Model.ApellidoPropietario)
+                    @Html.LabelFor(model => model.EmailPropietario, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="">
+                        @Html.EditorFor(model => model.EmailPropietario, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EmailPropietario, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="EmailPropietario">Email Propietario</label>
-                    <div>
-                        @Html.EditorFor(Model => Model.EmailPropietario)
-                        @Html.ValidationMessageFor(Model => Model.EmailPropietario)
+                    @Html.LabelFor(model => model.Superficie, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="">
+                        @Html.EditorFor(model => model.Superficie, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Superficie, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <label for="Superficie">Superficie(m2)</label>
-                    <div>
-                        @Html.EditorFor(Model => Model.Superficie)
-                        @Html.ValidationMessageFor(Model => Model.Superficie)
-                    </div>
+                    <input type="hidden" name="IdConsorcio" value="@ViewBag.Consorcio.IdConsorcio" />
+                    <input id="otraAccion" type="hidden" name="otraAccion" value="" />
                 </div>
-
-                <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
-            <div class="col"></div>
-        </div>
-    </form>
 
-</body>
-</html>
+        </article>
+
+        <article class="col-lg-6 col-sm-12 d-block text-center mb-0 crear-alto">
+
+            <article class="border rounded bg-light mb-5 mt-3">
+                <div class="card-body">
+                    <h5 class="card-title m-4">Seguí creando</h5>
+                    <div class="card-text">
+                        <p>Guardá la unidad creada y continuá haciendo otra unidad.</p>
+                        <input onclick="crearOtro()" type="submit" value="Guardar y Crear otra Unidad" class="btn btn-link ml-0 mr-2" />
+                    </div>
+                </div>
+            </article>
+        </article>
+
+        <div class="form-group">
+            <div class="px-2">
+                <input type="submit" value="Guardar" class="btn btn-success ml-0 mr-2" />
+                @Html.ActionLink("Cancelar", "Listado", new { id = ViewBag.Consorcio.IdConsorcio }, new { @class = "btn btn-danger ml-0 mr-2" })
+            </div>
+        </div>
+
+    </section>
+}
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/custom")
