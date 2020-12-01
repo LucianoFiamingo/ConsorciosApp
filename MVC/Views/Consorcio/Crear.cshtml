@@ -30,12 +30,12 @@
 
 <p>A continuación ingrese los datos del consorcio nuevo</p>
 <hr />
+@using (Html.BeginForm())
+{
+    <section class="row">
 
-<section class="row">
+        <article class="col-lg-6 col-sm-12">
 
-    <article class="col-lg-6 col-sm-12">
-        @using (Html.BeginForm())
-        {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
@@ -95,31 +95,31 @@
                     <input id="otraAccion" type="hidden" name="otraAccion" value="" />
                 </div>
             </div>
-        }
-    </article>
 
-    <article class="col-lg-6 col-sm-12 d-block text-center mb-0 crear-alto">
-
-        <article class="border rounded bg-light mb-5 mt-3">
-            <div class="card-body">
-                <h5 class="card-title m-4">Seguí creando</h5>
-                <div class="card-text">
-                    <p>Guarda el consorcio creado y continuá haciendo otro consorcio o sus unidades.</p>
-                    <input onclick="crearOtro()" type="submit" value="Guardar y Crear otro Consorcio" class="btn btn-link ml-0 mr-2" />
-                    <input onclick="crearUnidades()" type="submit" value="Guardar y Crear Unidades" class="btn btn-link ml-0 mr-2" />
-                </div>
-            </div>
         </article>
-    </article>
 
-</section>
+        <article class="col-lg-6 col-sm-12 d-block text-center mb-0 crear-alto">
 
-<div class="form-group">
-    <div class="col-md-offset-2 col-md-10 px-0">
-        <input type="submit" value="Guardar" class="btn btn-success ml-0 mr-2" />
-        @Html.ActionLink("Cancelar", "Listado", null, new { @class = "btn btn-danger ml-0 mr-2" })
-    </div>
-</div>
+            <article class="border rounded bg-light mb-5 mt-3">
+                <div class="card-body">
+                    <h5 class="card-title m-4">Seguí creando</h5>
+                    <div class="card-text">
+                        <p>Guarda el consorcio creado y continuá haciendo otro consorcio o sus unidades.</p>
+                        <input onclick="crearOtro()" type="submit" value="Guardar y Crear otro Consorcio" class="btn btn-link ml-0 mr-2" />
+                        <input onclick="crearUnidades()" type="submit" value="Guardar y Crear Unidades" class="btn btn-link ml-0 mr-2" />
+                    </div>
+                </div>
+            </article>
+        </article>
 
+        <div class="form-group">
+            <div class="px-2">
+                <input type="submit" value="Guardar" class="btn btn-success ml-0 mr-2" />
+                @Html.ActionLink("Cancelar", "Listado", null, new { @class = "btn btn-danger ml-0 mr-2" })
+            </div>
+        </div>
+
+    </section>
+}
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/custom")

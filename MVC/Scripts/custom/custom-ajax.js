@@ -1,4 +1,4 @@
-﻿function buscarConsorcioPorNombre(nombre, id) {
+﻿function buscarConsorcioPorNombre(nombre, id, idCon) {
     var xhttp;
     if (nombre == "") {
         document.getElementById("existeNombreCons").innerHTML = "";
@@ -10,6 +10,11 @@
             document.getElementById("existeNombreCons").innerHTML = this.responseText;
         }
     };
-    xhttp.open("GET", "Existe/?nombre=" + nombre + "&id=" + id, true);
-    xhttp.send();
+    if (idCon == null) {
+        xhttp.open("GET", "/Consorcio/Existe/?nombre=" + nombre + "&id=" + id, true);
+        xhttp.send();
+    } else {
+        xhttp.open("GET", "/Consorcio/Existe/?nombre=" + nombre + "&id=" + id + "&idCon=" + idCon, true);
+        xhttp.send();
+    }
 }

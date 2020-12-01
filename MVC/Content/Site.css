@@ -67,3 +67,7 @@ textarea {
 .cuerpo {
     min-height: 425px;
 }
+
+.registro{
+    width:415px !important;
+}

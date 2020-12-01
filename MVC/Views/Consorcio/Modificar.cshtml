@@ -40,9 +40,10 @@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
-                    <div>
-                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="">
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { onkeyup = "buscarConsorcioPorNombre(this.value, " + Session["usuarioId"].ToString() + ", " + Model.IdConsorcio.ToString() + ")", @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                        <div id="existeNombreCons" class="text-danger"></div>
                     </div>
                 </div>
 
