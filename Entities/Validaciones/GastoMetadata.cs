@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Web;
 
 namespace Entities.EDMX
 {
+    
     internal class GastoMetadata
     {
 
@@ -26,7 +28,7 @@ namespace Entities.EDMX
 
         [Required(ErrorMessage = "Debe proporcionar el año de la expensa")]
         //[RegularExpression("/^[0-9]$/")]
-        [Range(1980, 2030, ErrorMessage = "Año invalido")]
+        [Range(1980,2020 , ErrorMessage = "Año invalido")]
         public int AnioExpensa { get; set; }
 
         [Required(ErrorMessage = "Debe proporcionar el mes de la expensa")]
@@ -36,7 +38,7 @@ namespace Entities.EDMX
         public string ArchivoComprobante { get; set; }
 
         [Required(ErrorMessage = "Debe proporcionar el monto")]
-        //[RegularExpression("/^[0-9]$/")]
+        //[RegularExpression("/^([0-9])*$/")]
         public decimal Monto { get; set; }
 
         [DataType(DataType.DateTime)]

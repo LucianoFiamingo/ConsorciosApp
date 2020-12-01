@@ -27,7 +27,7 @@ namespace Entities.EDMX
 
         [Required(ErrorMessage = "Debe proporcionar la superficie")]
         /*[RegularExpression("^[0-9]$")]*/
-        [Range(0, 2000, ErrorMessage = "Altura invalida")]
+        [Range(0, 2000, ErrorMessage = "Superficie invalida")]
         public Nullable<int> Superficie { get; set; }
 
         [DataType(DataType.DateTime)]
