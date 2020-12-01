@@ -5,7 +5,6 @@ namespace Entities.EDMX
     internal class GastoMetadata
     {
 
-       
         [Required(ErrorMessage = "Nombre es requerido")]
         [MaxLength(20, ErrorMessage = "El numero maximo de caracteres es veinte")]
         public string Nombre { get; set; }
@@ -25,8 +24,8 @@ namespace Entities.EDMX
         public int IdTipoGasto { get; set; }
 
         [Required(ErrorMessage = "Debe proporcionar el año de la expensa")]
-        [RegularExpression("/^[0-9]$/")]
-        [Range(1980, 2030, ErrorMessage = "Altura invalida")]
+        //[RegularExpression("/^[0-9]$/")]
+        [Range(1980, 2030, ErrorMessage = "Año invalido")]
         public int AnioExpensa { get; set; }
 
         [Required(ErrorMessage = "Debe proporcionar el mes de la expensa")]
@@ -36,7 +35,7 @@ namespace Entities.EDMX
         public string ArchivoComprobante { get; set; }
 
         [Required(ErrorMessage = "Debe proporcionar el monto")]
-        [RegularExpression("/^[0-9]$/")]
+        //[RegularExpression("/^[0-9]$/")]
         public decimal Monto { get; set; }
 
         [DataType(DataType.DateTime)]
