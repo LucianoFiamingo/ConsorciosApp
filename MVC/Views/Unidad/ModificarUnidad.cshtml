@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Modificar Unidad";
+    var IdConsorcio = ViewBag.IdConsorcio;
+    var Nombre = ViewBag.Nombre;
 }
 
 <!DOCTYPE html>
@@ -14,30 +16,68 @@
     <h2>Modificar Unidad</h2>
 
     <form action="/Unidad/ModificarUnidad" method="Post">
-        <input type="hidden" name="IdUnidad" value="@Model.IdUnidad" />
-        <input type="hidden" name="IdConsorcio" value="@Model.IdConsorcio"/>
-        Nombre
-        <br />
-        <input type="text" name="Nombre" value="@Model.Nombre"/>
-        <br />
-        Nombre Propietario
-        <br />
-        <input type="text" name="NombrePropietario" value="@Model.NombrePropietario" />
-        <br />
-        Apellido Propietario
-        <br />
-        <input type="text" name="ApellidoPropietario" value="@Model.ApellidoPropietario" />
-        <br />
-        Email Propietario
-        <br />
-        <input type="text" name="EmailPropietario" value="@Model.EmailPropietario" />
-        <br />
-        Superficie(m2)
-        <br />
-        <input type="number" name="Superficie" value="@Model.Superficie"/>
-        <br />
-        <br />
-        <input type="submit" value="Guardar" />
+        <div class="row">
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="IdConsorcio"></label>
+                    <div>
+                        @Html.HiddenFor(Model => Model.IdConsorcio)
+                        @Html.ValidationMessageFor(Model => Model.IdConsorcio)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Equipo">Consorcio</label>
+                    <div>
+                        <input class="form-control" type="text" placeholder="Readonly input here…" readonly
+                               value=@Nombre>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Nombre">Nombre</label>
+                    <div>
+                        @Html.EditorFor(Model => Model.Nombre)
+                        @Html.ValidationMessageFor(Model => Model.Nombre)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="NombrePropietario">Nombre Propietario</label>
+                    <div>
+                        @Html.EditorFor(Model => Model.NombrePropietario)
+                        @Html.ValidationMessageFor(Model => Model.NombrePropietario)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ApellidoPropietario">Apellido Propietario</label>
+                    <div>
+                        @Html.EditorFor(Model => Model.ApellidoPropietario)
+                        @Html.ValidationMessageFor(Model => Model.ApellidoPropietario)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="EmailPropietario">Email Propietario</label>
+                    <div>
+                        @Html.EditorFor(Model => Model.EmailPropietario)
+                        @Html.ValidationMessageFor(Model => Model.EmailPropietario)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Superficie">Superficie(m2)</label>
+                    <div>
+                        @Html.EditorFor(Model => Model.Superficie)
+                        @Html.ValidationMessageFor(Model => Model.Superficie)
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+            <div class="col"></div>
+        </div>
     </form>
 
 </body>
