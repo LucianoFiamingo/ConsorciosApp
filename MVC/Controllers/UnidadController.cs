@@ -214,6 +214,25 @@ namespace MVC.Controllers
             return Redirect("/Unidad/VerUnidades/" + unidad.IdConsorcio);
         }
 
+        public String Existe(string nombre, string id, string idCon)
+        {
+            Boolean existe;
+
+            if (string.IsNullOrEmpty(idCon))
+            {
+                existe = UnidadService.ExisteNombre(nombre, Convert.ToInt32(id));
+            }
+            else
+            {
+                existe = UnidadService.ExisteNombre(nombre, Convert.ToInt32(id), Convert.ToInt32(idCon));
+            }
+
+            if (existe)
+            {
+                return "Ya existe una unidad con el mismo nombre";
+            }
+            return null;
+        }
     }
 }
 

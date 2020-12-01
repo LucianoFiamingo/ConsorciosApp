@@ -19,7 +19,15 @@ namespace Services
         {
             return repo.ObtenerPorIdConsorcio(id);
         }
-       
 
+        public Boolean ExisteNombre(string nombre, int id)
+        {
+            return repo.ExisteNombre(nombre, id);
+        }
+
+        public Boolean ExisteNombre(string nombre, int id, int idCon)
+        {
+            return repo.ExisteNombre(nombre, id, idCon);
+        }
     }
 }

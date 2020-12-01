@@ -57,7 +57,30 @@ namespace Repositories
 
             ctx.SaveChanges();
         }
-       
 
+        public Boolean ExisteNombre(string nombre, int id)
+        {
+            var encontrado = ctx.Unidads.Where(item => item.IdUsuarioCreador == id
+                                            && item.Nombre == nombre).FirstOrDefault();
+
+            if (encontrado != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean ExisteNombre(string nombre, int id, int idCon)
+        {
+            var encontrado = ctx.Unidads.Where(item => item.IdUsuarioCreador == id
+                                            && item.Nombre == nombre
+                                            && item.IdConsorcio != idCon).FirstOrDefault();
+
+            if (encontrado != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

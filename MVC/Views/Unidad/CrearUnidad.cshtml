@@ -1,7 +1,7 @@
 ﻿@model Entities.EDMX.Unidad
 
 @{
-    ViewBag.Title = "Crear Consorcio";
+    ViewBag.Title = "Crear Unidad";
 }
 
 @{Html.RenderPartial("~/Views/Partials/pv_breadcrump.cshtml");}
@@ -48,7 +48,7 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Consorcio.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.LabelFor(model => model.Consorcio.Nombre, htmlAttributes: new {@class = "control-label col-md-6" })
                     <div class="">
                         <input class="form-control" id="disabledInput" type="text" placeholder="@ViewBag.Consorcio.Nombre" disabled>
                     </div>
@@ -57,7 +57,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
                     <div class="">
-                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { onkeyup = "buscarConsorcioPorNombre(this.value, " + Session["usuarioId"].ToString() + ")", @class = "form-control" } })
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { onkeyup = "buscarUnidadPorNombre(this.value, " + Session["usuarioId"].ToString() + ")", @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                         <div id="existeNombreCons" class="text-danger"></div>
                     </div>
