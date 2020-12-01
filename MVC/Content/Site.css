@@ -41,14 +41,6 @@ textarea {
     }
 }
 
-.colorear {
-    -webkit-transition: background 3s;
-    -moz-transition: background 3s;
-    -ms-transition: background 3s;
-    -o-transition: background 3s;
-    transition: background 3s;
-}
-
 .link-avatar:hover {
     cursor: pointer;
 }
