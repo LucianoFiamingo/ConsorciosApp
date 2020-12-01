@@ -3,48 +3,55 @@
 @{
     ViewBag.Title = "Crear Gasto";
 }
+@{Html.RenderPartial("~/Views/Partials/pv_breadcrump.cshtml");}
 
-
-@if (TempData["Creado"] != null && (bool)TempData["Creado"] == true)
+@if (TempData["Creado"] != null && (string)TempData["Creado"] != "FALSO")
 {
-    <h6 class="bg-success p-4 text-light text-center mb-3">
-        Creado correctamente!
-    </h6>
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        ¡Consorcio <strong>creado correctamente!</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 }
 
-@if (TempData["Creado"] != null && (bool)TempData["Creado"] == false)
+@if (TempData["Creado"] != null && (string)TempData["Creado"] == "FALSO")
 {
-    <h6 class="bg-danger p-4 text-light text-center mb-3">
-        Error al crear!
-    </h6>
+    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+        <strong>¡Error</strong> al crear!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 }
 
 <h2>Crear Gasto</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Crear", "Gastos", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
     <p>A continuación ingrese los datos del gasto nuevo</p>
-    <input type="hidden" name="IdConsorcio" value="@Model.IdConsorcio" />
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <input type="hidden" name="IdConsorcio" value="@ViewBag.idConsorcio" />
+    
+
     <div class="form-group">
-        @Html.LabelFor(model => model.Consorcio.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
+        @Html.Label("Consorcio", htmlAttributes: new { @class = "control-label col-md-6" })
         <div class="col-lg-6 col-md-12">
-            @Html.TextBoxFor(model => model.Consorcio.Nombre, new { @readonly = "readonly", @class = "form-control" })
+            @Html.Raw("<div class=" + "form-control " + "readonly" + ">" + ViewBag.nombreConsorcio + "</div>")
             @Html.ValidationMessageFor(model => model.Consorcio.Nombre, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.TipoGasto, htmlAttributes: new { @class = "control-label col-md-6" })
-        <div class="col-lg-6 col-md-12">
-            @Html.DropDownListFor(Model => Model.IdTipoGasto, (List<SelectListItem>)ViewBag.TipoGastoItems, new { @class = "form-control" })
+        <div class="">
+            @Html.DropDownListFor(Model => Model.IdTipoGasto, (List<SelectListItem>)ViewBag.TipoGastoItem, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.IdTipoGasto, "", new { @class = "text-danger " })
         </div>
     </div>
-
     <div class="form-group">
         @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
         <div class="col-lg-6 col-md-12">
@@ -86,8 +93,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ArchivoComprobante, htmlAttributes: new { @class = "control-label col-md-6" })
             <div class="col-lg-6 col-md-12">
-                @Html.EditorFor(model => model.ArchivoComprobante, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ArchivoComprobante, "", new { @class = "text-danger" })
+                <input type="file" name="ArchivoComprobante" class="form-control" />
+
             </div>
         </div>
         <div class="form-group">
@@ -108,7 +115,7 @@
 
                 <input onclick="crearOtro()" type="submit" value="Guardar y Crear otro Gasto" class="btn btn-primary ml-0 mr-2" />
 
-                @Html.ActionLink("Cancelar", "Listado", null, new { @class = "btn btn-danger ml-0 mr-2" })
+                @Html.ActionLink("Cancelar", "Listado/", new { id = ViewBag.idConsorcio } , new { @class = "btn btn-danger ml-0 mr-2" })
             </div>
         </div>
     </div>

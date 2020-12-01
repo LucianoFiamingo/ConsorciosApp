@@ -12,21 +12,12 @@ namespace Services
 
         public bool existeEmail(string email)
         {
-            bool resultado=true;
-            List<Usuario> list = repo.ObtenerTodos();
 
-            foreach (Usuario usu in list)
+            if(repo.existeEmail(email) != null)
             {
-                if (usu.Email.Equals(email))
-                {
-                     resultado = true;
-                }
-                else
-                {
-                     resultado = false;
-                }
+                return true;
             }
-            return resultado;
+            return false;
 
         }
 
@@ -34,5 +25,7 @@ namespace Services
         {
             return repo.validarInicioSesion(email, password);
         }
+
+        
     }
 }

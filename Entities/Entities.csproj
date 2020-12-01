@@ -45,6 +45,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -102,6 +103,7 @@
     <Compile Include="Validaciones\Usuario.cs" />
     <Compile Include="Validaciones\UsuarioMetadata.cs" />
     <Compile Include="VM\Breadcrump.cs" />
+    <Compile Include="VM\UsuarioRegistroVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="EDMX\Model1.edmx">

@@ -48,5 +48,18 @@ namespace Repositories
             }
             return false;
         }
+
+        public Boolean ExisteNombre(string nombre, int id, int idCon)
+        {
+            var encontrado = ctx.Consorcios.Where(item => item.IdUsuarioCreador == id
+                                            && item.Nombre == nombre 
+                                            && item.IdConsorcio != idCon).FirstOrDefault();
+
+            if (encontrado != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

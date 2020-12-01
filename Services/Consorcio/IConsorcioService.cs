@@ -13,5 +13,6 @@ namespace Services
         List<Consorcio> ObtenerTodosOrdenadosPorNombre();
         List<Consorcio> ObtenerTodosOrdenadosPorNombre(int id);
         Boolean ExisteNombre(string nombre, int id);
+        Boolean ExisteNombre(string nombre, int id, int idCon);
     }
 }
