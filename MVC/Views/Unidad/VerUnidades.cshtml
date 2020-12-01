@@ -1,7 +1,9 @@
-﻿@model IEnumerable<Entities.EDMX.Unidad>
+﻿@model List<Entities.EDMX.Unidad>
 
 @{
     ViewBag.Title = "Ver Unidades";
+   
+    var IdConsorcio = ViewBag.IdConsorcio;
 }
 
 <link href="~/Content/Tables/jquery.dataTables.min.css" rel="stylesheet" />
@@ -17,7 +19,7 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
         <h2>Listado de Mis Unidades</h2>
         <p>
-            @Html.ActionLink("CREAR UNIDAD", "CrearUnidad", "Unidad", new { @class = "btn btn-success" })
+            @Html.ActionLink("CREAR UNIDAD", "CrearUnidad", "Unidad", new { id = IdConsorcio }, new { @class = "btn btn-success" })
         </p>
     </div>
 
@@ -75,7 +77,7 @@
                     </td>
                     <td>
                         @Html.ActionLink("Modificar", "ModificarUnidad", new { id = item.IdUnidad }, new { @class = "btn btn-primary mb-2 mb-lg-0" })
-                        
+
                         @Html.ActionLink("Eliminar", "EliminarUnidad", new { id = item.IdUnidad }, new { @class = "btn btn-danger px-3" })
                     </td>
                 </tr>

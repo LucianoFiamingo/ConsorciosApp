@@ -11,9 +11,15 @@ namespace Services
         public UnidadService(PW3_TP_20202CEntities contexto) : base(contexto)
         {
         }
-        public IEnumerable<Unidad> ObtenerUnidadesPorIdConsorcio(int id, int idUsuarioCreador)
+        public List<Unidad> ObtenerUnidadesPorConsorcioYOrdenadosPorNombre(int id, int idUsuarioCreador)
         {
-            return repo.ObtenerUnidadesPorIdConsorcio(id , idUsuarioCreador);
+            return repo.ObtenerUnidadesPorConsorcioYOrdenadosPorNombre(id , idUsuarioCreador);
         }
+        public Consorcio ObtenerPorIdConsorcio(int id)
+        {
+            return repo.ObtenerPorIdConsorcio(id);
+        }
+       
+
     }
 }

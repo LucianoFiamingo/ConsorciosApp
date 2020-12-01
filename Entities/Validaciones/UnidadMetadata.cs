@@ -24,18 +24,23 @@ namespace Entities.EDMX
         [Required(ErrorMessage = "Email del propietario es requerido")]
         [EmailAddress(ErrorMessage ="El email es invalido")]
         public string EmailPropietario { get; set; }
+
         [Required(ErrorMessage = "Debe proporcionar la superficie")]
-        [RegularExpression("/^[0-9]$/")]
+        /*[RegularExpression("/^[0-9]$/")]*/
         [Range(0, 2000, ErrorMessage = "Altura invalida")]
         public Nullable<int> Superficie { get; set; }
-        [DataType(DataType.DateTime)]
+
+        /*[DataType(DataType.DateTime)]
         [Required(ErrorMessage = "La fecha de creacion es requerida")]
         public System.DateTime FechaCreacion { get; set; }
+
         [Required(ErrorMessage = "Debe elegir un usuario")]
         public int IdUsuarioCreador { get; set; }
+
         [Required(ErrorMessage = "Debe elegir un consorcio")]
         public virtual Consorcio Consorcio { get; set; }
+
         [Required(ErrorMessage = "Debe elegir un usuario")]
-        public virtual Usuario Usuario { get; set; }
+        public virtual Usuario Usuario { get; set; }*/
     }
 }
