@@ -65,8 +65,8 @@ namespace MVC.Controllers
             {
                 return Redirect("/Home/Ingresar");
             }
-
-            gasto.IdUsuarioCreador = 1;
+            int idUsuarioCreador = (int)Session["usuarioId"];
+            gasto.IdUsuarioCreador = idUsuarioCreador;
             gasto.FechaCreacion = DateTime.Now;
             string archivo = (DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + ArchivoComprobante.FileName).ToLower();
             gasto.ArchivoComprobante = archivo;
