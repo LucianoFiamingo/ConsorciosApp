@@ -12,21 +12,12 @@ namespace Services
 
         public bool existeEmail(string email)
         {
-            bool resultado=true;
-            List<Usuario> list = repo.ObtenerTodos();
 
-            foreach (Usuario usu in list)
+            if(repo.existeEmail(email) != null)
             {
-                if (usu.Email.Equals(email))
-                {
-                    return resultado = true;
-                }
-                else
-                {
-                    return resultado = false;
-                }
+                return true;
             }
-            return resultado;
+            return false;
 
         }
 

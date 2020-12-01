@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace Entities.EDMX
 {
@@ -31,7 +32,7 @@ namespace Entities.EDMX
         [Required(ErrorMessage = "Debe proporcionar el mes de la expensa")]
         public int MesExpensa { get; set; }
 
-        [Required(ErrorMessage = "Debe subir el archivo")]
+        [Required(ErrorMessage = "Debe subir el archivo") ]
         public string ArchivoComprobante { get; set; }
 
         [Required(ErrorMessage = "Debe proporcionar el monto")]
