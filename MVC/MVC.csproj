@@ -315,7 +315,6 @@
     <Content Include="Views\Gastos\Modificar.cshtml" />
     <Content Include="Views\Gastos\Eliminar.cshtml" />
     <Content Include="Views\Expensas\Ver.cshtml" />
-    <Content Include="Views\Gastos\SubidaExitosa.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Unidad\EliminarUnidad.cshtml" />
   </ItemGroup>
