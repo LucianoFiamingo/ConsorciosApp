@@ -19,11 +19,11 @@ namespace Services
             {
                 if (usu.Email.Equals(email))
                 {
-                     resultado = true;
+                    return resultado = true;
                 }
                 else
                 {
-                     resultado = false;
+                    return resultado = false;
                 }
             }
             return resultado;
