@@ -6,11 +6,14 @@
 
 @{Html.RenderPartial("~/Views/Partials/pv_breadcrump.cshtml");}
 
-@if (TempData["Modificado"] != null && (bool)TempData["Modificado"] == false)
+@if (TempData["Modificado"] != null && (string)TempData["Modificado"] == "FALSO")
 {
-    <h6 class="bg-danger p-4 text-light text-center mb-3">
-        Error al modificar!
-    </h6>
+    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+        <strong>¡Error</strong> al modificar!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 }
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
@@ -37,10 +40,12 @@
 
                 <input type="hidden" name="IdGasto" value="@Model.IdGasto" />
 
+                <input type="hidden" name="IdConsorcio" value="@ViewBag.idConsorcio" />
+
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Consorcio.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
+                    @Html.Label("Consorcio", htmlAttributes: new { @class = "control-label col-md-6" })
                     <div class="col-lg-6 col-md-12">
-                        @Html.TextBoxFor(model => model.Consorcio.Nombre, new { @readonly = "readonly", @class = "form-control" })
+                        @Html.Raw("<div class=" + "form-control " + "readonly" + ">" + ViewBag.nombreConsorcio + "</div>")
                         @Html.ValidationMessageFor(model => model.Consorcio.Nombre, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -95,8 +100,8 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ArchivoComprobante, htmlAttributes: new { @class = "control-label col-md-6" })
                     <div class="col-lg-6 col-md-12">
-                        @Html.EditorFor(model => model.ArchivoComprobante, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ArchivoComprobante, "", new { @class = "text-danger" })
+                        <input type="hidden" name="ArchivoComprobante" value="@ViewBag.ArchivoComprobante"/> 
+                        <input type="file" name="ArchivoComprobante"  />
                     </div>
                 </div>
                 <div class="form-group">

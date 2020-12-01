@@ -16,14 +16,13 @@ namespace Repositories
         {
             Gasto gasto = ObtenerPorId(t.IdGasto);
             gasto.MesExpensa = t.MesExpensa;
+            gasto.AnioExpensa = t.AnioExpensa;
             gasto.Monto = t.Monto;
             gasto.Nombre = t.Nombre;
             gasto.IdConsorcio = t.IdConsorcio;
             gasto.IdTipoGasto = t.IdTipoGasto;
-            gasto.IdUsuarioCreador = t.IdUsuarioCreador;
             gasto.TipoGasto = t.TipoGasto;
-            gasto.Usuario = t.Usuario;
-
+            gasto.ArchivoComprobante = t.ArchivoComprobante;
             ctx.SaveChanges();
 
         }

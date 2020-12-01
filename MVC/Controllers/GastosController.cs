@@ -104,13 +104,31 @@ namespace MVC.Controllers
 
         public ActionResult Modificar(int? id)
         {
-            if (id == null)
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
-                return RedirectToAction("Listado");
+                TempData["Redirect"] = "/Gastos/Modificar/" + id.ToString();
+                return Redirect("/Home/Ingresar");
             }
 
-            Gasto gasto = gastosService.ObtenerPorId((int)id);
+            if (id == null)
+            {
+                return RedirectToAction("~/Consorcio/Listado");
+            }
+
+            Gasto gasto = gastosService.ObtenerPorId((int)id); 
+            int idUs = (int)gasto.IdUsuarioCreador;
+            
+            if (idUs != (int)Session["usuarioId"])
+            {
+                return RedirectToAction("Listado/" + gasto.IdGasto);
+            }
+
             ViewBag.TipoGastoItem = tipoGastoService.ObtenerComboTipoGasto(gasto.IdTipoGasto);
+            Consorcio consorcio = consorcioService.ObtenerPorId(gasto.IdConsorcio);
+            ViewBag.idConsorcio = consorcio.IdConsorcio;
+            ViewBag.nombreConsorcio = consorcio.Nombre;
+            ViewBag.ArchivoComprobante = gasto.ArchivoComprobante;
+
             Breadcrump nivel1 = new Breadcrump("Mis gastos", "Gastos/Listado");
             Breadcrump nivel2 = new Breadcrump(gasto.Nombre.ToString(), "Gastos/Modificar/" + gasto.IdGasto.ToString());
             Breadcrump nivel3 = new Breadcrump("Modificar");
@@ -121,20 +139,28 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Modificar(Gasto gasto)
         {
-            if (!ModelState.IsValid)
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
-                TempData["Modificado"] = false;
-                ViewBag.TipoGastoItem = tipoGastoService.ObtenerComboTipoGasto();
-                return View(gasto);
+                return Redirect("/Home/Ingresar");
             }
 
-            gastosService.Modificar(gasto);
-            TempData["Modificado"] = true;
-            Breadcrump nivel1 = new Breadcrump("Mis gastos", "Gastos/Listado");
-            Breadcrump nivel2 = new Breadcrump(gasto.Nombre.ToString(), "Gastos/Modificar/" + gasto.IdGasto.ToString());
-            Breadcrump nivel3 = new Breadcrump("Modificar");
-            ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
+            if (!ModelState.IsValid)
+            {
+                TempData["Modificado"] = "FALSO";
+                ViewBag.TipoGastoItem = tipoGastoService.ObtenerComboTipoGasto();
+                Consorcio consorcio = consorcioService.ObtenerPorId(gasto.IdConsorcio);
+                ViewBag.idConsorcio = consorcio.IdConsorcio;
+                ViewBag.nombreConsorcio = consorcio.Nombre;
+                
+                Breadcrump nivel1 = new Breadcrump("Mis gastos", "Gastos/Listado");
+                Breadcrump nivel2 = new Breadcrump(gasto.Nombre.ToString(), "Gastos/Modificar/" + gasto.IdGasto.ToString());
+                Breadcrump nivel3 = new Breadcrump("Modificar");
+                ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3);
 
+                return View(gasto);
+            }
+            gastosService.Modificar(gasto);
+            TempData["Modificado"] = gasto.Nombre.ToString();
             return RedirectToAction("Listado/" + gasto.IdConsorcio);
         }
 
