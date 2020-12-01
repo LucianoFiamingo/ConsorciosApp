@@ -45,7 +45,11 @@ namespace MVC.Controllers
             ViewBag.Nombre = c.Nombre;
             ViewBag.IdConsorcio = c.IdConsorcio;
 
-            return View();
+            Entities.EDMX.Unidad u = new Entities.EDMX.Unidad();
+
+            u.IdConsorcio = c.IdConsorcio;
+
+            return View(u);
 
         }
 
@@ -60,7 +64,16 @@ namespace MVC.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View();
+                Consorcio c = UnidadService.ObtenerPorIdConsorcio(a.IdConsorcio);
+
+                ViewBag.Nombre = c.Nombre;
+                ViewBag.IdConsorcio = c.IdConsorcio;
+
+                Entities.EDMX.Unidad u = new Entities.EDMX.Unidad();
+
+                u.IdConsorcio = c.IdConsorcio;
+
+                return View(u);
             }
 
            a.IdUsuarioCreador = (int)Session["usuarioId"];
@@ -86,6 +99,11 @@ namespace MVC.Controllers
                 return RedirectToAction("Listado");
             }
 
+            Consorcio c = UnidadService.ObtenerPorIdConsorcio(a.IdConsorcio);
+
+            ViewBag.Nombre = c.Nombre;
+            ViewBag.IdConsorcio = c.IdConsorcio;
+
             return View(a);
         }
 
@@ -99,8 +117,22 @@ namespace MVC.Controllers
                 return Redirect("/Home/Ingresar");
             }
 
+            if (!ModelState.IsValid)
+            {
+                Consorcio c = UnidadService.ObtenerPorIdConsorcio(a.IdConsorcio);
+
+                ViewBag.Nombre = c.Nombre;
+                ViewBag.IdConsorcio = c.IdConsorcio;
+
+                return View(a);
+            }
+
+            a.IdUsuarioCreador = (int)Session["usuarioId"];
+            a.FechaCreacion = DateTime.Now;
+
             UnidadService.Modificar(a);
-            return RedirectToAction("VerUnidades");
+
+            return RedirectToAction("VerUnidades", new { Id = a.IdConsorcio });
         }
 
 
@@ -123,7 +155,7 @@ namespace MVC.Controllers
 
 
             UnidadService.Eliminar(a.IdUnidad);
-            return RedirectToAction("VerUnidades");
+            return RedirectToAction("VerUnidades", new { Id = a.IdConsorcio });
         }
     }
 }
