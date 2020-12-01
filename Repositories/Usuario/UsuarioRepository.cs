@@ -1,4 +1,5 @@
 ﻿using Entities.EDMX;
+using System;
 using System.Linq;
 
 namespace Repositories
@@ -22,6 +23,20 @@ namespace Repositories
 
             ctx.SaveChanges();
         }
+
+        public Usuario existeEmail(string email)
+        {
+            var usuQuery = (from usuario in ctx.Usuarios
+                            where usuario.Email.Equals(email)
+                            select usuario);
+            if (usuQuery.Count() > 0)
+            {
+                Usuario us = usuQuery.First();
+                return us;
+            }
+            return null;
+        }
+
         public Usuario validarInicioSesion(string email, string password)
         {
             var usuQuery = (from usuario in ctx.Usuarios
