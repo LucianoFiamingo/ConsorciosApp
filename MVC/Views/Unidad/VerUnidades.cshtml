@@ -2,47 +2,80 @@
 
 @{
     ViewBag.Title = "Ver Unidades";
-   
-    var IdConsorcio = ViewBag.IdConsorcio;
 }
 
 <link href="~/Content/Tables/jquery.dataTables.min.css" rel="stylesheet" />
 
-<!DOCTYPE html>
+<section>
+    @if (TempData["Creado"] != null && (string)TempData["Creado"] != "FALSO")
+    {
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            ¡Unidad <strong>@TempData["Creado"].ToString()</strong> creada correctamente!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
 
-<html>
-<head>
-    <title>VerUnidades</title>
-</head>
-<body>
+    @if (TempData["Modificado"] != null && (string)TempData["Modificado"] != "FALSO")
+    {
+<div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
+    ¡Unidad <strong>@TempData["Modificado"].ToString()</strong> modificada correctamente!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+    }
 
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
-        <h2>Listado de Mis Unidades</h2>
-        <p>
-            @Html.ActionLink("CREAR UNIDAD", "CrearUnidad", "Unidad", new { id = IdConsorcio }, new { @class = "btn btn-success" })
-        </p>
-    </div>
+    @if (TempData["Eliminado"] != null && (string)TempData["Eliminado"] != "FALSO")
+    {
+<div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
+    ¡Unidad <strong>@TempData["Eliminado"].ToString()</strong> eliminada correctamente!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+    }
 
-    <p>A continuación se muestra la lista de todas sus unidades</p>
-    <hr class="mb-5" />
+    @if (TempData["Eliminado"] != null && (string)TempData["Eliminado"] == "FALSO")
+    {
+        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            ¡Error al querer eliminar la <strong>unidad</strong>!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+</section>
 
+@{Html.RenderPartial("~/Views/Partials/pv_breadcrump.cshtml");}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+    <h2>Listado de Mis Unidades</h2>
+    <p>
+        @Html.ActionLink("CREAR UNIDAD", "CrearUnidad", "Unidad", new { id = ViewBag.IdConsorcio }, new { @class = "btn btn-success" })
+    </p>
+</div>
+
+<p>A continuación se muestra la lista de todas sus unidades</p>
+<hr class="mb-5" />
+
+@if (Model.Count() > 0)
+{
     <table id="example" class="display table table-bordered table-hover mb-5">
         <thead>
             <tr class="bg-light">
                 <th>
-                    Consorcio
+                    Unidad
                 </th>
                 <th>
                     Nombre
                 </th>
                 <th>
-                    Nombre Propietario
+                    Apellido
                 </th>
                 <th>
-                    Apellido Propietario
-                </th>
-                <th>
-                    Email Propietario
+                    Email
                 </th>
                 <th>
                     Superficie
@@ -58,38 +91,58 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Consorcio.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nombre)
+                        @Html.ActionLink(item.Nombre, "ModificarUnidad", new { id = item.IdUnidad })
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.NombrePropietario)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ApellidoPropietario)
+                        @if (item.ApellidoPropietario == null)
+                        {
+                            <span>N/A</span>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.ApellidoPropietario)
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.EmailPropietario)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Superficie)
+                        @if (item.Superficie == null)
+                        {
+                            <span>N/A</span>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.Superficie)
+                        }
                     </td>
                     <td>
-                        @Html.ActionLink("Modificar", "ModificarUnidad", new { id = item.IdUnidad }, new { @class = "btn btn-primary mb-2 mb-lg-0" })
-
                         @Html.ActionLink("Eliminar", "EliminarUnidad", new { id = item.IdUnidad }, new { @class = "btn btn-danger px-3" })
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+}
+else
+{
+    <article class="border rounded bg-light mb-5 mt-3 text-center">
+        <div class="card-body">
+            <h5 class="card-title p-2">¡Gracias por usar nuestra aplicación!</h5>
+            <div class="card-text">
+                Aún no tenes ninguna unidad. Creá una
+                @Html.ActionLink("nueva unidad", "Crear" , new { id = ViewBag.IdConsorcio })
+                para empezar a usar la aplicación.
+            </div>
+        </div>
+    </article>
+}
+@Scripts.Render("~/bundles/custom")
 
-    @Scripts.Render("~/bundles/custom")
+<link href="~/Content/Tables/datatables.min.css" rel="stylesheet" />
+<script src="~/Scripts/tables/dataTables.js"></script>
+<script src="~/Scripts/tables/datatables.min.js"></script>
 
-    <link href="~/Content/Tables/datatables.min.css" rel="stylesheet" />
-    <script src="~/Scripts/tables/dataTables.js"></script>
-    <script src="~/Scripts/tables/datatables.min.js"></script>
-
-</body>
-</html>

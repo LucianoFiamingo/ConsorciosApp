@@ -55,6 +55,7 @@ namespace MVC.Controllers
         {
             if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
+                TempData["Redirect"] = "/Consorcio/Crear/" + consorcio.IdConsorcio.ToString();
                 return Redirect("/Home/Ingresar");
             }
 
@@ -79,7 +80,7 @@ namespace MVC.Controllers
 
             if (otraAccion == "crearUnidades")
             {
-                return Redirect("/Unidad/Crear");
+                return Redirect("/Unidad/CrearUnidad/" + consorcio.IdConsorcio);
             }
             if (otraAccion == "crearOtro")
             {
