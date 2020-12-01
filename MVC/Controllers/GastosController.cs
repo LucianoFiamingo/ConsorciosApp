@@ -37,8 +37,6 @@ namespace MVC.Controllers
             ViewBag.idConsorcio = id;
             return View(gastos);
         }
-       
-
 
         public ActionResult Crear(int? id )
         {
@@ -50,9 +48,11 @@ namespace MVC.Controllers
             ViewBag.nombreConsorcio = consorcio.Nombre;
             ViewBag.idConsorcio = consorcio.IdConsorcio;
             ViewBag.TipoGastoItem = tipoGastoService.ObtenerComboTipoGasto();
-            Breadcrump nivel1 = new Breadcrump("Mis gastos", "Gastos/Listado");
-            Breadcrump nivel2 = new Breadcrump("Gastos/Crear/" + ViewBag.idConsorcio);
-            ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2);
+            Breadcrump nivel1 = new Breadcrump("Mis Consorcios", "Consorcio/Listado");
+            Breadcrump nivel2 = new Breadcrump("Consorcio " + consorcio.Nombre.ToString(), "Consorcio/Modificar/" + id);
+            Breadcrump nivel3 = new Breadcrump("Gastos", "Gastos/Listado/" + id);
+            Breadcrump nivel4 = new Breadcrump("Cargar Nuevo Gasto");
+            ViewBag.Breadcrumps = BreadcrumpService.SetListaBreadcrumps(nivel1, nivel2, nivel3, nivel4);
 
             return View();
         }

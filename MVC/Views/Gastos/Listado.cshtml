@@ -102,7 +102,7 @@ else
             <h5 class="card-title p-2">¡Gracias por usar nuestra aplicación!</h5>
             <div class="card-text">
                 Aún no tenes ningún gasto. Creá un
-                @Html.ActionLink("nuevo gasto", "Crear")
+                @Html.ActionLink("nuevo gasto", "Crear", new { id = ViewBag.idConsorcio })
                 para empezar a usar la aplicación.
             </div>
         </div>
