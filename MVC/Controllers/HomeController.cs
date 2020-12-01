@@ -70,7 +70,7 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registrar(Usuario usuario)
+        public ActionResult Registrar(Usuario usuario , string password2)
         {
             if (!ModelState.IsValid)
             {
@@ -79,6 +79,11 @@ namespace MVC.Controllers
             if (usuarioService.existeEmail(usuario.Email) != false)
             {
                 ViewBag.Invalido = true;
+                return View(usuario);
+            }
+            if (usuario.Password != password2)
+            {
+                ViewBag.passwordInvalida = true;
                 return View(usuario);
             }
             usuario.FechaRegistracion = DateTime.Now;
