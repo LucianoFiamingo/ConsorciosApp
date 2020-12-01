@@ -27,5 +27,10 @@ namespace Services
         {
             return repo.ExisteNombre(nombre, id);
         }
+
+        public Boolean ExisteNombre(string nombre, int id, int idCon)
+        {
+            return repo.ExisteNombre(nombre, id, idCon);
+        }
     }
 }

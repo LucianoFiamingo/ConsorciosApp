@@ -14,15 +14,37 @@ namespace Repositories
         {
 
         }
-        public IEnumerable<Unidad> ObtenerUnidadesPorIdConsorcio(int id, int idUsuarioCreador)
+        public List<Unidad> ObtenerUnidadesPorConsorcioYOrdenadosPorNombre(int id, int idUsuarioCreador)
         {
-            IEnumerable<Unidad> g;
+            var Unidades =  from uni in ctx.Unidads
+                            where uni.IdConsorcio == id && uni.Consorcio.IdUsuarioCreador == idUsuarioCreador
+                            orderby uni.Nombre
+                            select uni;
 
-            g = from u in ctx.Unidads
-                where u.IdConsorcio == id && u.Consorcio.IdUsuarioCreador == idUsuarioCreador
-                select u;
+            List<Unidad> UnidadesPorConsorcio = Unidades.ToList();
 
-            return g;
+            return UnidadesPorConsorcio;
+        }
+       
+        public List<Consorcio> ObtenerConsorcio(int id)
+        {
+            var con = from c in ctx.Consorcios
+                           where c.IdConsorcio == id 
+                           select c;
+
+            List<Consorcio> Consorcio = con.ToList();
+
+            return Consorcio;
+        }
+        public Consorcio ObtenerPorIdConsorcio(int id)
+        {
+            Consorcio c;
+
+            c = (from con in ctx.Consorcios
+                 where con.IdConsorcio == id
+                 select con).Single();
+
+            return c;
         }
         public override void Modificar(Unidad t)
         {
@@ -35,5 +57,7 @@ namespace Repositories
 
             ctx.SaveChanges();
         }
+       
+
     }
 }

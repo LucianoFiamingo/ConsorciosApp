@@ -18,23 +18,36 @@ namespace MVC.Controllers
 
         public ActionResult VerUnidades(int id)
         {
-
             int idUsuarioCreador = (int)Session["usuarioId"];
-            IEnumerable<Unidad> unidCons = UnidadService.ObtenerUnidadesPorIdConsorcio(id, idUsuarioCreador);
+          
+            if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
+            {
+                TempData["Redirect"] = "/Unidad/VerUnidades";
+                return Redirect("/Home/Ingresar");
+            }
+            List<Unidad> unidCons = UnidadService.ObtenerUnidadesPorConsorcioYOrdenadosPorNombre(id, idUsuarioCreador);
+
+            ViewBag.IdConsorcio = id;
+
             return View(unidCons);
         }
 
-
-        public ActionResult CrearUnidad()
+        public ActionResult CrearUnidad(int id)
         {
             if (String.IsNullOrEmpty(Session["usuarioId"].ToString()))
             {
 
                 return Redirect("/Home/Ingresar");
             }
-            return View();
-        }
 
+            Consorcio c = UnidadService.ObtenerPorIdConsorcio(id);
+
+            ViewBag.Nombre = c.Nombre;
+            ViewBag.IdConsorcio = c.IdConsorcio;
+
+            return View();
+
+        }
 
         [HttpPost]
         public ActionResult CrearUnidad(Unidad a)
@@ -45,10 +58,16 @@ namespace MVC.Controllers
                 return Redirect("/Home/Ingresar");
             }
 
-            UnidadService.Alta(a);
-            return RedirectToAction("VerUnidades");
-        }
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
 
+           a.IdUsuarioCreador = (int)Session["usuarioId"];
+           a.FechaCreacion = DateTime.Now;
+           UnidadService.Alta(a);
+           return RedirectToAction("VerUnidades", new { Id = a.IdConsorcio });
+        }
 
         public ActionResult ModificarUnidad(int id)
         {

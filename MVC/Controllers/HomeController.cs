@@ -1,4 +1,5 @@
 ﻿using Entities.EDMX;
+using Entities.VM;
 using Services;
 using System;
 using System.Web.Mvc;
@@ -65,22 +66,26 @@ namespace MVC.Controllers
             {
                 return Redirect("/Consorcio/Listado");
             }
-            Usuario us = new Usuario();
-            return View(us);
+            return View(new UsuarioRegistroVM());
         }
 
         [HttpPost]
-        public ActionResult Registrar(Usuario usuario)
+        public ActionResult Registrar(UsuarioRegistroVM usuarioVM)
         {
             if (!ModelState.IsValid)
             {
-                return View(usuario);
+                return View(usuarioVM);
             }
-            /*if (usuarioService.ExisteEmail(usuario.Email) != null)
+            if (usuarioService.existeEmail(usuarioVM.Email) != false)
             {
                 ViewBag.Invalido = true;
-                return View(usuario);
-            }*/
+                return View(usuarioVM);
+            }
+            
+            Usuario usuario = new Usuario();
+            usuario.Email = usuarioVM.Email;
+            usuario.Password = usuarioVM.Password;
+
             usuario.FechaRegistracion = DateTime.Now;
             usuarioService.Alta(usuario);
 

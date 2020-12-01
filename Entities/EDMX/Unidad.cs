@@ -23,7 +23,6 @@ namespace Entities.EDMX
         public Nullable<int> Superficie { get; set; }
         public System.DateTime FechaCreacion { get; set; }
         public int IdUsuarioCreador { get; set; }
-    
         public virtual Consorcio Consorcio { get; set; }
         public virtual Usuario Usuario { get; set; }
     }
