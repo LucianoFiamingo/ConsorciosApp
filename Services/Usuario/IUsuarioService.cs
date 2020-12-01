@@ -6,5 +6,10 @@ namespace Services
     public interface IUsuarioService
     {
         Usuario validarInicioSesion(String email, String password);
+
+        Boolean existeEmail(String email);
+
+        
+
     }
 }

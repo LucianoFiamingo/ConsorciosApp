@@ -1,5 +1,6 @@
 ﻿using Entities.EDMX;
 using Repositories;
+using System.Collections.Generic;
 
 namespace Services
 {
@@ -7,6 +8,26 @@ namespace Services
     {
         public UsuarioService(PW3_TP_20202CEntities contexto) : base(contexto)
         {
+        }
+
+        public bool existeEmail(string email)
+        {
+            bool resultado=true;
+            List<Usuario> list = repo.ObtenerTodos();
+
+            foreach (Usuario usu in list)
+            {
+                if (usu.Email.Equals(email))
+                {
+                     resultado = true;
+                }
+                else
+                {
+                     resultado = false;
+                }
+            }
+            return resultado;
+
         }
 
         public Usuario validarInicioSesion(string email, string password)

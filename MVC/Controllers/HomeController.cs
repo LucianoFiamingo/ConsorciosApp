@@ -76,11 +76,11 @@ namespace MVC.Controllers
             {
                 return View(usuario);
             }
-            /*if (usuarioService.ExisteEmail(usuario.Email) != null)
+            if (usuarioService.existeEmail(usuario.Email) != false)
             {
                 ViewBag.Invalido = true;
                 return View(usuario);
-            }*/
+            }
             usuario.FechaRegistracion = DateTime.Now;
             usuarioService.Alta(usuario);
 
