@@ -46,7 +46,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.TipoGasto, htmlAttributes: new { @class = "control-label col-md-6" })
-        <div class="">
+        <div class="col-lg-6 col-md-12">
             @Html.DropDownListFor(Model => Model.IdTipoGasto, (List<SelectListItem>)ViewBag.TipoGastoItem, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.IdTipoGasto, "", new { @class = "text-danger " })
         </div>
@@ -92,7 +92,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ArchivoComprobante, htmlAttributes: new { @class = "control-label col-md-6" })
             <div class="col-lg-6 col-md-12">
-                <input type="file" name="ArchivoComprobante" class="form-control" />
+                <input type="file" name="ArchivoComprobante" />
             </div>
         </div>
         <div class="form-group">

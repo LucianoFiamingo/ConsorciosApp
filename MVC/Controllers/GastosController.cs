@@ -28,7 +28,7 @@ namespace MVC.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("Listado");
+                return Redirect("/Consorcio/Listado");
             }
             int idUsuarioCreador = (int)Session["usuarioId"];
             List<Gasto> gastos = gastosService.ObtenerGastosPorConsorcio((int)id , idUsuarioCreador);
@@ -44,7 +44,7 @@ namespace MVC.Controllers
         {
             if (id == null)
             {
-               return RedirectToAction("Listado");
+                return Redirect("/Consorcio/Listado");
             }
             Consorcio consorcio = consorcioService.ObtenerPorId((int)id);
             ViewBag.nombreConsorcio = consorcio.Nombre;
@@ -112,7 +112,7 @@ namespace MVC.Controllers
 
             if (id == null)
             {
-                return RedirectToAction("~/Consorcio/Listado");
+                return Redirect("/Consorcio/Listado");
             }
 
             Gasto gasto = gastosService.ObtenerPorId((int)id); 
@@ -168,7 +168,7 @@ namespace MVC.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("Listado");
+                return Redirect("/Consorcio/Listado");
             }
 
            Gasto gasto = gastosService.ObtenerPorId((int)id);
@@ -185,14 +185,15 @@ namespace MVC.Controllers
             if (gasto == null)
             {
                 TempData["Eliminado"] = false;
-                return RedirectToAction("Listado");
+                return Redirect("/Consorcio/Listado");
             }
-            
-            //gastosService.ObtenerPorId(gasto.IdGasto);
+            gastosService.ObtenerPorId(gasto.IdGasto);
+            Consorcio consorcio = consorcioService.ObtenerPorId(gasto.IdConsorcio);
+            var idConsorcio = consorcio.IdConsorcio;
             gastosService.Eliminar(gasto.IdGasto);
             TempData["Eliminado"] = true;
 
-            return RedirectToAction("Listado" + "/" + gasto.IdGasto);
+            return RedirectToAction("Listado" + "/" + idConsorcio);
         }
 
         public FileResult DescargarComprobante(int?id)
@@ -202,26 +203,9 @@ namespace MVC.Controllers
             return File(ruta, "application/pdf", gasto.ArchivoComprobante);
         }
 
-        [HttpPost]
-        public ActionResult SubirComprobante(HttpPostedFileBase file)
-        {
-            if (file == null)
-            {
-                return RedirectToAction("~/Consorcio/Listado");
-            }
-                
-            string archivo = (DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + file.FileName).ToLower();
+        
 
-            file.SaveAs(Server.MapPath("~/Gastos/" + archivo));
-
-
-            return RedirectToAction("SubidaExitosa");
-        }
-
-        public ActionResult SubidaExitosa()
-        {
-            return View();
-        }
+        
 
 
 
