@@ -317,6 +317,7 @@
     <Content Include="Views\Gastos\Eliminar.cshtml" />
     <Content Include="Views\Expensas\Ver.cshtml" />
     <Content Include="Views\Gastos\SubidaExitosa.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
