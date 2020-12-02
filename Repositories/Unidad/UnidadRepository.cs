@@ -70,11 +70,11 @@ namespace Repositories
             return false;
         }
 
-        public Boolean ExisteNombre(string nombre, int id, int idCon)
+        public Boolean ExisteNombre(string nombre, int id, int idUni)
         {
             var encontrado = ctx.Unidads.Where(item => item.IdUsuarioCreador == id
                                             && item.Nombre == nombre
-                                            && item.IdConsorcio != idCon).FirstOrDefault();
+                                            && item.IdUnidad != idUni).FirstOrDefault();
 
             if (encontrado != null)
             {
