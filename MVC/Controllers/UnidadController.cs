@@ -214,17 +214,17 @@ namespace MVC.Controllers
             return Redirect("/Unidad/VerUnidades/" + unidad.IdConsorcio);
         }
 
-        public String Existe(string nombre, string id, string idCon)
+        public String Existe(string nombre, string idUsuCre, string idCon, string idUni)
         {
             Boolean existe;
 
-            if (string.IsNullOrEmpty(idCon))
+            if (string.IsNullOrEmpty(idUni))
             {
-                existe = UnidadService.ExisteNombre(nombre, Convert.ToInt32(id));
+                existe = UnidadService.ExisteNombre(nombre, Convert.ToInt32(idUsuCre), Convert.ToInt32(idCon));
             }
             else
             {
-                existe = UnidadService.ExisteNombre(nombre, Convert.ToInt32(id), Convert.ToInt32(idCon));
+                existe = UnidadService.ExisteNombre(nombre, Convert.ToInt32(idUsuCre), Convert.ToInt32(idCon), Convert.ToInt32(idUni));
             }
 
             if (existe)
