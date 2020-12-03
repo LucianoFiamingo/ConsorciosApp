@@ -31,7 +31,7 @@ function buscarUnidadPorNombre(nombre, idUsuCre, idCon, idUni) {
             document.getElementById("existeNombreUni").innerHTML = this.responseText;
         }
     };
-    if (idCon == null) {
+    if (idUni == null) {
         xhttp.open("GET", "/Unidad/Existe/?nombre=" + nombre + "&idUsuCre=" + idUsuCre + "&idCon=" + idCon, true);
         xhttp.send();
     } else {
