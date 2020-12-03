@@ -203,9 +203,27 @@ namespace MVC.Controllers
             return File(ruta, "application/pdf", gasto.ArchivoComprobante);
         }
 
-        
+        public String Existe(string nombre, string id, string idCon)
+        {
+            Boolean existe;
 
-        
+            if (string.IsNullOrEmpty(idCon))
+            {
+                existe = gastosService.ExisteNombre(nombre, Convert.ToInt32(id));
+            }
+            else
+            {
+                existe = gastosService.ExisteNombre(nombre, Convert.ToInt32(id), Convert.ToInt32(idCon));
+            }
+
+            if (existe)
+            {
+                return "Ya existe un gasto con el mismo nombre";
+            }
+            return null;
+        }
+
+
 
 
 

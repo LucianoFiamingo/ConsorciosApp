@@ -1,5 +1,6 @@
 ﻿using Entities.EDMX;
 using Repositories;
+using System;
 using System.Collections.Generic;
 
 namespace Services
@@ -14,6 +15,13 @@ namespace Services
         {
             return repo.ObtenerGastosPorConsorcio(id , idUsuarioCreador);
         }
-       
+        public Boolean ExisteNombre(string nombre, int id)
+        {
+            return repo.ExisteNombre(nombre, id);
+        }
+        public Boolean ExisteNombre(string nombre, int id, int idCon)
+        {
+            return repo.ExisteNombre(nombre, id, idCon);
+        }
     }
 }

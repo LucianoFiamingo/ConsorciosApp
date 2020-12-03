@@ -73,8 +73,8 @@ namespace Repositories
         public Boolean ExisteNombre(string nombre, int id, int idCon)
         {
             var encontrado = ctx.Unidads.Where(item => item.IdUsuarioCreador == id
-                                            && item.Nombre == nombre
-                                            && item.IdConsorcio != idCon).FirstOrDefault();
+                                            && item.IdConsorcio == idCon
+                                            &&  item.Nombre == nombre).FirstOrDefault();
 
             if (encontrado != null)
             {

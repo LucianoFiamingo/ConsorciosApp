@@ -1,4 +1,5 @@
 ﻿using Entities.EDMX;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,6 +37,28 @@ namespace Repositories
 
             return gastosPorConsorcio;
         }
-        
+        public Boolean ExisteNombre(string nombre, int id)
+        {
+            var encontrado = ctx.Gastoes.Where(item => item.IdUsuarioCreador == id
+                                            && item.Nombre == nombre).FirstOrDefault();
+
+            if (encontrado != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        public Boolean ExisteNombre(string nombre, int id, int idCon)
+        {
+            var encontrado = ctx.Gastoes.Where(item => item.IdUsuarioCreador == id
+                                            && item.IdConsorcio == idCon
+                                            && item.Nombre == nombre).FirstOrDefault();
+
+            if (encontrado != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
