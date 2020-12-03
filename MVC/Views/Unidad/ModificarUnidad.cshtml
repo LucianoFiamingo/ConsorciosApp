@@ -48,9 +48,9 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-6" })
                     <div class="">
-                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { onkeyup = "buscarUnidadPorNombre(this.value, " + Session["usuarioId"].ToString() + ", " + Model.IdUnidad.ToString() +")", @class = "form-control" } })
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { onkeyup = "buscarUnidadPorNombre(this.value, " + Session["usuarioId"].ToString() + ", " + Model.IdConsorcio.ToString() + ", " + Model.IdUnidad.ToString() + ")", @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-                        <div id="existeNombreCons" class="text-danger"></div>
+                        <div id="existeNombreUni" class="text-danger"></div>
                     </div>
                 </div>
 
